@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="default_bkg">#ff181820</color>
+    <color name="action_bar_bkg">@color/default_bkg</color>
+    <color name="status_bar_bkg_default">@color/action_bar_bkg</color>
+</resources>

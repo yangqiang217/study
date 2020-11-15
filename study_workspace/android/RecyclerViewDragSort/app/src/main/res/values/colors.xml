@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 透明度参考 -->
+    <color name="transparent">#00000000</color>
+    <color name="c0">#00FFFFFF</color>
+    <color name="bg_black_10">#1A000000</color>
+    <color name="bg_black_11">#BEFFFFFF</color>
+    <!--<color name="bg_black_11">#000000</color>-->
+    <color name="bg_black_15">#20000000</color>
+    <color name="bg_black_25">#44000000</color>
+    <color name="bg_black_20">#33000000</color>
+    <color name="bg_black_30">#4C000000</color>
+    <color name="bg_black_40">#66000000</color>
+    <color name="bg_black_50">#80000000</color>
+    <color name="bg_black_60">#99000000</color>
+    <color name="bg_black_70">#b2000000</color>
+    <color name="bg_black_80">#CF000000</color>
+    <color name="bg_black_90">#E5000000</color>
+    <color name="bg_black_89">#89000000</color>
+    <color name="bg_black">#000000</color>
+
+    <color name="split_line">@color/c3</color>
+    <color name="split_line_translucent">#4cffffff</color>
+    <color name="split_line_block">@color/c9</color>
+    <color name="bg_page">@color/c3</color>
+    <color name="bg_module">@color/c4</color>
+    <color name="c1_1">#233857</color>
+    <color name="c8_1">#9ab3db</color>
+    <!-- 新版颜色扩展 -->
+    <color name="c1_1_trans50">#80335280</color>
+    <color name="c3_50">#80eeeeee</color>
+    <color name="c5_25">#44000000</color> <!--25%透明-->
+    <color name="c5_30">#4C000000</color> <!--30%透明-->
+    <color name="c5_60">#66000000</color> <!--60%透明-->
+    <color name="c5_0">#00000000</color> <!--100%透明-->
+    <color name="c4_trans20">#33ffffff</color>
+    <color name="c4_trans30">#4dffffff</color>
+    <color name="c4_trans40">#66ffffff</color>
+    <color name="c4_trans50">#80ffffff</color>
+    <color name="c4_trans70">#b2ffffff</color>
+    <color name="c4_trans80">#CFffffff</color>
+    <color name="c5_trans24">#18000000</color>
+    <color name="c5_trans30">#4C000000</color>
+    <color name="c5_trans50">#80000000</color>
+    <color name="c5_trans60">@color/bg_black_60</color>
+    <color name="c5_trans70">@color/bg_black_70</color>
+    <color name="c5_trans80">#CF000000</color>
+
+    <!-- 新版不存在的颜色 -->
+    <!-- TODO 其他非标准颜色怎么办 -->
+    <color name="c13_1">#7261d7</color>
+
+    <color name="bg_helmet_play">#4ac5f1</color>
+    <color name="popup_bg_black">#40000000</color>
+    <color name="black">#000000</color>
+    <color name="bg_img">#2562d0ad</color>
+    <color name="bg_overall">#f7f7f7</color>
+    <color name="fontcolor_black">#4e4e4e</color>
+    <color name="bg_invite">#ffdc69</color>
+
+    <color name="lightgray">#D3D3D3</color><!--亮灰色 -->
+
+    <!-- 2018年01月2日 新版颜色规范 -->
+    <!-- 黑白灰 -->
+    <color name="c1">#FFFFFF</color>
+    <color name="c1_86">#86FFFFFF</color>
+    <color name="c2">#F5F5F5</color>
+    <color name="c3">#E6E6E6</color>
+    <color name="c4">#CCCCCC</color>
+    <color name="c5">#999999</color>
+    <color name="c5_76">#C2999999</color>
+    <color name="c5a">#515151</color>
+    <color name="c6">#262626</color>
+    <color name="c6a">#000000</color>
+    <color name="c6a_26">#1A000000</color>
+    <color name="bg_00">#00ffffff</color>
+    <color name="bg_bd">#bdffffff</color>
+
+
+    <!-- 主色 -->
+    <color name="c7">#FF9528</color>
+    <!-- 辅助色 -->
+    <color name="c8">#FFCA1C</color>
+    <color name="c9">#FA6A47</color>
+    <color name="c9_16">#42FA6A47</color>
+    <color name="c10">#F66AA9</color>
+    <color name="c11">#A884E8</color>
+    <color name="c12">#5EA5F5</color>
+    <color name="c13">#27CCD7</color>
+    <color name="c14">#6CBD47</color>
+    <!-- 2018年01月2日 新版颜色规范 END -->
+
+    <color name="c7_96">#F5FF9528</color>
+
+    <color name="c17">#000000</color>
+    <color name="c17_8">#14000000</color>
+    <color name="c18">#DCDFE0</color>
+    <color name="c19">#F4F6F7</color>
+    <color name="c1_trans70">#b2ffffff</color>
+    <color name="c1_trans50">#80ffffff</color>
+    <color name="c_17_70">#b3000000</color>
+    <color name="c_17_87">#dd000000</color>
+    <color name="dark_grey_0">#00000000</color>
+    <color name="dark_grey_54">#8a000000</color>
+    <color name="dark_grey_70">#b2000000</color>
+    <color name="grey">#e6e6e6</color>
+    <color name="open_box_coin">#ffde54</color>
+    <color name="c7_60">#99FF9528</color>
+
+    <color name="c6_60">#662e3133</color>
+    <color name="chose_sex_bg">#28000000</color>
+    <color name="comment_long_click">#282e3133</color>
+    <color name="panel_bg">#cc000000</color>
+
+    <color name="color_333333">#333333</color>
+    <color name="color_323232">#323232</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_999999">#999999</color>
+
+    <color name="alert_confirm">#f7557d</color>
+    <color name="dialog_alert_line">#26000000</color>
+    <color name="color_yellow_open_box">#ff9605</color>
+    <color name="color_bkg_open_box_list_item">#f2f2f2</color>
+
+    <!-- small video CommentListFrag -->
+    <color name="frag_commentlist_nodata_hint">#8791ae</color>
+    <color name="frag_commentlist_background_header">#338791ae</color>
+    <color name="frag_commentlist_name">#8791ae</color>
+    <color name="frag_commentlist_content">#2e3133</color>
+    <color name="frag_commentlist_footer">#8791ae</color>
+
+    <color name="guide_smallvideo_slide_background">#84000000</color>
+    <color name="volume_bg">#75000000</color>
+    <color name="smallvideo_comment_count">#71000000</color>
+
+    <color name="task_hall_coin_check_in_gray">#d1d1d1</color>
+    <color name="task_hall_coin_check_in_orange">#ffe693</color>
+    <color name="task_hall_coin_check_in_red">#ffe693</color>
+    <color name="task_hall_desc_check_in_red">#ff3f0a</color>
+
+    <!-- small video CommentListFrag -->
+    <color name="hello_number">#e43a35</color>
+
+    <color name="feed_tag_background">#fe693f</color>
+
+
+    <color name="notification_wifi_ssid_enable">@color/c6a</color>
+    <color name="notification_wifi_ssid_disable">#a2a2a2</color>
+    <color name="notification_wifi_tip">#a2a2a2</color>
+    <color name="notification_calendar_day">@color/c6a</color>
+    <color name="notification_calendar_weekly">#4c4c4c</color>
+
+    <color name="notification_wifi_ssid_enable_dark_bg">#e7e7e7</color>
+    <color name="notification_wifi_ssid_disable_dark_bg">#777777</color>
+    <color name="notification_wifi_tip_dark_bg">#777777</color>
+    <color name="notification_calendar_day_dark_bg">#e7e7e7</color>
+    <color name="notification_calendar_weekly_dark_bg">#e7e7e7</color>
+
+    <!-- 任务大厅 -->
+    <color name="task_hall_red">#ff3200</color>
+
+</resources>

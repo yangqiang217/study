@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#AAAAAA"
+    tools:context="com.yq.testanimation.MainActivity">
+
+    <Button
+        android:id="@+id/btnTranslation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Translation" />
+
+    <Button
+        android:id="@+id/btnBackgroundColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BackgroundColor"/>
+
+    <Button
+        android:id="@+id/btnAnimationSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AnimationSet"/>
+
+    <Button
+        android:id="@+id/btnXmlAnimation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="XML Animation"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#00DDDD">
+
+        <Button
+            android:id="@+id/btnWiden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="待加宽"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnWidenWrapper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="加宽(wrapper)"/>
+
+            <Button
+                android:id="@+id/btnWidenValueAnimator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="加宽(ValueAnimator)"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="下一页面"/>
+</LinearLayout>

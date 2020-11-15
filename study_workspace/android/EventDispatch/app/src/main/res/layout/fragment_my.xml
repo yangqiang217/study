@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="10dp">
+
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/btn_change"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#ee0011"
+        android:text="false"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#00ee11"
+        android:clickable="true"
+        android:text="false"/>
+
+    <com.yq.eventdispatch.verticalPagerAndRecyclerView.MyRecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"/>
+
+</LinearLayout>

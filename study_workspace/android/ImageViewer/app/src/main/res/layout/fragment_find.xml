@@ -1,0 +1,82 @@
+<LinearLayout android:id="@+id/frag_setting_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/main_bottom_height"
+    tools:context="com.yq.imageviewer.fragment.FindFragment">
+
+    <Button
+        android:id="@+id/frag_setting_btn_purge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:background="@drawable/shape_corner_c7"
+        android:textColor="@color/white"
+        android:text="PURGE UN-ENCRYPTED FOLDERS"
+        style="?android:attr/borderlessButtonStyle" />
+
+
+    <Button
+        android:id="@+id/frag_setting_btn_convert_to_encrypted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:background="@drawable/shape_corner_c7"
+        android:textColor="@color/white"
+        android:text="CONVERT TO ENCRYPTED"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <Button
+        android:id="@+id/frag_setting_btn_convert_to_unencrypted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:background="@drawable/shape_corner_c7"
+        android:textColor="@color/white"
+        android:text="CONVERT TO UNENCRYPTED"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <Button
+        android:id="@+id/frag_setting_btn_show_filename"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:background="@drawable/shape_corner_c7"
+        android:textColor="@color/white"
+        android:text="REAL NAME - ENCRYPTED NAME"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <Button
+        android:id="@+id/frag_setting_btn_downloaded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:background="@drawable/shape_corner_c7"
+        android:textColor="@color/white"
+        android:text="DOWNLOADED"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <Button
+        android:id="@+id/frag_setting_btn_sync_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:background="@drawable/shape_corner_c7"
+        android:textColor="@color/white"
+        android:text="SYNC INPUT"
+        style="?android:attr/borderlessButtonStyle" />
+</LinearLayout>

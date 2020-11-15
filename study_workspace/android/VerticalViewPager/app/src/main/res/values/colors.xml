@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="primary_orange">#F4691D</color>
+
+    <color name="activity_background_default">#ffffffff</color>
+
+    <color name="color_000000">#000000</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_323232">#323232</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_888888">#888888</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_cccccc">#cccccc</color>
+
+    <color name="text_color_gray">#cccccc</color>
+
+    <color name="divider_default">#cccccc</color>
+    <color name="status_bar_bkg_default">#323232</color>
+    <color name="action_bar_bkg">#323232</color>
+    <color name="action_bar_divider">#cccccc</color>
+    <color name="action_bar_line_bkg">#000000</color>
+
+    <color name="edittext_text_color_hint_default">#cccccc</color>
+    <color name="edittext_text_color_default">#262626</color>
+
+    <!-- MainActivity -->
+    <color name="act_main_tabbar_bkg">#f32c2c2c</color>
+    <color name="act_main_tabbar_textcolor_normal">#888888</color>
+    <color name="act_main_tabbar_textcolor_selected">#f76a1d</color>
+
+    <color name="text_color_login_agreement">#fc7948</color>
+
+    <color name="text_hint_color_act_register">#b8b8b8</color>
+
+
+    <!-- VideoPlayActivity -->
+    <color name="act_videoplay_follow">#f4691d</color>
+
+    <!-- dialog -->
+    <color name="dialog_alert_line">#26000000</color>
+
+    <color name="color_f4691d">#f4691d</color>
+    <color name="color_4a4a4a">#4a4a4a</color>
+
+</resources>

@@ -1,0 +1,13 @@
+platform :ios, '8.0'
+# source 'https://cdn.cocoapods.org/'
+source 'https://github.com/CocoaPods/Specs.git'
+
+target "ImageViewer" do
+  pod 'SDWebImage', '~> 5.9'
+  pod 'CHTCollectionViewWaterfallLayout'
+  pod 'AFNetworking', '~> 4.0.1'
+  pod 'JSONModel'
+  pod 'TYPagerController'
+  pod 'ZFPlayer', '~> 4.0'
+  pod 'PINRemoteImage', '~> 3.0'
+end

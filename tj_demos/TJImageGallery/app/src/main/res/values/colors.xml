@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 文字规则 -->
+    <color name="Color_A">#222222</color>
+    <color name="Color_B">#7c7c7c</color>
+    <color name="Color_C">#ffffff</color>
+    <color name="Color_D">#b5b8ba</color>
+    <color name="Color_E">#d6d9db</color>
+    <color name="Color_F">#ffd800</color>
+    <color name="Color_G">#2f82d6</color>
+    <color name="Color_H">#f46831</color>
+    <color name="Color_I">#fdfdfe</color>
+    <color name="Color_J">#f7f7f7</color>
+    <color name="Color_K">#ebebeb</color>
+    <color name="Color_L">#f3f3f4</color>
+    <color name="Color_M">#e4e4e4</color>
+    <color name="Color_N">#cccccc</color>
+    <color name="Color_O">#3a90e7</color>
+    <color name="Color_P">#4ca3fb</color>
+    <color name="Color_R">#c7c7c7</color>
+    <color name="Color_S">#d77900</color>
+    <color name="Color_NoData">#a4a4a4</color>
+    <!-- 文字规则 -->
+
+
+    <!--
+    <color name="expression_tab_up">#737C85</color>
+    <color name="expression_tab_down">#BFC7CD</color>
+    -->
+    <color name="d_gray">#B5B8BA</color>
+    <color name="expression_tab_up">#7C7C7C</color>
+    <color name="expression_tab_down">#222222</color>
+    <color name="y_supply_user_info_color">#0fbbef</color>
+    <color name="translucent_background">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="light_gray">#333333</color>
+    <color name="gray_e6e6e6">#e6e6e6</color>
+    <color name="frame_bg">#f0f3f4</color>
+    <color name="background">#FDFDFE</color>
+    <color name="chat_session_head_text">#E7F2F5</color>
+    <color name="chat_session_normal_time">#7C7C7C</color>
+    <color name="chat_session_name">#2B2B2B</color>
+    <color name="chat_session_content">#7C7C7C</color>
+    <color name="expression_radio_down">#BFC7CD</color>
+    <color name="expression_radio_up">#737C85</color>
+    <color name="blue">#2285da</color>
+    <color name="desktop_name_bg">#313131</color>
+    <color name="purple">#671c98</color>
+    <color name="red">#ff0000</color>
+    <color name="gray">#888888</color>
+    <color name="transparent_gray">#e0888888</color>
+    <color name="green">#00C957</color>
+    <color name="number">#005eac</color>
+    <color name="trans">#00000000</color>
+    <color name="navy_blue2">#033E8F</color>
+    <color name="contact_radio_selected">#DDDDDD</color>
+    <color name="contact_radio_unselected">#4D4D4D</color>
+    <color name="base_title_text_state">#5f5f5f</color>
+    <color name="title_text">#1c1c1c</color>
+    <color name="common_a">#222222</color>
+    <color name="common_b">#7c7c7c</color>
+    <color name="main_background">#fdfdfe</color>
+    <color name="listview_item_selected">#dddddd</color>
+
+    <!-- add by xiangchao.fan -->
+    <color name="setting_description">#c4c4c4</color>
+    <color name="setting_note">#7c7c7c</color>
+    <color name="yellow">#FFFFD800</color>
+    <color name="chat_list_bg">#FFEFEFEF</color>
+    <color name="dark_text_color">#FF222222</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent_black">#33000000</color>
+    <color name="transparent_white">#33ffffff</color>
+    <color name="photos_name_background">#b2000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="photo_preview_select_album_layout_bg">#111111</color>
+    <color name="flipper_head_popup_item_background">#FFE8E8E8</color>
+    <color name="flipper_head_popup_item_background_pressed">#FF005092</color>
+    <color name="multi_chat_name_setting_hint">#a4a4a4</color>
+
+    <drawable name="notify_normal_bg_drawable">#00000000</drawable>
+    <drawable name="notify_press_bg_drawable">#cb553b</drawable>
+    <drawable name="transparent">#00000000</drawable>
+    <drawable name="dark_transparent">#B0000000</drawable>
+
+    <color name="activity_bg">#F3F3F3</color>
+
+    <!-- 关于页面 -->
+    <color name="font_black">#000000</color>
+    <color name="font_gray">#898989</color>
+    <color name="font_gray_white">#565656</color>
+    <color name="font_blue">#2694f1</color>
+    <color name="font_white_gray">#999999</color>
+    <color name="font_light_gray">#f0eff5</color>
+    <color name="font_btn_text">#b56600</color>
+    <color name="font_light_blue">#2087f0</color>
+    <color name="white_gray">#a2a2a2</color>
+    <color name="transparent_background">#80000000</color>
+
+    <!-- 个人主页 -->
+    <color name="gary_frame">#eff1f3</color>
+    <color name="gold_color_task_name">#fe8b07</color>
+    <color name="gold_color_task_reward">#00ca47</color>
+    <color name="half_white">#c0ffffff</color>
+    <color name="heavy_heavy_gray">#808080</color>
+    <color name="will_getreward_gold">#ff8c07</color>
+    <color name="my_exp_progress">#247800</color>
+
+    <!-- 进度条背景色 -->
+    <color name="progress_background">#FFFFFF</color>
+    <color name="gray_lite">#c5c5c5</color>
+    <color name="rank_title">#565656</color>
+    <color name="grade_num">#ff9c00</color>
+    <color name="income_num">#ff3b60</color>
+    <color name="gray_task">#999999</color>
+    <color name="reward_get">#9d5800</color>
+    <color name="progress_exp_txt">#00964a</color>
+    <color name="main_banner_blue">#457df4</color>
+    <color name="error_hint_color">#999999</color>
+	<color name="reward_progress_txt">#247800</color>    
+
+    <!-- add by zhuqin.tian -->
+    <color name="near_street_relocation">#007aff</color>
+
+    <!-- 分隔线 -->
+    <color name="frame_blank">#e7eaec</color>
+    <color name="title_layout_bg">#f7f7f7</color>
+    <color name="popup_main_background">#b0000000</color>
+    <color name="choose_eara_item_press_color">#f4f4f4</color>
+    <color name="no_color">#00000000</color>
+    <color name="category_btn_tv_default">#5c5d5f</color>
+    <color name="category_btn_tv_down">#0091ff</color>
+    <color name="suggest_item_name">#3aa9ff</color>
+    <color name="suggest_item_find">#fe8b07</color>
+    <color name="indoor_rec_price">#fe8b07</color>
+    <color name="task_submit_state">#fe8b07</color>
+    <color name="reward_rec_invalid_task">#ff3b60</color>
+    <color name="indoor_rec_invalid_task">#ff3b60</color>
+    <color name="task_submit_state_unfinish">#ff3b60</color>
+    <color name="plot_tip_view">#f09300</color>
+    <color name="plot_address">#666666</color>
+    <color name="indoor_rec_expired_warn">#666666</color>
+    <color name="reward_rec_expired_warn">#666666</color>
+    <color name="plot_tip">#ffa312</color>
+    <color name="gary_heavy">#adadad</color>
+    <color name="gary_tab">#f0f0f0</color>
+    <color name="gray_tab_login">#d8d8d8</color>
+    <color name="line_blowtitle_dialog">#33b5e5</color>
+
+    <drawable name="listview_item_bg">#ffffff</drawable>
+
+    <color name="v4_list_item_bg_hl">#edf4fe</color>
+    <color name="gold_preview_number">#f7890e</color>
+    <color name="gold_preview_number_show">#eb642c</color>
+    <color name="next_btn_enabled">#b56600</color>
+    <color name="next_btn_disabled">#8f8f8f</color>
+
+    <!-- category -->
+    <color name="categary_selected_color">#0091ff</color>
+    <color name="categary_unselected_color">#5c5d5f</color>
+    <color name="categary_title_color">#000000</color>
+    <color name="categary_must_color">#999999</color>
+
+    <color name="home_tab_text_select">#fe8b07</color>
+    
+    <!-- 地图 -->
+    <color name="area_red_line">#ff0f0f</color>
+    <color name="area_blue_line">#0091ff</color>
+    <color name="area_green_line">#00c329</color>
+    <color name="area_gray_shape">#808080</color>
+    <color name="area_blue_shape">#99ceeaff</color>
+
+
+    <color name="black_60per_transparent">#9a000000</color><!-- 区域填充 -->
+    
+    <!-- 离线地图 -->
+    <color name="list_large_txt_color">#3b3b3b</color>
+    <color name="offline_red">#ff3300</color>
+    <color name="offline_gray_item">#fcfcfc</color>
+    <color name="offline_down">#ffa312</color>
+    <color name="offline_all_undown">#febe8e</color>
+</resources>

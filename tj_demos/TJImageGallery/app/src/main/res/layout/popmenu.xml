@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/popup_view_cont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@drawable/listview_item_divider"
+            android:dividerHeight="1.0dip"
+            android:scrollbars="none" >
+        </ListView>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#b2720d" />
+    </LinearLayout>
+
+</LinearLayout>

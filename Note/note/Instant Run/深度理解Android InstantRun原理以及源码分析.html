@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://www.atatech.org/articles/57274/?frm=mail_daily&uid=126063 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>深度理解Android InstantRun原理以及源码分析</title>
+    <meta name="description" content="">
+    
+    <meta name="viewport" content="width=1100, maximum-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="./深度理解Android InstantRun原理以及源码分析_files/app-b1ca98a0d3cf22a7f80de51d25d4f2fe5a61db69.css">
+    <script src="./深度理解Android InstantRun原理以及源码分析_files/app-03564bc788ba269ae31bb213670e41f7af879c9c.js" data-main="article/show"></script>
+    <script>require('main')</script>
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv-3.7.0.min.js"></script>
+    <script src="/js/respond-1.4.2.min.js"></script>
+    <![endif]-->
+  <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+  <body class="" style="zoom: 1;"><div id="MathJax_Message" style="display: none;"></div><div id="uc_reader_tip" style="position:absolute;top:78px;left:245px;z-index: 9999999999;height:0;border:0;padding:0;margin:0;"><div id="reader-tip-icon" class="reader-tip-bar tip-bar tip-bar--yellow" style="margin-top:-42px;margin-left:0px;"><button id="reader-tip-bar-close" class="reader-tip-bar-close"></button></div></div>
+
+              <header>
+  <div class="navbar navbar-default">
+    <div class="container">
+        <ul class="nav navbar-nav">
+          <li><a href="http://www.atatech.org/square/">首页</a></li>
+          <li><a href="http://www.atatech.org/articles/?sort=yuan">文章</a></li>
+          <li><a href="http://www.atatech.org/ask">问答</a></li>
+          <li><a href="http://www.atatech.org/edu/lesson/">课程</a></li>
+          <li><a href="http://www.atatech.org/rookie/nav/">百宝箱</a></li>
+          <li class="divider"></li>
+          <li><a href="http://www.atatech.org/groups/">圈子</a></li>
+          <li><a href="http://www.atatech.org/teams/">团队博客</a></li>
+          <li><a href="http://www.atatech.org/rookie/">新人专区</a></li>
+          <li class="divider"></li>
+          <li><a href="http://www.atatech.org/databoard/" target="_blank">数据看板</a></li>
+          <li><a href="http://www.atatech.org/field/security/">安全领域</a></li>
+          <li><a href="http://www.atatech.org/specials/49engine/" target="_blank">技术战役</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+
+                              <li><a href="http://www.atatech.org/op/timeMachine" target="_blank" title="2016时光机">时光机</a></li>
+          <li><a href="http://www.atatech.org/notifications/">消息</a></li>
+          <li><a href="http://www.atatech.org/feed/">动态</a></li>
+          <li class="divider"></li>
+          <li class="dropdown">
+            <a href="http://www.atatech.org/users/126063#information" class="navbar-avatar" data-toggle="dropdown">
+              <img src="./深度理解Android InstantRun原理以及源码分析_files/u_identicon_f49c4985b99f15f08636de1c4fae77c5.png_40x40" width="20" height="20" alt="诃德" class="img-circle">
+              <span>&nbsp;诃德</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" style="display: none;">
+              <li>
+                <a href="http://www.atatech.org/users/126063/own#information">
+                <span class="glyphicon glyphicon-edit"></span>
+                <span>我的文章</span>
+                </a>
+              </li>
+              <li>
+                <a href="http://www.atatech.org/users/126063/ask#information">
+                <span class="glyphicon glyphicon-question-sign"></span>
+                <span>我的问题</span>
+                </a>
+              </li>
+              <li>
+                <a href="http://www.atatech.org/users/126063/mark#information">
+                <span class="glyphicon glyphicon-star-empty"></span>
+                <span>我的收藏</span>
+                </a>
+              </li>
+              <li>
+                <a href="http://www.atatech.org/users/126063/groups">
+                <span class="glyphicon glyphicon-record"></span>
+                <span>我的圈子</span>
+                </a>
+              </li>
+              <li>
+                <a href="http://www.atatech.org/teams">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                <span>我的博客</span>
+                </a>
+              </li>
+              
+                            <li>
+                <a href="http://www.atatech.org/settings/">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span>个人设置</span>
+                </a>
+              </li>
+                            <li class="divider"></li>
+              <li>
+                <a href="http://www.atatech.org/logout" data-method="post">
+                <span class="glyphicon glyphicon-log-out"></span>
+                <span>退出</span>
+                </a>
+              </li>
+            </ul><!-- /.dropdown -->
+          </li>
+          <li class="dropdown quick-search">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span></button>
+            <div class="dropdown-menu form-group" role="menu" style="display: none;">
+              <form action="http://www.atatech.org/search" method="get" class="quick-form js-active-on-valid">
+                    <input type="hidden" name="type" value="ARTICLE">
+                    <input type="text" name="q" class="form-control" placeholder="全站搜索" required="">
+                    <button type="submit" class="quick_btn"></button>
+              </form>
+            </div>
+          </li>
+        </ul>
+    </div>
+  </div>
+  
+  </header>                <div class="container">
+          </div>
+        
+
+
+<div class="container"><div class="_article-container">
+    <div class="_article-flag hidden-xs">
+        <span class="glyphicon glyphicon-heart"></span>
+    <span class="_article-flag-text">荐</span>
+  </div>
+    <div class="_article-ribbons hidden-xs">
+                <div class="_article-ribbon _article-ribbon-info">
+            <span class="glyphicon glyphicon-leaf"></span>
+      <span class="_article-ribbon-text">作者原创</span>
+    </div>
+          </div>
+  <div class="_article-box" role="main">
+    <article class="_article">
+      <header class="heading">
+        <h1 class="title clearfix unsafe">
+          <span class="highlight">
+            深度理解Android InstantRun原理以及源码分析
+                      </span>
+        </h1>
+        <div class="infos clearfix">
+          <a href="http://www.atatech.org/users/136474" class="info" title="莫川"><img src="./深度理解Android InstantRun原理以及源码分析_files/img_20150626105358.jpg_80x80" width="32" height="32" alt="莫川" class="img-user"><span>&nbsp;莫川</span></a>                    <span class="info">浏览 111</span>
+          <span class="info">
+                        <time class="" datetime="2016-06-30T15:46:24+08:00">2016-06-30 15:46:24</time>
+          </span>
+                                                    <span class="info">
+                  发表于：
+                  <a href="http://www.atatech.org/teams/203">阿里旅行技术团队</a>
+                                    <span>&gt;&gt;</span>
+                  <a href="http://www.atatech.org/teams/203?cid=1100">Android</a>
+                                  </span>
+          
+          <div class="pull-right">
+                        
+                        
+                      </div>
+        </div>
+
+                <div class="labels">
+    <form accept-charset="UTF-8" action="http://www.atatech.org/articles/57274/tags" autocomplete="off" method="post" data-remote="true" data-done="$(this).closest(&#39;.labels&#39;).replaceWith(r);$.alert(&#39;修改成功&#39;, &#39;success&#39;)" style="display:none">
+    <input type="hidden" name="_method" value="put">
+    <div class="form-group">
+      <input type="text" name="tags" class="form-control selectized" value="android " tabindex="-1" style="display: none;"><div class="selectize-control form-control multi plugin-remove_button"><div class="selectize-input items not-full has-options has-items"><div data-value="android" class="item">android<a href="javascript:void(0)" class="remove" tabindex="-1" title="Remove">×</a></div><input type="text" autocomplete="off" tabindex="" style="width: 4px;"></div><div class="selectize-dropdown form-control multi plugin-remove_button" style="display: none;"><div class="selectize-dropdown-content"><div data-value="Java核心技术" data-selectable="" class="option active">Java核心技术</div><div data-value="Java" data-selectable="" class="option">Java</div><div data-value="架构" data-selectable="" class="option">架构</div><div data-value="前端与交互设计" data-selectable="" class="option">前端与交互设计</div><div data-value="分布式系统与计算" data-selectable="" class="option">分布式系统与计算</div><div data-value="算法" data-selectable="" class="option">算法</div><div data-value="数据存储与数据库" data-selectable="" class="option">数据存储与数据库</div><div data-value="编程语言" data-selectable="" class="option">编程语言</div><div data-value="测试技术" data-selectable="" class="option">测试技术</div></div></div></div>
+    </div>
+    <div class="form-group text-right">
+      <button type="button" class="btn btn-default btn-sm" onclick="$(this).closest(&#39;.labels&#39;).children().toggle()">取消</button>
+      <button type="submit" class="btn btn-primary btn-sm">更新</button>
+    </div>
+  </form>
+    
+  <div>
+    <a href="http://www.atatech.org/search?q=android&amp;type=INSIDE_ARTICLE_TAG" class="label label-ata">android</a>        <button type="button" id="edit-tags" class="btn btn-default btn-xs" onclick="$(this).closest(&#39;.labels&#39;).children().toggle()">
+      <span class="glyphicon glyphicon-pencil"></span>
+      修改标签
+    </button>
+    <a href="http://www.atatech.org/articles/57274/tags/history" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-tag-history">
+      <span class="glyphicon glyphicon-time"></span>
+      标签历史
+    </a>
+      </div>
+</div>
+
+              </header>
+      
+      <div class="content unsafe">
+        
+<h1 id="0">深度理解Android InstantRun原理以及源码分析</h1>
+<p>@Author 莫川</p>
+<h2 id="1">Instant Run官方介绍</h2>
+<p>简单介绍一下Instant Run,它是Android Studio2.0以后新增的一个运行机制，能够显著减少你第二次及以后的构建和部署时间。简单通俗的解释就是，当你在Android Studio中改了你的代码，Instant Run可以很快的让你看到你修改的效果。而在没有Instant Run之前，你的一个小小的修改，都肯能需要几十秒甚至更长的等待才能看到修改后的效果。</p>
+<h3 id="2">传统的代码修改及编译部署流程</h3>
+<p><img src="./深度理解Android InstantRun原理以及源码分析_files/db7828d651665291d5c7491ddfe9a64132265267" alt="1"><br></p>
+<p><em>构建整个apk → 部署app → app重启 → 重启Activity</em><br><br>
+而Instant Run则需要更少的时间。<br></p>
+<h3 id="3">Instant Run编译和部署流程<br>
+</h3>
+<p><img src="./深度理解Android InstantRun原理以及源码分析_files/723fb9d3e7274e13ee943713c510f28f9cd9536c" alt="2"><br><br><em>只构建修改的部分 → 部署修改的dex或资源 → 热部署，温部署，冷部署</em><br></p>
+<h4 id="4">热部署</h4>
+<p>Incremental code changes are applied and reflected in the app without needing to relaunch the app or even restart the current Activity. Can be used for most simple changes within method implementations.<br>
+方法内的简单修改，无需重启app和Activity</p>
+<h4 id="5">温部署</h4>
+<p>The Activity needs to be restarted before changes can be seen and used. Typically required for changes to resources.<br>
+app无需重启，但是activity需要重启，比如资源的修改。</p>
+<h4 id="6">冷部署</h4>
+<p>The app is restarted (but still not reinstalled). Required for any structural changes such as to inheritance or method signatures.<br>
+app需要重启，比如继承关系的改变或方法的签名变化等。</p>
+<p>上述说这么多概念，估计大家对Instant Run应该有了大体的认知了。那么它的实现原理是什么呢？其实，在没有看案例之前，我基本上可以猜测到Instant Run的思路，基于目前比较火的插件化框架，是比较容易理解Instant Run的。但Instant Run毕竟是Google官方的工具，具有很好的借鉴意义。</p>
+<h2 id="7">Demo案例</h2>
+<p>新建一个简单的android studio项目，新建自己的MyApplication，在AndroidManifest文件中设置：<br><br><img src="./深度理解Android InstantRun原理以及源码分析_files/5dc97cb4dae110ceeaada3a274c7f5ce1d311b51" alt="4"><br><br>
+首先，我们先反编译一下APK的构成：<br>
+使用的工具：d2j-dex2jar 和jd-gui<br><br><img src="./深度理解Android InstantRun原理以及源码分析_files/61781068cedda8dd76a30a3f271a2820af879946" alt="3"><br><br>
+里面有2个dex文件和一个instant-run.zip文件。首先分别看一下两个dex文件的源码：<br><br>
+classes.dex的反编译之后的源码：<br><br><img src="./深度理解Android InstantRun原理以及源码分析_files/d2c800521477213186c8c574dc54dadf2ce472b9" alt="5"><br><br>
+里面只有一个AppInfo，保存了app的基本信息，主要包含了包名和applicationClass。<br><br>
+classes2.dex反编译之后的源码：<br><br><img src="./深度理解Android InstantRun原理以及源码分析_files/236a75a8b725430260bb5bba5e92b7dce344982b" alt="6"><br><br>
+我们赫然发现，两个dex中竟然没有一句我们自己写的代码？？那么代码在哪里呢？你可能猜到，app真正的业务dex在instant-run.zip中。解压instant-run.zip之后，如下图所示：<br><br><img src="./深度理解Android InstantRun原理以及源码分析_files/6a28471153ce520121b8cca26f816c9cc02585d9" alt="7"><br><br>
+反编译之后，我们会发现，我们真正的业务代码都在这里。<br><br>
+另外，我们再decode看一下AndroidManifest文件<br><br><img src="./深度理解Android InstantRun原理以及源码分析_files/b600dcddc8858df2de0c34ea8fee13bf16a6eebc" alt="8"><br><br>
+//TODO<br>
+我们发现，我们的application也被替换了，替换成了com.android.tools.fd.runtime.BootstrapApplication</p>
+<p>看到这里，那么大体的思路，可以猜到：<br>
+1.Instant-Run代码作为一个宿主程序，将app作为资源dex加载起来，和插件化一个思路<br>
+2.那么InstantRun是怎么把业务代码运行起来的呢？</p>
+<h2 id="8">InstantRun启动app</h2>
+<p>首先BootstrapApplication分析，按照执行顺序，依次分析attachBaseContext和onCreate方法。</p>
+<h4 id="9">1.attachBaseContext方法</h4>
+<pre><code data-language="language-java" class="hljs gradle">
+    ...
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> attachBaseContext(Context context) {
+        <span class="hljs-keyword">if</span> (!AppInfo.usingApkSplits) {
+            String apkFile = context.getApplicationInfo().sourceDir;
+            <span class="hljs-keyword">long</span> apkModified = apkFile != <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">new</span> <span class="hljs-keyword">File</span>(apkFile)
+                    .lastModified() : <span class="hljs-number">0</span>L;
+            createResources(apkModified);
+            setupClassLoaders(context, context.getCacheDir().getPath(),
+                    apkModified);
+        }
+        createRealApplication();
+
+        <span class="hljs-keyword">super</span>.attachBaseContext(context);
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.realApplication != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">try</span> {
+                Method attachBaseContext = ContextWrapper.<span class="hljs-keyword">class</span>
+                        .getDeclaredMethod(<span class="hljs-string">"attachBaseContext"</span>,
+                                <span class="hljs-keyword">new</span> <span class="hljs-keyword">Class</span>[] { Context.<span class="hljs-keyword">class</span> });
+
+                attachBaseContext.setAccessible(<span class="hljs-keyword">true</span>);
+                attachBaseContext.invoke(<span class="hljs-keyword">this</span>.realApplication,
+                        <span class="hljs-keyword">new</span> Object[] { context });
+            } <span class="hljs-keyword">catch</span> (Exception e) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(e);
+            }
+        }
+    }
+    ...</code></pre>
+<p>我们依次需要关注的方法有：<br>
+createResources → setupClassLoaders → createRealApplication → 调用realApplication的attachBaseContext方法</p>
+<h5 id="10">1.1.createResources</h5>
+<p>首先看createResources方法：</p>
+<pre><code data-language="language-java" class="hljs gradle">
+     <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> createResources(<span class="hljs-keyword">long</span> apkModified) {
+        FileManager.checkInbox();
+
+        <span class="hljs-keyword">File</span> <span class="hljs-keyword">file</span> = FileManager.getExternalResourceFile();
+        <span class="hljs-keyword">this</span>.externalResourcePath = (<span class="hljs-keyword">file</span> != <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">file</span>.getPath() : <span class="hljs-keyword">null</span>);
+        <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+            Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Resource override is "</span>
+                    + <span class="hljs-keyword">this</span>.externalResourcePath);
+        }
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">file</span> != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">long</span> resourceModified = <span class="hljs-keyword">file</span>.lastModified();
+                <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Resource patch last modified: "</span>
+                            + resourceModified);
+                    Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"APK last modified: "</span> + apkModified
+                            + <span class="hljs-string">" "</span>
+                            + (apkModified &gt; resourceModified ? <span class="hljs-string">"&gt;"</span> : <span class="hljs-string">"&lt;"</span>)
+                            + <span class="hljs-string">" resource patch"</span>);
+                }
+                <span class="hljs-keyword">if</span> ((apkModified == <span class="hljs-number">0</span>L) || (resourceModified &lt;= apkModified)) {
+                    <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                        Log.v(<span class="hljs-string">"InstantRun"</span>,
+                                <span class="hljs-string">"Ignoring resource file, older than APK"</span>);
+                    }
+                    <span class="hljs-keyword">this</span>.externalResourcePath = <span class="hljs-keyword">null</span>;
+                }
+            } <span class="hljs-keyword">catch</span> (Throwable t) {
+                Log.e(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Failed to check patch timestamps"</span>, t);
+            }
+        }
+    }</code></pre>
+<p>该方法主要是判断资源resource.ap_是否改变，然后保存resource.ap_的路径到externalResourcePath中</p>
+<h5 id="11">1.2.setupClassLoaders</h5>
+<pre><code data-language="language-java" class="hljs vbscript">
+    <span class="hljs-keyword">private</span> static void setupClassLoaders(Context context, <span class="hljs-built_in">String</span> codeCacheDir,
+            long apkModified) {
+        List&lt;<span class="hljs-built_in">String</span>&gt; dexList = FileManager.getDexList(context, apkModified);
+
+        <span class="hljs-keyword">Class</span>&lt;<span class="hljs-built_in">Server</span>&gt; <span class="hljs-built_in">server</span> = <span class="hljs-built_in">Server</span>.<span class="hljs-keyword">class</span>;
+        <span class="hljs-keyword">Class</span>&lt;MonkeyPatcher&gt; patcher = MonkeyPatcher.<span class="hljs-keyword">class</span>;
+        <span class="hljs-keyword">if</span> (!dexList.<span class="hljs-built_in">isEmpty</span>()) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Bootstrapping class loader with dex list "</span>
+                        + <span class="hljs-built_in">join</span>(<span class="hljs-comment">'\n', dexList));</span>
+            }
+            ClassLoader classLoader = BootstrapApplication.<span class="hljs-keyword">class</span>
+                    .getClassLoader();
+            <span class="hljs-built_in">String</span> nativeLibraryPath;
+            try {
+                nativeLibraryPath = (<span class="hljs-built_in">String</span>) classLoader.getClass()
+                        .getMethod(<span class="hljs-string">"getLdLibraryPath"</span>, <span class="hljs-keyword">new</span> <span class="hljs-keyword">Class</span>[<span class="hljs-number">0</span>])
+                        .invoke(classLoader, <span class="hljs-keyword">new</span> Object[<span class="hljs-number">0</span>]);
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Native library path: "</span>
+                            + nativeLibraryPath);
+                }
+            } catch (Throwable t) {
+                <span class="hljs-built_in">Log</span>.e(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Failed to determine native library path "</span>
+                        + t.getMessage());
+                nativeLibraryPath = FileManager.getNativeLibraryFolder()
+                        .getPath();
+            }
+            IncrementalClassLoader.inject(classLoader, nativeLibraryPath,
+                    codeCacheDir, dexList);
+        }
+    }
+</code></pre>
+<p>继续看IncrementalClassLoader.inject方法：<br>
+IncrementalClassLoader的源码如下：</p>
+<pre><code data-language="language-java" class="hljs processing">
+    <span class="hljs-keyword">public</span> class IncrementalClassLoader extends ClassLoader {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-built_in">boolean</span> DEBUG_CLASS_LOADING = <span class="hljs-keyword">false</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> DelegateClassLoader delegateClassLoader;
+
+    <span class="hljs-keyword">public</span> IncrementalClassLoader(ClassLoader original,
+            <span class="hljs-keyword">String</span> nativeLibraryPath, <span class="hljs-keyword">String</span> codeCacheDir, List&lt;<span class="hljs-keyword">String</span>&gt; dexes) {
+        <span class="hljs-keyword">super</span>(original.getParent());
+
+        <span class="hljs-keyword">this</span>.delegateClassLoader = createDelegateClassLoader(nativeLibraryPath,
+                codeCacheDir, dexes, original);
+    }
+
+    <span class="hljs-keyword">public</span> Class&lt;?&gt; findClass(<span class="hljs-keyword">String</span> className) <span class="hljs-keyword">throws</span> ClassNotFoundException {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.delegateClassLoader.findClass(className);
+        } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {
+            <span class="hljs-keyword">throw</span> e;
+        }
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> class DelegateClassLoader extends BaseDexClassLoader {
+
+        <span class="hljs-keyword">private</span> DelegateClassLoader(<span class="hljs-keyword">String</span> dexPath, File optimizedDirectory,
+                <span class="hljs-keyword">String</span> libraryPath, ClassLoader parent) {
+            <span class="hljs-keyword">super</span>(dexPath, optimizedDirectory, libraryPath, parent);
+        }
+
+        <span class="hljs-keyword">public</span> Class&lt;?&gt; findClass(<span class="hljs-keyword">String</span> name) <span class="hljs-keyword">throws</span> ClassNotFoundException {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.findClass(name);
+            } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {
+                <span class="hljs-keyword">throw</span> e;
+            }
+        }
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> DelegateClassLoader createDelegateClassLoader(
+            <span class="hljs-keyword">String</span> nativeLibraryPath, <span class="hljs-keyword">String</span> codeCacheDir, List&lt;<span class="hljs-keyword">String</span>&gt; dexes,
+            ClassLoader original) {
+        <span class="hljs-keyword">String</span> pathBuilder = createDexPath(dexes);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DelegateClassLoader(pathBuilder, <span class="hljs-keyword">new</span> File(codeCacheDir),
+                nativeLibraryPath, original);
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">String</span> createDexPath(List&lt;<span class="hljs-keyword">String</span>&gt; dexes) {
+        StringBuilder pathBuilder = <span class="hljs-keyword">new</span> StringBuilder();
+        <span class="hljs-built_in">boolean</span> first = <span class="hljs-keyword">true</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">String</span> dex : dexes) {
+            <span class="hljs-keyword">if</span> (first) {
+                first = <span class="hljs-keyword">false</span>;
+            } <span class="hljs-keyword">else</span> {
+                pathBuilder.<span class="hljs-built_in">append</span>(File.pathSeparator);
+            }
+            pathBuilder.<span class="hljs-built_in">append</span>(dex);
+        }
+        <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+            Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Incremental dex path is "</span>
+                    + BootstrapApplication.<span class="hljs-built_in">join</span>(<span class="hljs-string">'\n'</span>, dexes));
+        }
+        <span class="hljs-keyword">return</span> pathBuilder.toString();
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> setParent(ClassLoader classLoader, ClassLoader newParent) {
+        <span class="hljs-keyword">try</span> {
+            Field parent = ClassLoader.class.getDeclaredField(<span class="hljs-string">"parent"</span>);
+            parent.setAccessible(<span class="hljs-keyword">true</span>);
+            parent.<span class="hljs-built_in">set</span>(classLoader, newParent);
+        } <span class="hljs-keyword">catch</span> (IllegalArgumentException e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+        } <span class="hljs-keyword">catch</span> (IllegalAccessException e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+        } <span class="hljs-keyword">catch</span> (NoSuchFieldException e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ClassLoader inject(ClassLoader classLoader,
+            <span class="hljs-keyword">String</span> nativeLibraryPath, <span class="hljs-keyword">String</span> codeCacheDir, List&lt;<span class="hljs-keyword">String</span>&gt; dexes) {
+        IncrementalClassLoader incrementalClassLoader = <span class="hljs-keyword">new</span> IncrementalClassLoader(
+                classLoader, nativeLibraryPath, codeCacheDir, dexes);
+
+        setParent(classLoader, incrementalClassLoader);
+
+        <span class="hljs-keyword">return</span> incrementalClassLoader;
+    }
+    }</code></pre>
+<p>inject方法是用来设置classloader的父子顺序的，使用IncrementalClassLoader来加载dex。由于ClassLoader的双亲委托模式，也就是委托父类加载类，父类中找不到再在本ClassLoader中查找。<br>
+调用之后的效果如下图所示：<br><br><img src="./深度理解Android InstantRun原理以及源码分析_files/544dd7207c10442756213621779acf7d3297570a" alt="classloader"><br><br>
+我们可以在MyApplication中，用代码验证一下<br></p>
+<pre><code data-language="language-java" class="hljs lasso">
+     @Override
+    <span class="hljs-keyword">public</span> <span class="hljs-literal">void</span> onCreate() {
+        super.onCreate();
+        try{
+            <span class="hljs-keyword">Log</span>.d(<span class="hljs-built_in">TAG</span>,<span class="hljs-string">"###onCreate in myApplication"</span>);
+            <span class="hljs-built_in">String</span> classLoaderName = getClassLoader().getClass().getName();
+            <span class="hljs-keyword">Log</span>.d(<span class="hljs-built_in">TAG</span>,<span class="hljs-string">"###onCreate in myApplication classLoaderName = "</span>+classLoaderName);
+            <span class="hljs-built_in">String</span> parentClassLoaderName = getClassLoader().getParent().getClass().getName();
+            <span class="hljs-keyword">Log</span>.d(<span class="hljs-built_in">TAG</span>,<span class="hljs-string">"###onCreate in myApplication parentClassLoaderName = "</span>+parentClassLoaderName);
+            <span class="hljs-built_in">String</span> pParentClassLoaderName = getClassLoader().getParent().getParent().getClass().getName();
+            <span class="hljs-keyword">Log</span>.d(<span class="hljs-built_in">TAG</span>,<span class="hljs-string">"###onCreate in myApplication pParentClassLoaderName = "</span>+pParentClassLoaderName);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }</code></pre>
+<p>运行结果：</p>
+<pre><code data-language="language-txt" class="hljs stylus"> ...
+<span class="hljs-number">06</span>-<span class="hljs-number">30</span> <span class="hljs-number">10</span>:<span class="hljs-number">43</span>:<span class="hljs-number">42.475</span> <span class="hljs-number">27307</span>-<span class="hljs-number">27307</span>/mobctrl<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.testinstantrun</span> D/MyApplication: ##<span class="hljs-selector-id">#onCreate</span> <span class="hljs-keyword">in</span> myApplication classLoaderName = dalvik<span class="hljs-selector-class">.system</span><span class="hljs-selector-class">.PathClassLoader</span>
+<span class="hljs-number">06</span>-<span class="hljs-number">30</span> <span class="hljs-number">10</span>:<span class="hljs-number">43</span>:<span class="hljs-number">42.475</span> <span class="hljs-number">27307</span>-<span class="hljs-number">27307</span>/mobctrl<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.testinstantrun</span> D/MyApplication: ##<span class="hljs-selector-id">#onCreate</span> <span class="hljs-keyword">in</span> myApplication parentClassLoaderName = com<span class="hljs-selector-class">.android</span><span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.fd</span><span class="hljs-selector-class">.runtime</span><span class="hljs-selector-class">.IncrementalClassLoader</span>
+<span class="hljs-number">06</span>-<span class="hljs-number">30</span> <span class="hljs-number">10</span>:<span class="hljs-number">43</span>:<span class="hljs-number">42.475</span> <span class="hljs-number">27307</span>-<span class="hljs-number">27307</span>/mobctrl<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.testinstantrun</span> D/MyApplication: ##<span class="hljs-selector-id">#onCreate</span> <span class="hljs-keyword">in</span> myApplication pParentClassLoaderName = java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.BootClassLoader</span></code></pre>
+<p>由此，我们已经知道了，当前PathClassLoader委托IncrementalClassLoader加载dex。继续回到BootstrapApplication的attachBaseContext方法继续分析。</p>
+<h5 id="12">1.3.createRealApplication</h5>
+<pre><code data-language="language-java" class="hljs monkey">
+    <span class="hljs-keyword">private</span> void createRealApplication() {
+        <span class="hljs-keyword">if</span> (AppInfo.applicationClass != <span class="hljs-literal">null</span>) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>,
+                        <span class="hljs-string">"About to create real application of class name = "</span>
+                                + AppInfo.applicationClass);
+            }
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-class"><span class="hljs-keyword">Class</span>&lt;? <span class="hljs-keyword">extends</span> <span class="hljs-title">Application</span>&gt; <span class="hljs-title">realClass</span> = (<span class="hljs-title">Class</span>&lt;? <span class="hljs-keyword">extends</span> <span class="hljs-title">Application</span>&gt;) <span class="hljs-title">Class</span></span>
+                        .forName(AppInfo.applicationClass);
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>,
+                            <span class="hljs-string">"Created delegate app class successfully : "</span>
+                                    + realClass + <span class="hljs-string">" with class loader "</span>
+                                    + realClass.getClassLoader());
+                }
+                Constructor&lt;? extends Application&gt; constructor = realClass
+                        .getConstructor(<span class="hljs-keyword">new</span> <span class="hljs-class"><span class="hljs-keyword">Class</span>[0]);</span>
+                this.realApplication = ((Application) constructor
+                        .newInstance(<span class="hljs-keyword">new</span> Object[<span class="hljs-number">0</span>]));
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>,
+                            <span class="hljs-string">"Created real app instance successfully :"</span>
+                                    + this.realApplication);
+                }
+            } <span class="hljs-keyword">catch</span> (Exception e) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(e);
+            }
+        } <span class="hljs-keyword">else</span> {
+            this.realApplication = <span class="hljs-keyword">new</span> Application();
+        }
+    }</code></pre>
+<p>该方法就是用classes.dex中的AppInfo类的applicationClass常量中保存的app真实的application。由上面的反编译截图可以知道，demo中的applicationClass就是mobctrl.net.testinstantrun.MyApplication。通过反射的方式，创建真是的realApplication。</p>
+<h5 id="13">1.4.调用realApplication的attachBaseContext方法</h5>
+<p>代理realApplication的生命周期，通过反射调用realApplication的attachBaseContext方法，以当前的Context为参数。<br><br>
+attachBaseContext方法执行结束之后，我们继续往下看，到BootstrapApplication的onCreate方法</p>
+<h3 id="14">2.onCreate</h3>
+<p>源码如下：</p>
+<pre><code data-language="language-java" class="hljs aspectj">
+     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (!AppInfo.usingApkSplits) {
+            MonkeyPatcher.monkeyPatchApplication(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>,
+                    <span class="hljs-keyword">this</span>.realApplication, <span class="hljs-keyword">this</span>.externalResourcePath);
+
+            MonkeyPatcher.monkeyPatchExistingResources(<span class="hljs-keyword">this</span>,
+                    <span class="hljs-keyword">this</span>.externalResourcePath, <span class="hljs-keyword">null</span>);
+        } <span class="hljs-keyword">else</span> {
+            MonkeyPatcher.monkeyPatchApplication(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>,
+                    <span class="hljs-keyword">this</span>.realApplication, <span class="hljs-keyword">null</span>);
+        }
+        <span class="hljs-keyword">super</span>.onCreate();
+        <span class="hljs-keyword">if</span> (AppInfo.applicationId != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">boolean</span> foundPackage = <span class="hljs-keyword">false</span>;
+                <span class="hljs-keyword">int</span> pid = Process.myPid();
+                ActivityManager manager = (ActivityManager) getSystemService(<span class="hljs-string">"activity"</span>);
+
+                List&lt;ActivityManager.RunningAppProcessInfo&gt; processes = manager
+                        .getRunningAppProcesses();
+                <span class="hljs-keyword">boolean</span> startServer = <span class="hljs-keyword">false</span>;
+                <span class="hljs-keyword">if</span> ((processes != <span class="hljs-keyword">null</span>) &amp;&amp; (processes.size() &gt; <span class="hljs-number">1</span>)) {
+                    <span class="hljs-keyword">for</span> (ActivityManager.RunningAppProcessInfo processInfo : processes) {
+                        <span class="hljs-keyword">if</span> (AppInfo.applicationId
+                                .equals(processInfo.processName)) {
+                            foundPackage = <span class="hljs-keyword">true</span>;
+                            <span class="hljs-keyword">if</span> (processInfo.pid == pid) {
+                                startServer = <span class="hljs-keyword">true</span>;
+                                <span class="hljs-keyword">break</span>;
+                            }
+                        }
+                    }
+                    <span class="hljs-keyword">if</span> ((!startServer) &amp;&amp; (!foundPackage)) {
+                        startServer = <span class="hljs-keyword">true</span>;
+                        <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                            Log.v(<span class="hljs-string">"InstantRun"</span>,
+                                    <span class="hljs-string">"Multiprocess but didn't find process with package: starting server anyway"</span>);
+                        }
+                    }
+                } <span class="hljs-keyword">else</span> {
+                    startServer = <span class="hljs-keyword">true</span>;
+                }
+                <span class="hljs-keyword">if</span> (startServer) {
+                    Server.create(AppInfo.applicationId, <span class="hljs-keyword">this</span>);
+                }
+            } <span class="hljs-keyword">catch</span> (Throwable t) {
+                <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Failed during multi process check"</span>, t);
+                }
+                Server.create(AppInfo.applicationId, <span class="hljs-keyword">this</span>);
+            }
+        }
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.realApplication != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">this</span>.realApplication.onCreate();
+        }
+    }</code></pre>
+<p>我们依次需要关注的方法有：<br>
+monkeyPatchApplication → monkeyPatchExistingResources → Server启动 → 调用realApplication的onCreate方法</p>
+<h4 id="15">2.1 monkeyPatchApplication</h4>
+<p>该方法的目的可以总结为：替换所有当前app的application为realApplication。<br></p>
+<pre><code data-language="language-java" class="hljs dart">
+    public <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> monkeyPatchApplication(Context context,
+            Application bootstrap, Application realApplication,
+            <span class="hljs-built_in">String</span> externalResourceFile) {
+        <span class="hljs-keyword">try</span> {
+            Class&lt;?&gt; activityThread = Class
+                    .forName(<span class="hljs-string">"android.app.ActivityThread"</span>);
+            <span class="hljs-built_in">Object</span> currentActivityThread = getActivityThread(context,
+                    activityThread);
+
+            Field mInitialApplication = activityThread
+                    .getDeclaredField(<span class="hljs-string">"mInitialApplication"</span>);
+            mInitialApplication.setAccessible(<span class="hljs-keyword">true</span>);
+            Application initialApplication = (Application) mInitialApplication
+                    .<span class="hljs-keyword">get</span>(currentActivityThread);
+            <span class="hljs-keyword">if</span> ((realApplication != <span class="hljs-keyword">null</span>) &amp;&amp; (initialApplication == bootstrap)) {
+                mInitialApplication.<span class="hljs-keyword">set</span>(currentActivityThread, realApplication);
+            }
+            <span class="hljs-keyword">if</span> (realApplication != <span class="hljs-keyword">null</span>) {
+                Field mAllApplications = activityThread
+                        .getDeclaredField(<span class="hljs-string">"mAllApplications"</span>);
+                mAllApplications.setAccessible(<span class="hljs-keyword">true</span>);
+                <span class="hljs-built_in">List</span>&lt;Application&gt; allApplications = (<span class="hljs-built_in">List</span>&lt;Application&gt;) mAllApplications
+                        .<span class="hljs-keyword">get</span>(currentActivityThread);
+                <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; allApplications.size(); i++) {
+                    <span class="hljs-keyword">if</span> (allApplications.<span class="hljs-keyword">get</span>(i) == bootstrap) {
+                        allApplications.<span class="hljs-keyword">set</span>(i, realApplication);
+                    }
+                }
+            }
+            Class&lt;?&gt; loadedApkClass;
+            <span class="hljs-keyword">try</span> {
+                loadedApkClass = Class.forName(<span class="hljs-string">"android.app.LoadedApk"</span>);
+            } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {
+                loadedApkClass = Class
+                        .forName(<span class="hljs-string">"android.app.ActivityThread$PackageInfo"</span>);
+            }
+            Field mApplication = loadedApkClass
+                    .getDeclaredField(<span class="hljs-string">"mApplication"</span>);
+            mApplication.setAccessible(<span class="hljs-keyword">true</span>);
+            Field mResDir = loadedApkClass.getDeclaredField(<span class="hljs-string">"mResDir"</span>);
+            mResDir.setAccessible(<span class="hljs-keyword">true</span>);
+
+            Field mLoadedApk = <span class="hljs-keyword">null</span>;
+            <span class="hljs-keyword">try</span> {
+                mLoadedApk = Application.<span class="hljs-keyword">class</span>.getDeclaredField(<span class="hljs-string">"mLoadedApk"</span>);
+            } <span class="hljs-keyword">catch</span> (NoSuchFieldException e) {
+            }
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">String</span> fieldName : <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>[] { <span class="hljs-string">"mPackages"</span>,
+                    <span class="hljs-string">"mResourcePackages"</span> }) {
+                Field field = activityThread.getDeclaredField(fieldName);
+                field.setAccessible(<span class="hljs-keyword">true</span>);
+                <span class="hljs-built_in">Object</span> value = field.<span class="hljs-keyword">get</span>(currentActivityThread);
+                <span class="hljs-keyword">for</span> (<span class="hljs-built_in">Map</span>.Entry&lt;<span class="hljs-built_in">String</span>, WeakReference&lt;?&gt;&gt; entry : ((<span class="hljs-built_in">Map</span>&lt;<span class="hljs-built_in">String</span>, WeakReference&lt;?&gt;&gt;) value)
+                        .entrySet()) {
+                    <span class="hljs-built_in">Object</span> loadedApk = ((WeakReference) entry.getValue()).<span class="hljs-keyword">get</span>();
+                    <span class="hljs-keyword">if</span> (loadedApk != <span class="hljs-keyword">null</span>) {
+                        <span class="hljs-keyword">if</span> (mApplication.<span class="hljs-keyword">get</span>(loadedApk) == bootstrap) {
+                            <span class="hljs-keyword">if</span> (realApplication != <span class="hljs-keyword">null</span>) {
+                                mApplication.<span class="hljs-keyword">set</span>(loadedApk, realApplication);
+                            }
+                            <span class="hljs-keyword">if</span> (externalResourceFile != <span class="hljs-keyword">null</span>) {
+                                mResDir.<span class="hljs-keyword">set</span>(loadedApk, externalResourceFile);
+                            }
+                            <span class="hljs-keyword">if</span> ((realApplication != <span class="hljs-keyword">null</span>)
+                                    &amp;&amp; (mLoadedApk != <span class="hljs-keyword">null</span>)) {
+                                mLoadedApk.<span class="hljs-keyword">set</span>(realApplication, loadedApk);
+                            }
+                        }
+                    }
+                }
+            }
+        } <span class="hljs-keyword">catch</span> (Throwable e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(e);
+        }
+    }</code></pre>
+<p>具体做的事情可以总结为：<br></p>
+<h6 id="16">1.替换ActivityThread的mInitialApplication为realApplication</h6>
+<h6 id="17">2.替换mAllApplications 中所有的Application为realApplication</h6>
+<h6 id="18">3.替换ActivityThread的mPackages,mResourcePackages中的mLoaderApk中的application为realApplication。</h6>
+<h4 id="19">2.2 monkeyPatchExistingResources</h4>
+<p>替换所有当前app的mAssets为newAssetManager。<br></p>
+<pre><code data-language="language-java" class="hljs dart">
+    public <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> monkeyPatchExistingResources(Context context,
+            <span class="hljs-built_in">String</span> externalResourceFile, Collection&lt;Activity&gt; activities) {
+        <span class="hljs-keyword">if</span> (externalResourceFile == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">try</span> {
+            AssetManager newAssetManager = (AssetManager) AssetManager.<span class="hljs-keyword">class</span>
+                    .getConstructor(<span class="hljs-keyword">new</span> Class[<span class="hljs-number">0</span>]).newInstance(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>[<span class="hljs-number">0</span>]);
+            Method mAddAssetPath = AssetManager.<span class="hljs-keyword">class</span>.getDeclaredMethod(
+                    <span class="hljs-string">"addAssetPath"</span>, <span class="hljs-keyword">new</span> Class[] { <span class="hljs-built_in">String</span>.<span class="hljs-keyword">class</span> });
+            mAddAssetPath.setAccessible(<span class="hljs-keyword">true</span>);
+            <span class="hljs-keyword">if</span> (((Integer) mAddAssetPath.invoke(newAssetManager,
+                    <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>[] { externalResourceFile })).intValue() == <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(
+                        <span class="hljs-string">"Could not create new AssetManager"</span>);
+            }
+            Method mEnsureStringBlocks = AssetManager.<span class="hljs-keyword">class</span>.getDeclaredMethod(
+                    <span class="hljs-string">"ensureStringBlocks"</span>, <span class="hljs-keyword">new</span> Class[<span class="hljs-number">0</span>]);
+            mEnsureStringBlocks.setAccessible(<span class="hljs-keyword">true</span>);
+            mEnsureStringBlocks.invoke(newAssetManager, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>[<span class="hljs-number">0</span>]);
+            <span class="hljs-keyword">if</span> (activities != <span class="hljs-keyword">null</span>) {
+                <span class="hljs-keyword">for</span> (Activity activity : activities) {
+                    Resources resources = activity.getResources();
+                    <span class="hljs-keyword">try</span> {
+                        Field mAssets = Resources.<span class="hljs-keyword">class</span>
+                                .getDeclaredField(<span class="hljs-string">"mAssets"</span>);
+                        mAssets.setAccessible(<span class="hljs-keyword">true</span>);
+                        mAssets.<span class="hljs-keyword">set</span>(resources, newAssetManager);
+                    } <span class="hljs-keyword">catch</span> (Throwable ignore) {
+                        Field mResourcesImpl = Resources.<span class="hljs-keyword">class</span>
+                                .getDeclaredField(<span class="hljs-string">"mResourcesImpl"</span>);
+                        mResourcesImpl.setAccessible(<span class="hljs-keyword">true</span>);
+                        <span class="hljs-built_in">Object</span> resourceImpl = mResourcesImpl.<span class="hljs-keyword">get</span>(resources);
+                        Field implAssets = resourceImpl.getClass()
+                                .getDeclaredField(<span class="hljs-string">"mAssets"</span>);
+                        implAssets.setAccessible(<span class="hljs-keyword">true</span>);
+                        implAssets.<span class="hljs-keyword">set</span>(resourceImpl, newAssetManager);
+                    }
+                    Resources.Theme theme = activity.getTheme();
+                    <span class="hljs-keyword">try</span> {
+                        <span class="hljs-keyword">try</span> {
+                            Field ma = Resources.Theme.<span class="hljs-keyword">class</span>
+                                    .getDeclaredField(<span class="hljs-string">"mAssets"</span>);
+                            ma.setAccessible(<span class="hljs-keyword">true</span>);
+                            ma.<span class="hljs-keyword">set</span>(theme, newAssetManager);
+                        } <span class="hljs-keyword">catch</span> (NoSuchFieldException ignore) {
+                            Field themeField = Resources.Theme.<span class="hljs-keyword">class</span>
+                                    .getDeclaredField(<span class="hljs-string">"mThemeImpl"</span>);
+                            themeField.setAccessible(<span class="hljs-keyword">true</span>);
+                            <span class="hljs-built_in">Object</span> impl = themeField.<span class="hljs-keyword">get</span>(theme);
+                            Field ma = impl.getClass().getDeclaredField(
+                                    <span class="hljs-string">"mAssets"</span>);
+                            ma.setAccessible(<span class="hljs-keyword">true</span>);
+                            ma.<span class="hljs-keyword">set</span>(impl, newAssetManager);
+                        }
+                        Field mt = ContextThemeWrapper.<span class="hljs-keyword">class</span>
+                                .getDeclaredField(<span class="hljs-string">"mTheme"</span>);
+                        mt.setAccessible(<span class="hljs-keyword">true</span>);
+                        mt.<span class="hljs-keyword">set</span>(activity, <span class="hljs-keyword">null</span>);
+                        Method mtm = ContextThemeWrapper.<span class="hljs-keyword">class</span>
+                                .getDeclaredMethod(<span class="hljs-string">"initializeTheme"</span>,
+                                        <span class="hljs-keyword">new</span> Class[<span class="hljs-number">0</span>]);
+                        mtm.setAccessible(<span class="hljs-keyword">true</span>);
+                        mtm.invoke(activity, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>[<span class="hljs-number">0</span>]);
+
+                        Method mCreateTheme = AssetManager.<span class="hljs-keyword">class</span>
+                                .getDeclaredMethod(<span class="hljs-string">"createTheme"</span>, <span class="hljs-keyword">new</span> Class[<span class="hljs-number">0</span>]);
+                        mCreateTheme.setAccessible(<span class="hljs-keyword">true</span>);
+                        <span class="hljs-built_in">Object</span> internalTheme = mCreateTheme.invoke(
+                                newAssetManager, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>[<span class="hljs-number">0</span>]);
+                        Field mTheme = Resources.Theme.<span class="hljs-keyword">class</span>
+                                .getDeclaredField(<span class="hljs-string">"mTheme"</span>);
+                        mTheme.setAccessible(<span class="hljs-keyword">true</span>);
+                        mTheme.<span class="hljs-keyword">set</span>(theme, internalTheme);
+                    } <span class="hljs-keyword">catch</span> (Throwable e) {
+                        Log.e(<span class="hljs-string">"InstantRun"</span>,
+                                <span class="hljs-string">"Failed to update existing theme for activity "</span>
+                                        + activity, e);
+                    }
+                    pruneResourceCaches(resources);
+                }
+            }
+            Collection&lt;WeakReference&lt;Resources&gt;&gt; references;
+            <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="hljs-number">19</span>) {
+                Class&lt;?&gt; resourcesManagerClass = Class
+                        .forName(<span class="hljs-string">"android.app.ResourcesManager"</span>);
+                Method mGetInstance = resourcesManagerClass.getDeclaredMethod(
+                        <span class="hljs-string">"getInstance"</span>, <span class="hljs-keyword">new</span> Class[<span class="hljs-number">0</span>]);
+                mGetInstance.setAccessible(<span class="hljs-keyword">true</span>);
+                <span class="hljs-built_in">Object</span> resourcesManager = mGetInstance.invoke(<span class="hljs-keyword">null</span>,
+                        <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>[<span class="hljs-number">0</span>]);
+                <span class="hljs-keyword">try</span> {
+                    Field fMActiveResources = resourcesManagerClass
+                            .getDeclaredField(<span class="hljs-string">"mActiveResources"</span>);
+                    fMActiveResources.setAccessible(<span class="hljs-keyword">true</span>);
+
+                    ArrayMap&lt;?, WeakReference&lt;Resources&gt;&gt; arrayMap = (ArrayMap) fMActiveResources
+                            .<span class="hljs-keyword">get</span>(resourcesManager);
+                    references = arrayMap.values();
+                } <span class="hljs-keyword">catch</span> (NoSuchFieldException ignore) {
+                    Field mResourceReferences = resourcesManagerClass
+                            .getDeclaredField(<span class="hljs-string">"mResourceReferences"</span>);
+                    mResourceReferences.setAccessible(<span class="hljs-keyword">true</span>);
+
+                    references = (Collection) mResourceReferences
+                            .<span class="hljs-keyword">get</span>(resourcesManager);
+                }
+            } <span class="hljs-keyword">else</span> {
+                Class&lt;?&gt; activityThread = Class
+                        .forName(<span class="hljs-string">"android.app.ActivityThread"</span>);
+                Field fMActiveResources = activityThread
+                        .getDeclaredField(<span class="hljs-string">"mActiveResources"</span>);
+                fMActiveResources.setAccessible(<span class="hljs-keyword">true</span>);
+                <span class="hljs-built_in">Object</span> thread = getActivityThread(context, activityThread);
+
+                HashMap&lt;?, WeakReference&lt;Resources&gt;&gt; map = (HashMap) fMActiveResources
+                        .<span class="hljs-keyword">get</span>(thread);
+
+                references = map.values();
+            }
+            <span class="hljs-keyword">for</span> (WeakReference&lt;Resources&gt; wr : references) {
+                Resources resources = (Resources) wr.<span class="hljs-keyword">get</span>();
+                <span class="hljs-keyword">if</span> (resources != <span class="hljs-keyword">null</span>) {
+                    <span class="hljs-keyword">try</span> {
+                        Field mAssets = Resources.<span class="hljs-keyword">class</span>
+                                .getDeclaredField(<span class="hljs-string">"mAssets"</span>);
+                        mAssets.setAccessible(<span class="hljs-keyword">true</span>);
+                        mAssets.<span class="hljs-keyword">set</span>(resources, newAssetManager);
+                    } <span class="hljs-keyword">catch</span> (Throwable ignore) {
+                        Field mResourcesImpl = Resources.<span class="hljs-keyword">class</span>
+                                .getDeclaredField(<span class="hljs-string">"mResourcesImpl"</span>);
+                        mResourcesImpl.setAccessible(<span class="hljs-keyword">true</span>);
+                        <span class="hljs-built_in">Object</span> resourceImpl = mResourcesImpl.<span class="hljs-keyword">get</span>(resources);
+                        Field implAssets = resourceImpl.getClass()
+                                .getDeclaredField(<span class="hljs-string">"mAssets"</span>);
+                        implAssets.setAccessible(<span class="hljs-keyword">true</span>);
+                        implAssets.<span class="hljs-keyword">set</span>(resourceImpl, newAssetManager);
+                    }
+                    resources.updateConfiguration(resources.getConfiguration(),
+                            resources.getDisplayMetrics());
+                }
+            }
+        } <span class="hljs-keyword">catch</span> (Throwable e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(e);
+        }
+    }</code></pre>
+<p>改方法的目的总结为：<br><br>
+1.如果resource.ap_文件有改变，那么新建一个AssetManager对象newAssetManager，然后用newAssetManager对象替换所有当前Resource、Resource.Theme的mAssets成员变量。<br>
+2.如果当前的已经有Activity启动了，还需要替换所有Activity中mAssets成员变量</p>
+<h4 id="20">2.3 Server启动</h4>
+<p>判断Server是否已经启动，如果没有启动，则启动Server</p>
+<h4 id="21">2.4 调用realApplication的onCreate方法</h4>
+<p>和1.4的目的一样，代理realApplication的生命周期。<br><br>
+至此，我们的app就启动起来了。下一步就要分析，Server启动之后，到底是如何进行热部署、温部署和冷部署了。</p>
+<h3 id="22">3.Server负责的热部署、温部署和冷部署</h3>
+<p>首先重点关注一下Server的内部类SocketServerReplyThread</p>
+<h4 id="23">3.1 SocketServerReplyThread</h4>
+<pre><code data-language="language-java" class="hljs hsp">
+    ...
+    private class SocketServerReplyThread extends Thread {
+        private final LocalSocket mSocket<span class="hljs-comment">;</span>
+
+        SocketServerReplyThread(LocalSocket socket) {
+            this.mSocket = socket<span class="hljs-comment">;</span>
+        }
+
+        public void <span class="hljs-keyword">run</span>() {
+            try {
+                DataInputStream <span class="hljs-keyword">input</span> = new DataInputStream(
+                        this.mSocket.getInputStream())<span class="hljs-comment">;</span>
+                DataOutputStream output = new DataOutputStream(
+                        this.mSocket.getOutputStream())<span class="hljs-comment">;</span>
+                try {
+                    handle(<span class="hljs-keyword">input</span>, output)<span class="hljs-comment">;</span>
+                } finally {
+                    try {
+                        <span class="hljs-keyword">input</span>.close()<span class="hljs-comment">;</span>
+                    } catch (IOException ignore) {
+                    }
+                    try {
+                        output.close()<span class="hljs-comment">;</span>
+                    } catch (IOException ignore) {
+                    }
+                }
+                <span class="hljs-keyword">return</span><span class="hljs-comment">;</span>
+            } catch (IOException e) {
+                <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Fatal error receiving messages"</span>, e)<span class="hljs-comment">;</span>
+                }
+            }
+        }
+
+        private void handle(DataInputStream <span class="hljs-keyword">input</span>, DataOutputStream output)
+                throws IOException {
+            long magic = <span class="hljs-keyword">input</span>.readLong()<span class="hljs-comment">;</span>
+            <span class="hljs-keyword">if</span> (magic != <span class="hljs-number">890269988</span>L) {
+                Log.w(<span class="hljs-string">"InstantRun"</span>,
+                        <span class="hljs-string">"Unrecognized header format "</span> + Long.toHexString(magic))<span class="hljs-comment">;</span>
+
+                <span class="hljs-keyword">return</span><span class="hljs-comment">;</span>
+            }
+            <span class="hljs-keyword">int</span> version = <span class="hljs-keyword">input</span>.readInt()<span class="hljs-comment">;</span>
+
+            output.writeInt(<span class="hljs-number">4</span>)<span class="hljs-comment">;</span>
+            <span class="hljs-keyword">if</span> (version != <span class="hljs-number">4</span>) {
+                Log.w(<span class="hljs-string">"InstantRun"</span>,
+                        <span class="hljs-string">"Mismatched protocol versions; app is using version 4 and tool is using version "</span>
+                                + version)<span class="hljs-comment">;</span>
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">int</span> message<span class="hljs-comment">;</span>
+                <span class="hljs-keyword">for</span> (<span class="hljs-comment">;;) {</span>
+                    message = <span class="hljs-keyword">input</span>.readInt()<span class="hljs-comment">;</span>
+                    <span class="hljs-keyword">switch</span> (message) {
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:
+                        <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                            Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Received EOF from the IDE"</span>)<span class="hljs-comment">;</span>
+                        }
+                        <span class="hljs-keyword">return</span><span class="hljs-comment">;</span>
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+                        boolean active = Restarter
+                                .getForegroundActivity(Server.this.mApplication) != null<span class="hljs-comment">;</span>
+                        output.writeBoolean(active)<span class="hljs-comment">;</span>
+                        <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                            Log.v(<span class="hljs-string">"InstantRun"</span>,
+                                    <span class="hljs-string">"Received Ping message from the IDE; returned active = "</span>
+                                            + active)<span class="hljs-comment">;</span>
+                        }
+                        <span class="hljs-keyword">break</span><span class="hljs-comment">;</span>
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+                        String path = <span class="hljs-keyword">input</span>.readUTF()<span class="hljs-comment">;</span>
+                        long size = FileManager.getFileSize(path)<span class="hljs-comment">;</span>
+                        output.writeLong(size)<span class="hljs-comment">;</span>
+                        <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                            Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Received path-exists("</span> + path
+                                    + <span class="hljs-string">") from the "</span> + <span class="hljs-string">"IDE; returned size="</span>
+                                    + size)<span class="hljs-comment">;</span>
+                        }
+                        <span class="hljs-keyword">break</span><span class="hljs-comment">;</span>
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+                        long begin = <span class="hljs-keyword">System</span>.currentTimeMillis()<span class="hljs-comment">;</span>
+                        path = <span class="hljs-keyword">input</span>.readUTF()<span class="hljs-comment">;</span>
+                        byte[] checksum = FileManager.getCheckSum(path)<span class="hljs-comment">;</span>
+                        <span class="hljs-keyword">if</span> (checksum != null) {
+                            output.writeInt(checksum.<span class="hljs-keyword">length</span>)<span class="hljs-comment">;</span>
+                            output.write(checksum)<span class="hljs-comment">;</span>
+                            <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                                long <span class="hljs-keyword">end</span> = <span class="hljs-keyword">System</span>.currentTimeMillis()<span class="hljs-comment">;</span>
+                                String hash = new BigInteger(<span class="hljs-number">1</span>, checksum)
+                                        .toString(<span class="hljs-number">16</span>)<span class="hljs-comment">;</span>
+                                Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Received checksum("</span> + path
+                                        + <span class="hljs-string">") from the "</span> + <span class="hljs-string">"IDE: took "</span>
+                                        + (<span class="hljs-keyword">end</span> - begin) + <span class="hljs-string">"ms to compute "</span>
+                                        + hash)<span class="hljs-comment">;</span>
+                            }
+                        } <span class="hljs-keyword">else</span> {
+                            output.writeInt(<span class="hljs-number">0</span>)<span class="hljs-comment">;</span>
+                            <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                                Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Received checksum("</span> + path
+                                        + <span class="hljs-string">") from the "</span>
+                                        + <span class="hljs-string">"IDE: returning &lt;null&gt;"</span>)<span class="hljs-comment">;</span>
+                            }
+                        }
+                        <span class="hljs-keyword">break</span><span class="hljs-comment">;</span>
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+                        <span class="hljs-keyword">if</span> (!authenticate(<span class="hljs-keyword">input</span>)) {
+                            <span class="hljs-keyword">return</span><span class="hljs-comment">;</span>
+                        }
+                        Activity activity = Restarter
+                                .getForegroundActivity(Server.this.mApplication)<span class="hljs-comment">;</span>
+                        <span class="hljs-keyword">if</span> (activity != null) {
+                            <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                                Log.v(<span class="hljs-string">"InstantRun"</span>,
+                                        <span class="hljs-string">"Restarting activity per user request"</span>)<span class="hljs-comment">;</span>
+                            }
+                            Restarter.restartActivityOnUiThread(activity)<span class="hljs-comment">;</span>
+                        }
+                        <span class="hljs-keyword">break</span><span class="hljs-comment">;</span>
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+                        <span class="hljs-keyword">if</span> (!authenticate(<span class="hljs-keyword">input</span>)) {
+                            <span class="hljs-keyword">return</span><span class="hljs-comment">;</span>
+                        }
+                        List&lt;ApplicationPatch&gt; changes = ApplicationPatch
+                                .read(<span class="hljs-keyword">input</span>)<span class="hljs-comment">;</span>
+                        <span class="hljs-keyword">if</span> (changes != null) {
+                            boolean hasResources = Server.hasResources(changes)<span class="hljs-comment">;</span>
+                            <span class="hljs-keyword">int</span> updateMode = <span class="hljs-keyword">input</span>.readInt()<span class="hljs-comment">;</span>
+                            updateMode = Server.this.handlePatches(changes,
+                                    hasResources, updateMode)<span class="hljs-comment">;</span>
+
+                            boolean showToast = <span class="hljs-keyword">input</span>.readBoolean()<span class="hljs-comment">;</span>
+
+                            output.writeBoolean(true)<span class="hljs-comment">;</span>
+
+                            Server.this.restart(updateMode, hasResources,
+                                    showToast)<span class="hljs-comment">;</span>
+                        }
+                        <span class="hljs-keyword">break</span><span class="hljs-comment">;</span>
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+                        String text = <span class="hljs-keyword">input</span>.readUTF()<span class="hljs-comment">;</span>
+                        Activity foreground = Restarter
+                                .getForegroundActivity(Server.this.mApplication)<span class="hljs-comment">;</span>
+                        <span class="hljs-keyword">if</span> (foreground != null) {
+                            Restarter.showToast(foreground, text)<span class="hljs-comment">;</span>
+                        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                            Log.v(<span class="hljs-string">"InstantRun"</span>,
+                                    <span class="hljs-string">"Couldn't show toast (no activity) : "</span>
+                                            + text)<span class="hljs-comment">;</span>
+                        }
+                        <span class="hljs-keyword">break</span><span class="hljs-comment">;</span>
+                    }
+                }
+
+            }
+        }
+
+        ...
+    }</code></pre>
+<p>socket开启后，开始读取数据，当读到1时，获取代码变化的ApplicationPatch列表，然后调用handlePatches来处理代码的变化。</p>
+<h4 id="24">3.2 handlePatches</h4>
+<p>源码如下：</p>
+<pre><code data-language="language-java" class="hljs hsp">
+    private <span class="hljs-keyword">int</span> handlePatches(List&lt;ApplicationPatch&gt; changes,
+            boolean hasResources, <span class="hljs-keyword">int</span> updateMode) {
+        <span class="hljs-keyword">if</span> (hasResources) {
+            FileManager.startUpdate()<span class="hljs-comment">;</span>
+        }
+        <span class="hljs-keyword">for</span> (ApplicationPatch change : changes) {
+            String path = change.<span class="hljs-keyword">getPath</span>()<span class="hljs-comment">;</span>
+            <span class="hljs-keyword">if</span> (path.endsWith(<span class="hljs-string">".dex"</span>)) {
+                handleColdSwapPatch(change)<span class="hljs-comment">;</span>
+
+                boolean canHotSwap = false<span class="hljs-comment">;</span>
+                <span class="hljs-keyword">for</span> (ApplicationPatch c : changes) {
+                    <span class="hljs-keyword">if</span> (c.<span class="hljs-keyword">getPath</span>().equals(<span class="hljs-string">"classes.dex.3"</span>)) {
+                        canHotSwap = true<span class="hljs-comment">;</span>
+                        <span class="hljs-keyword">break</span><span class="hljs-comment">;</span>
+                    }
+                }
+                <span class="hljs-keyword">if</span> (!canHotSwap) {
+                    updateMode = <span class="hljs-number">3</span><span class="hljs-comment">;</span>
+                }
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (path.equals(<span class="hljs-string">"classes.dex.3"</span>)) {
+                updateMode = handleHotSwapPatch(updateMode, change)<span class="hljs-comment">;</span>
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isResourcePath(path)) {
+                updateMode = handleResourcePatch(updateMode, change, path)<span class="hljs-comment">;</span>
+            }
+        }
+        <span class="hljs-keyword">if</span> (hasResources) {
+            FileManager.finishUpdate(true)<span class="hljs-comment">;</span>
+        }
+        <span class="hljs-keyword">return</span> updateMode<span class="hljs-comment">;</span>
+    }</code></pre>
+<p>1.如果后缀为“.dex”,冷部署处理handleColdSwapPatch<br><br>
+2.如果后缀为“classes.dex.3”,热部署处理handleHotSwapPatch<br><br>
+3.其他情况,温部署，处理资源handleResourcePatch<br></p>
+<h5 id="25">handleColdSwapPatch冷部署</h5>
+<pre><code data-language="language-java" class="hljs gradle">
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> handleColdSwapPatch(ApplicationPatch patch) {
+        <span class="hljs-keyword">if</span> (patch.path.startsWith(<span class="hljs-string">"slice-"</span>)) {
+            <span class="hljs-keyword">File</span> <span class="hljs-keyword">file</span> = FileManager.writeDexShard(patch.getBytes(), patch.path);
+            <span class="hljs-keyword">if</span> (Log.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                Log.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Received dex shard "</span> + <span class="hljs-keyword">file</span>);
+            }
+        }
+    }</code></pre>
+<p>把dex文件写到私有目录，等待整个app重启，重启之后，使用前面提到的IncrementalClassLoader加载dex即可。</p>
+<h5 id="26">handleHotSwapPatch热部署</h5>
+<pre><code data-language="language-java" class="hljs monkey">
+    <span class="hljs-keyword">private</span> int handleHotSwapPatch(int updateMode, ApplicationPatch patch) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+            <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Received incremental code patch"</span>);
+        }
+        <span class="hljs-keyword">try</span> {
+            String dexFile = FileManager.writeTempDexFile(patch.getBytes());
+            <span class="hljs-keyword">if</span> (dexFile == <span class="hljs-literal">null</span>) {
+                <span class="hljs-built_in">Log</span>.e(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"No file to write the code to"</span>);
+                <span class="hljs-keyword">return</span> updateMode;
+            }
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Reading live code from "</span> + dexFile);
+            }
+            String nativeLibraryPath = FileManager.getNativeLibraryFolder()
+                    .getPath();
+            DexClassLoader dexClassLoader = <span class="hljs-keyword">new</span> DexClassLoader(dexFile,
+                    this.mApplication.getCacheDir().getPath(),
+                    nativeLibraryPath, getClass().getClassLoader());
+
+            <span class="hljs-class"><span class="hljs-keyword">Class</span>&lt;?&gt; <span class="hljs-title">aClass</span> = <span class="hljs-title">Class</span>.<span class="hljs-title">forName</span>(</span>
+                    <span class="hljs-string">"com.android.tools.fd.runtime.AppPatchesLoaderImpl"</span>, <span class="hljs-literal">true</span>,
+                    dexClassLoader);
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Got the patcher class "</span> + aClass);
+                }
+                PatchesLoader loader = (PatchesLoader) aClass.newInstance();
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Got the patcher instance "</span> + loader);
+                }
+                String[] getPatchedClasses = (String[]) aClass
+                        .getDeclaredMethod(<span class="hljs-string">"getPatchedClasses"</span>, <span class="hljs-keyword">new</span> <span class="hljs-class"><span class="hljs-keyword">Class</span>[0])</span>
+                        .invoke(loader, <span class="hljs-keyword">new</span> Object[<span class="hljs-number">0</span>]);
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Got the list of classes "</span>);
+                    <span class="hljs-keyword">for</span> (String getPatchedClass : getPatchedClasses) {
+                        <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"class "</span> + getPatchedClass);
+                    }
+                }
+                <span class="hljs-keyword">if</span> (!loader.load()) {
+                    updateMode = <span class="hljs-number">3</span>;
+                }
+            } <span class="hljs-keyword">catch</span> (Exception e) {
+                <span class="hljs-built_in">Log</span>.e(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Couldn't apply code changes"</span>, e);
+                e.printStackTrace();
+                updateMode = <span class="hljs-number">3</span>;
+            }
+        } <span class="hljs-keyword">catch</span> (Throwable e) {
+            <span class="hljs-built_in">Log</span>.e(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Couldn't apply code changes"</span>, e);
+            updateMode = <span class="hljs-number">3</span>;
+        }
+        <span class="hljs-keyword">return</span> updateMode;
+    }</code></pre>
+<p>将patch的dex文件写入到临时目录，然后使用DexClassLoader去加载dex。然后反射调用AppPatchesLoaderImpl类的load方法，需要说明的是，AppPatchesLoaderImpl继承自抽象类AbstractPatchesLoaderImpl，并实现了抽象方法：getPatchedClasses<br><br>
+如下是AbstractPatchesLoaderImpl抽象类的源码，注意看load方法：</p>
+<pre><code data-language="language-java" class="hljs monkey">
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractPatchesLoaderImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PatchesLoader</span> {</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> String[] getPatchedClasses();
+
+    <span class="hljs-keyword">public</span> boolean load() {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">for</span> (String className : getPatchedClasses()) {
+                ClassLoader cl = getClass().getClassLoader();
+                <span class="hljs-class"><span class="hljs-keyword">Class</span>&lt;?&gt; <span class="hljs-title">aClass</span> = <span class="hljs-title">cl</span>.<span class="hljs-title">loadClass</span>(<span class="hljs-title">className</span> + "$<span class="hljs-title">override</span>");</span>
+                Object o = aClass.newInstance();
+                <span class="hljs-class"><span class="hljs-keyword">Class</span>&lt;?&gt; <span class="hljs-title">originalClass</span> = <span class="hljs-title">cl</span>.<span class="hljs-title">loadClass</span>(<span class="hljs-title">className</span>);</span>
+                <span class="hljs-keyword">Field</span> changeField = originalClass.getDeclaredField(<span class="hljs-string">"$change"</span>);
+
+                changeField.setAccessible(<span class="hljs-literal">true</span>);
+
+                Object previous = changeField.get(<span class="hljs-literal">null</span>);
+                <span class="hljs-keyword">if</span> (previous != <span class="hljs-literal">null</span>) {
+                    <span class="hljs-keyword">Field</span> isObsolete = previous.getClass().getDeclaredField(
+                            <span class="hljs-string">"$obsolete"</span>);
+                    <span class="hljs-keyword">if</span> (isObsolete != <span class="hljs-literal">null</span>) {
+                        isObsolete.set(<span class="hljs-literal">null</span>, Boolean.valueOf(<span class="hljs-literal">true</span>));
+                    }
+                }
+                changeField.set(<span class="hljs-literal">null</span>, o);
+                <span class="hljs-keyword">if</span> ((<span class="hljs-built_in">Log</span>.logging != <span class="hljs-literal">null</span>)
+                        &amp;&amp; (<span class="hljs-built_in">Log</span>.logging.isLoggable(Level.FINE))) {
+                    <span class="hljs-built_in">Log</span>.logging.<span class="hljs-built_in">log</span>(Level.FINE, String.format(<span class="hljs-string">"patched %s"</span>,
+                            <span class="hljs-keyword">new</span> Object[] { className }));
+                }
+            }
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.logging != <span class="hljs-literal">null</span>) {
+                <span class="hljs-built_in">Log</span>.logging.<span class="hljs-built_in">log</span>(Level.SEVERE, String.format(
+                        <span class="hljs-string">"Exception while patching %s"</span>,
+                        <span class="hljs-keyword">new</span> Object[] { <span class="hljs-string">"foo.bar"</span> }), e);
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    }</code></pre>
+<p>由此，我们大概理清楚了InstantRun热部署的原理：<br></p>
+<h6 id="27">1</h6>
+<p>在第一次构建apk时，在每一个类中注入了一个$change的成员变量，它实现了IncrementalChange接口，并在每一个方法中，插入了一段类似的逻辑。</p>
+<pre><code data-language="language-java" class="hljs xquery">
+    IncrementalChange localIncrementalChange = $change;
+        <span class="hljs-keyword">if</span> (localIncrementalChange != null) {
+            localIncrementalChange.access$dispatch(
+                    <span class="hljs-string">"onCreate.(Landroid/os/Bundle;)V"</span>, new Object[] { this,
+                            ... });
+            return;
+    }</code></pre>
+<p>就是当$change不为空的时候，执行IncrementalChange中的方法。<br>
+比如：<br>
+demo的MainActivity源代码<br></p>
+<pre><code data-language="language-java" class="hljs aspectj">
+    <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View view)</span> </span>{
+                Snackbar.make(view, <span class="hljs-string">"Replace with your own action"</span>, Snackbar.LENGTH_LONG)
+                        .setAction(<span class="hljs-string">"Action"</span>, <span class="hljs-keyword">null</span>).show();
+            }
+        });
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">onCreateOptionsMenu</span><span class="hljs-params">(Menu menu)</span> </span>{
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">onOptionsItemSelected</span><span class="hljs-params">(MenuItem item)</span> </span>{
+        <span class="hljs-keyword">int</span> id = item.getItemId();
+        <span class="hljs-keyword">if</span> (id == R.id.action_settings) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.<span class="hljs-title">onOptionsItemSelected</span><span class="hljs-params">(item)</span></span>;
+    }
+    }</code></pre>
+<p>编译之后的代码为：(反编译)<br></p>
+<pre><code data-language="language-java" class="hljs aspectj">
+    <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MainActivity</span><span class="hljs-params">()</span> </span>{
+    }
+
+    MainActivity(Object[] paramArrayOfObject,
+            InstantReloadException paramInstantReloadException) {
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle paramBundle)</span> </span>{
+        IncrementalChange localIncrementalChange = $change;
+        <span class="hljs-keyword">if</span> (localIncrementalChange != <span class="hljs-keyword">null</span>) {
+            localIncrementalChange.access$dispatch(
+                    <span class="hljs-string">"onCreate.(Landroid/os/Bundle;)V"</span>, <span class="hljs-keyword">new</span> Object[] { <span class="hljs-keyword">this</span>,
+                            paramBundle });
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">super</span>.onCreate(paramBundle);
+        setContentView(<span class="hljs-number">2130968601</span>);
+        setSupportActionBar((Toolbar) findViewById(<span class="hljs-number">2131492969</span>));
+        ((FloatingActionButton) findViewById(<span class="hljs-number">2131492970</span>))
+                .setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {
+                    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View paramAnonymousView)</span> </span>{
+                        IncrementalChange localIncrementalChange = $change;
+                        <span class="hljs-keyword">if</span> (localIncrementalChange != <span class="hljs-keyword">null</span>) {
+                            localIncrementalChange.access$dispatch(
+                                    <span class="hljs-string">"onClick.(Landroid/view/View;)V"</span>,
+                                    <span class="hljs-keyword">new</span> Object[] { <span class="hljs-keyword">this</span>, paramAnonymousView });
+                            <span class="hljs-keyword">return</span>;
+                        }
+                        Snackbar.make(paramAnonymousView,
+                                <span class="hljs-string">"Replace with your own action"</span>, <span class="hljs-number">0</span>)
+                                .setAction(<span class="hljs-string">"Action"</span>, <span class="hljs-keyword">null</span>).show();
+                    }
+                });
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">onCreateOptionsMenu</span><span class="hljs-params">(Menu paramMenu)</span> </span>{
+        IncrementalChange localIncrementalChange = $change;
+        <span class="hljs-keyword">if</span> (localIncrementalChange != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">return</span> ((Boolean) localIncrementalChange.access$dispatch(
+                    <span class="hljs-string">"onCreateOptionsMenu.(Landroid/view/Menu;)Z"</span>, <span class="hljs-keyword">new</span> Object[] {
+                            <span class="hljs-keyword">this</span>, paramMenu })).booleanValue();
+        }
+        getMenuInflater().inflate(<span class="hljs-number">2131558400</span>, paramMenu);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">onOptionsItemSelected</span><span class="hljs-params">(MenuItem paramMenuItem)</span> </span>{
+        <span class="hljs-keyword">boolean</span> bool = <span class="hljs-keyword">true</span>;
+        IncrementalChange localIncrementalChange = $change;
+        <span class="hljs-keyword">if</span> (localIncrementalChange != <span class="hljs-keyword">null</span>) {
+            bool = ((Boolean) localIncrementalChange.access$dispatch(
+                    <span class="hljs-string">"onOptionsItemSelected.(Landroid/view/MenuItem;)Z"</span>,
+                    <span class="hljs-keyword">new</span> Object[] { <span class="hljs-keyword">this</span>, paramMenuItem })).booleanValue();
+        }
+        <span class="hljs-keyword">while</span> (paramMenuItem.getItemId() == <span class="hljs-number">2131492993</span>) {
+            <span class="hljs-keyword">return</span> bool;
+        }
+        <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.<span class="hljs-title">onOptionsItemSelected</span><span class="hljs-params">(paramMenuItem)</span></span>;
+    }
+    }</code></pre>
+<p>可以看到，每个方法前，都注入了这段逻辑。</p>
+<h6 id="28">2</h6>
+<p>当我们修改代码中方法的实现之后，点击InstantRun，它会生成对应的patch文件来记录你修改的内容。patch文件中的替换类是在所修改类名的后面追加$override，并实现IncrementalChange接口。<br><br>
+比如,以MainActivity为例<br><br>
+在目录../build/intermediates/transforms/instantRun/debug/folders/4000/5下查找到.<br>
+生成了MainActivity$override类。</p>
+<pre><code data-language="language-java" class="hljs xquery">
+    public class MainActivity$override implements IncrementalChange {
+    public MainActivity$override() {
+    }
+
+    public static Object init$args(Object[] var<span class="hljs-number">0</span>) {
+        Object[] var1 = new Object[]{<span class="hljs-string">"android/support/v7/app/AppCompatActivity.()V"</span>};
+        return var1;
+    }
+
+    public static void init$body(MainActivity $this) {
+    }
+
+    public static void onCreate(MainActivity $this, Bundle savedInstanceState) {
+        Object[] var2 = new Object[]{savedInstanceState};
+        MainActivity.access$super($this, <span class="hljs-string">"onCreate.(Landroid/os/Bundle;)V"</span>, var2);
+        $this.setContentView(<span class="hljs-number">2130968601</span>);
+        Toolbar toolbar = (Toolbar)$this.findViewById(<span class="hljs-number">2131492969</span>);
+        $this.setSupportActionBar(toolbar);
+        FloatingActionButton fab = (FloatingActionButton)$this.findViewById(<span class="hljs-number">2131492970</span>);
+        Object[] var5 = new Object[]{$this};
+        Class[] var10002 = new Class[]{MainActivity.class};
+        String var10003 = <span class="hljs-string">"&lt;init&gt;"</span>;
+        fab.setOnClickListener((<span class="hljs-number">1</span>)((<span class="hljs-number">1</span>)AndroidInstantRuntime.newForClass(var5, var10002, <span class="hljs-number">1</span>.class)));
+        AndroidInstantRuntime.setPrivateField($this, (TextView)$this.findViewById(<span class="hljs-number">2131492971</span>), MainActivity.class, <span class="hljs-string">"textView"</span>);
+        ((TextView)AndroidInstantRuntime.getPrivateField($this, MainActivity.class, <span class="hljs-string">"textView"</span>)).setText(<span class="hljs-string">"myHello"</span>);
+    }
+
+    public static boolean onCreateOptionsMenu(MainActivity $this, Menu menu) {
+        $this.getMenuInflater().inflate(<span class="hljs-number">2131558400</span>, menu);
+        return true;
+    }
+
+    public static boolean onOptionsItemSelected(MainActivity $this, MenuItem item) {
+        int id = item.getItemId();
+        if(id == <span class="hljs-number">2131492993</span>) {
+            return true;
+        } else {
+            Object[] var3 = new Object[]{item};
+            return ((Boolean)MainActivity.access$super($this, <span class="hljs-string">"onOptionsItemSelected.(Landroid/view/MenuItem;)Z"</span>, var3)).booleanValue();
+        }
+    }
+
+    public Object access$dispatch(String var1, Object... var2) {
+        switch(var1.hashCode()) {
+        case -<span class="hljs-number">1635453101</span>:
+            return new Boolean(onCreateOptionsMenu((MainActivity)var2[<span class="hljs-number">0</span>], (Menu)var2[<span class="hljs-number">1</span>]));
+        case -<span class="hljs-number">1630101479</span>:
+            return init$args((Object[])var2[<span class="hljs-number">0</span>]);
+        case -<span class="hljs-number">641568046</span>:
+            onCreate((MainActivity)var2[<span class="hljs-number">0</span>], (Bundle)var2[<span class="hljs-number">1</span>]);
+            return null;
+        case -<span class="hljs-number">604658433</span>:
+            init$body((MainActivity)var2[<span class="hljs-number">0</span>]);
+            return null;
+        case <span class="hljs-number">1893326613</span>:
+            return new Boolean(onOptionsItemSelected((MainActivity)var2[<span class="hljs-number">0</span>], (MenuItem)var2[<span class="hljs-number">1</span>]));
+        default:
+            throw new InstantReloadException(String.format(<span class="hljs-string">"String switch could not find \'%s\' with hashcode %s in %s"</span>, new Object[]{var1, Integer.valueOf(var1.hashCode()), <span class="hljs-string">"mobctrl/net/testinstantrun/MainActivity"</span>}));
+        }
+    }</code></pre>
+<h6 id="29">3</h6>
+<p>生成AppPatchesLoaderImpl类，继承自AbstractPatchesLoaderImpl，并实现getPatchedClasses方法，来记录哪些类被修改了。<br><br>
+比如，仍然在目录../build/intermediates/transforms/instantRun/debug/folders/4000/5下查找AppPatchesLoaderImpl.class</p>
+<pre><code data-language="language-java" class="hljs scala">
+    public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppPatchesLoaderImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractPatchesLoaderImpl</span> </span>{
+    public <span class="hljs-type">AppPatchesLoaderImpl</span>() {
+    }
+
+    public <span class="hljs-type">String</span>[] getPatchedClasses() {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-type">String</span>[]{<span class="hljs-string">"android.support.design.R$id"</span>, <span class="hljs-string">"mobctrl.net.testinstantrun.MainActivity$1"</span>, <span class="hljs-string">"mobctrl.net.testinstantrun.R$id"</span>, <span class="hljs-string">"mobctrl.net.testinstantrun.MainActivity"</span>, <span class="hljs-string">"android.support.v7.appcompat.R$id"</span>};
+    }
+    }</code></pre>
+<h6 id="30">4</h6>
+<p>调用load方法之后，根据getPatchedClasses返回的修改过的类的列表，去加载对应的$override类，然后把原有类的$change设置为对应的实现了IncrementalChange接口的$override类。<br><br><br>
+然后等待restart之后生效</p>
+<h5 id="31">handleResourcePatch</h5>
+<pre><code data-language="language-java" class="hljs autoit">
+    private <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> handleResourcePatch(<span class="hljs-built_in">int</span> updateMode,
+            ApplicationPatch patch, <span class="hljs-built_in">String</span> path) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+            <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Received resource changes ("</span> + path + <span class="hljs-string">")"</span>)<span class="hljs-comment">;</span>
+        }
+        FileManager.writeAaptResources(path, patch.getBytes())<span class="hljs-comment">;</span>
+
+        updateMode = Math.<span class="hljs-built_in">max</span>(updateMode, <span class="hljs-number">2</span>)<span class="hljs-comment">;</span>
+        <span class="hljs-keyword">return</span> updateMode<span class="hljs-comment">;</span>
+    }</code></pre>
+<p>将资源的patch写入到私有目录，等到restart之后生效.</p>
+<h4 id="32">restart</h4>
+<p>根据不同的InstantRun的updateMode模式，进行重启，使上述的3中部署模式生效！</p>
+<pre><code data-language="language-java" class="hljs monkey">
+    <span class="hljs-keyword">private</span> void restart(int updateMode, boolean incrementalResources,
+            boolean toast) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+            <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Finished loading changes; update mode ="</span>
+                    + updateMode);
+        }
+        <span class="hljs-keyword">if</span> ((updateMode == <span class="hljs-number">0</span>) || (updateMode == <span class="hljs-number">1</span>)) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Applying incremental code without restart"</span>);
+            }
+            <span class="hljs-keyword">if</span> (toast) {
+                Activity foreground = Restarter
+                        .getForegroundActivity(this.mApplication);
+                <span class="hljs-keyword">if</span> (foreground != <span class="hljs-literal">null</span>) {
+                    Restarter.showToast(foreground,
+                            <span class="hljs-string">"Applied code changes without activity restart"</span>);
+                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>,
+                            <span class="hljs-string">"Couldn't show toast: no activity found"</span>);
+                }
+            }
+            <span class="hljs-keyword">return</span>;
+        }
+        List&lt;Activity&gt; activities = Restarter.getActivities(this.mApplication,
+                <span class="hljs-literal">false</span>);
+        <span class="hljs-keyword">if</span> ((incrementalResources) &amp;&amp; (updateMode == <span class="hljs-number">2</span>)) {
+            File file = FileManager.getExternalResourceFile();
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"About to update resource file="</span> + file
+                        + <span class="hljs-string">", activities="</span> + activities);
+            }
+            <span class="hljs-keyword">if</span> (file != <span class="hljs-literal">null</span>) {
+                String resources = file.getPath();
+                MonkeyPatcher.monkeyPatchApplication(this.mApplication, <span class="hljs-literal">null</span>,
+                        <span class="hljs-literal">null</span>, resources);
+                MonkeyPatcher.monkeyPatchExistingResources(this.mApplication,
+                        resources, activities);
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-built_in">Log</span>.e(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"No resource file found to apply"</span>);
+                updateMode = <span class="hljs-number">3</span>;
+            }
+        }
+        Activity activity = Restarter.getForegroundActivity(this.mApplication);
+        <span class="hljs-keyword">if</span> (updateMode == <span class="hljs-number">2</span>) {
+            <span class="hljs-keyword">if</span> (activity != <span class="hljs-literal">null</span>) {
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                    <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Restarting activity only!"</span>);
+                }
+                boolean handledRestart = <span class="hljs-literal">false</span>;
+                <span class="hljs-keyword">try</span> {
+                    <span class="hljs-function"><span class="hljs-keyword">Method</span> <span class="hljs-title">method</span> =</span> activity.getClass().getMethod(
+                            <span class="hljs-string">"onHandleCodeChange"</span>, <span class="hljs-keyword">new</span> <span class="hljs-class"><span class="hljs-keyword">Class</span>[] { <span class="hljs-title">Long</span>.<span class="hljs-title">TYPE</span> });</span>
+                    Object result = <span class="hljs-function"><span class="hljs-keyword">method</span>.<span class="hljs-title">invoke</span>(</span>activity,
+                            <span class="hljs-keyword">new</span> Object[] { Long.valueOf(<span class="hljs-number">0</span>L) });
+                    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                        <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Activity "</span> + activity
+                                + <span class="hljs-string">" provided manual restart method; return "</span>
+                                + result);
+                    }
+                    <span class="hljs-keyword">if</span> (Boolean.<span class="hljs-literal">TRUE</span>.equals(result)) {
+                        handledRestart = <span class="hljs-literal">true</span>;
+                        <span class="hljs-keyword">if</span> (toast) {
+                            Restarter.showToast(activity, <span class="hljs-string">"Applied changes"</span>);
+                        }
+                    }
+                } <span class="hljs-keyword">catch</span> (Throwable ignore) {
+                }
+                <span class="hljs-keyword">if</span> (!handledRestart) {
+                    <span class="hljs-keyword">if</span> (toast) {
+                        Restarter.showToast(activity,
+                                <span class="hljs-string">"Applied changes, restarted activity"</span>);
+                    }
+                    Restarter.restartActivityOnUiThread(activity);
+                }
+                <span class="hljs-keyword">return</span>;
+            }
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+                <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>,
+                        <span class="hljs-string">"No activity found, falling through to do a full app restart"</span>);
+            }
+            updateMode = <span class="hljs-number">3</span>;
+        }
+        <span class="hljs-keyword">if</span> (updateMode != <span class="hljs-number">3</span>) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">6</span>)) {
+                <span class="hljs-built_in">Log</span>.e(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-string">"Unexpected update mode: "</span> + updateMode);
+            }
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Log</span>.isLoggable(<span class="hljs-string">"InstantRun"</span>, <span class="hljs-number">2</span>)) {
+            <span class="hljs-built_in">Log</span>.v(<span class="hljs-string">"InstantRun"</span>,
+                    <span class="hljs-string">"Waiting for app to be killed and restarted by the IDE..."</span>);
+        }
+    }</code></pre>
+<h2 id="33">总体总结</h2>
+<p>总结起来，做了一下几件事：<br></p>
+<h3 id="34">第一次编译apk：</h3>
+<p>1.把Instant-Run.jar和instant-Run-bootstrap.jar打包到主dex中<br><br>
+2.替换AndroidManifest.xml中的application配置<br><br>
+3.使用asm工具，在每个类中添加$change，在每个方法前加逻辑<br><br>
+4.把源代码编译成dex，然后存放到压缩包instant-run.zip中</p>
+<h3 id="35">app运行期：</h3>
+<p>1.获取更改后资源resource.ap_的路径<br><br>
+2.设置ClassLoader。setupClassLoader：<br><br>
+使用IncrementalClassLoader加载apk的代码，将原有的BootClassLoader → PathClassLoader改为BootClassLoader → IncrementalClassLoader → PathClassLoader继承关系。<br><br>
+3.createRealApplication：<br><br>
+创建apk真实的application<br><br>
+4.monkeyPatchApplication<br><br>
+反射替换ActivityThread中的各种Application成员变量<br><br>
+5.monkeyPatchExistingResource<br><br>
+反射替换所有存在的AssetManager对象<br><br>
+6.调用realApplication的onCreate方法<br><br>
+7.启动Server，Socket接收patch列表<br></p>
+<h3 id="36">有代码修改时</h3>
+<p>1.生成对应的$override类<br><br>
+2.生成AppPatchesLoaderImpl类，记录修改的类列表<br><br>
+3.打包成patch，通过socket传递给app<br><br>
+4.app的server接收到patch之后，分别按照handleColdSwapPatch、handleHotSwapPatch、handleResourcePatch等待对patch进行处理<br><br>
+5.restart使patch生效<br></p>
+<h2 id="37">Instant Run的借鉴意义</h2>
+<h3 id="38">Android插件化框架改进</h3>
+<h3 id="39">Android热修复方案</h3>
+<h3 id="40">app加壳<br>
+</h3>
+<p>&lt;未完待续&gt;</p>
+<h2 id="41">InstantRun源码</h2>
+<p>我自己通过jd-gui反编译获取的，可以参考：<br><a href="https://github.com/nuptboyzhb/AndroidInstantRun"></a><a href="https://github.com/nuptboyzhb/AndroidInstantRun">https://github.com/nuptboyzhb/AndroidInstantRun</a><br><br></p>
+<h2 id="42">参考博文</h2>
+<p>[1].<a href="https://medium.com/google-developers/instant-run-how-does-it-work-294a1633367f#.oqes7tpmm">Instant Run: How Does it Work?!</a><br><br>
+[2].<a href="http://www.jianshu.com/p/2e23ba9ff14b">Instant Run工作原理及用法</a><br><br>
+[3].<a href="https://www.youtube.com/watch?v=StqAZ1OQbqA">Instant Run: An Android Tool Time Deep Dive</a><br></p>
+
+      </div>
+            
+      
+      <div class="_article-float hidden-xs" data-fixed="false">
+        <div class="container">
+          <div class="_article-float-inner">
+          <aside class="_article-side">
+    <a href="http://www.atatech.org/articles/57274/follow" class="btn btn-primary btn-block" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).parent().replaceWith(r)">关注</a>
+    <section class="_article-followers">
+    <h6 class="heading text-center">1人关注该文章</h6>
+    <ul class="list-inline">
+      <li><a href="http://www.atatech.org/users/103887" title="石函"><img src="./深度理解Android InstantRun原理以及源码分析_files/u_identicon_5b395b01736651a45992d28fb1d22749.png_80x80" width="26" height="26" alt="石函" class="img-user"></a></li>    </ul>
+  </section>
+</aside>
+          </div>
+        </div>
+      </div>
+
+      <footer class="actions">
+        <a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#comment" class="btn btn-primary js-scroll-to">评论文章
+                      (3)
+                  </a>
+        <a href="http://www.atatech.org/articles/57274/voteup" title="赞" class="btn btn-default" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).next().addBack().toggle();$(&#39;#voters&#39;).html(r)">
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+          3
+        </a>
+        <a href="http://www.atatech.org/articles/57274/unvoteup" title="取消赞" class="btn btn-primary" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).prev().addBack().toggle();$(&#39;#voters&#39;).html(r)" style="display:none">
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+          4
+        </a>
+                <button class="btn btn-default" data-toggle="modal" data-target="#modal-share" data-article-id="57274" data-share-count-target="#share-count" title="分享">
+          <span class="glyphicon glyphicon-share"></span>
+          <span id="share-count">0</span>
+        </button>
+                	<!-- 收藏 -->
+        <a href="http://www.atatech.org/articles/57274/mark" title="收藏" class="btn btn-default" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).next().addBack().toggle()">
+          <span class="glyphicon glyphicon-star"></span>
+          2
+        </a>
+        <a href="http://www.atatech.org/articles/57274/unmark" title="取消收藏" class="btn btn-primary" role="button" rel="nofollow" data-remote="true" data-done="$(this).prev().addBack().toggle()" data-method="post" style="display:none">
+          <span class="glyphicon glyphicon-star"></span>
+          3
+        </a>
+      </footer>
+    </article>
+
+    <hr>
+    
+
+    <div id="voters">
+      <div id="voters" class="_article-voters">
+  <h3 class="heading">他们赞过该文章</h3>
+  <ul class="list-inline"><li><a href="http://www.atatech.org/users/80607" title="古丘"><img src="./深度理解Android InstantRun原理以及源码分析_files/u_identicon_28c4f21aff693f7cd036ee2f40cdb95f.png_80x80" width="28" height="28" alt="古丘" class="img-user"></a></li><li><a href="http://www.atatech.org/users/21583" title="王晓宇"><img src="./深度理解Android InstantRun原理以及源码分析_files/u_identicon_5d8bd58afb076c1b8589095707495c6a.png_80x80" width="28" height="28" alt="王晓宇" class="img-user"></a></li><li><a href="http://www.atatech.org/users/97119" title="雪梦"><img src="./深度理解Android InstantRun原理以及源码分析_files/img_20150416165641.JPG_80x80" width="28" height="28" alt="雪梦" class="img-user"></a></li><!-- <li><a href="#" class="img-user _article-voters-more" style="width:28px;height:28px">...</a></li> --></ul></div>
+<hr>
+    </div>
+
+            <table width="100%" class="cnzz-event" id="article-recommend">
+            <tbody><tr>
+                <th rowspan="3" width="5%">相<br>似<br>文<br>章</th>
+                <td width="50%"><li><a href="http://www.atatech.org/articles/27916">淘宝Hotpacht接入方案调研</a></li></td>
+                <td width="45%"><li><a href="http://www.atatech.org/articles/57293">FindBugs自定义检测器开发</a></li></td>
+            </tr>
+                            <tr>
+                    <td><li><a href="http://www.atatech.org/articles/48805">让App像Web一样发布新版本——系列二</a></li></td>
+                    <td><li><a href="http://www.atatech.org/articles/28059">android打包报错Conversio...</a></li></td>
+                </tr>
+                            <tr>
+                    <td><li><a href="http://www.atatech.org/articles/36714">Android插件开发，一种实现Activity免注册的方法</a></li></td>
+                    <td><li><a href="http://www.atatech.org/articles/45234">android.content.res....</a></li></td>
+                </tr>
+                    </tbody></table>
+    
+        <ul class="pager _article-pager">
+            <li class="previous"><a href="http://www.atatech.org/articles/54565">上一篇：航旅Android客户端动态模板方案及接入文档</a></li>
+                </ul>
+    <hr>
+    
+    <section class="comments-box clearfix">
+      <div class="media-list comments" id="comments">
+        
+<div class="comment media gaze in" id="comment-95935">
+  <div class="pull-left">
+    <a href="http://www.atatech.org/users/70914" class="avatar">
+      <img class="media-object img-circle" src="./深度理解Android InstantRun原理以及源码分析_files/u_identicon_4f0e3dbb23a5d9a96eaa7d5ced36c4be.png_120x120" width="42" height="42" alt="">
+    </a>
+        <span style="margin-left: 10px">
+        1F
+    </span>
+      </div>
+  <div class="media-body">
+    <div class="source clearfix">
+      <a href="http://www.atatech.org/users/70914" class="author">路竹</a>
+                  <span class="pull-right small">
+        <a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#comment-95935" class="link"><span class="glyphicon glyphicon-link"></span></a>
+        <time class="js-relative-time" datetime="2016-07-01T11:39:20+08:00">2016-07-01 11:39:20</time>
+      </span>
+    </div>
+
+    <div class="content unsafe">
+      <p>赞，Instant Run的实现原理的确很有借鉴意义</p>
+    </div>
+    
+        <div class="voters-p"></div>
+    
+    
+    <div class="actions clearfix">
+            <a href="http://www.atatech.org/comments/95935/voteup" title="赞" class="btn btn-link btn-sm action" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).closest(&#39;.comment&#39;).find(&#39;.voters-p:first&#39;).replaceWith(r);$(this).hide().siblings(&#39;:hidden&#39;).show()">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        0
+      </a>
+      <a href="http://www.atatech.org/comments/95935/unvoteup" title="取消赞" class="btn btn-link btn-sm action active" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).closest(&#39;.comment&#39;).find(&#39;.voters-p:first&#39;).replaceWith(r);$(this).hide().siblings(&#39;:hidden&#39;).show()" style="display:none">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        1
+      </a>
+      <span class="sep"></span>
+      <button class="btn btn-link btn-sm action" onclick="$(&#39;#sub-comments-box-95935&#39;).toggle()">
+        <span class="glyphicon glyphicon-comment"></span> 
+        <span id="sub-comments-count-95935">1</span>
+      </button>
+            
+          </div><!-- /.media-body -->
+    
+    <div class="sub-comments-box" id="sub-comments-box-95935">
+      <div class="sub-comments media-list" id="comment-95935-sub">
+
+<div class="sub-comment media gaze in">
+  <div class="pull-left">
+    <a href="http://www.atatech.org/users/136474" class="avatar">
+      <img class="media-object img-circle" src="./深度理解Android InstantRun原理以及源码分析_files/img_20150626105358.jpg_120x120" width="42" height="42" alt="">
+    </a>
+  </div>
+  <div class="media-body">
+    <div class="source clearfix">
+      <a href="http://www.atatech.org/users/136474" class="author">莫川</a>
+            <time class="pull-right small js-relative-time" datetime="2016-07-01T11:46:12+08:00">2016-07-01 11:46:12</time>
+    </div>
+
+    <div class="content unsafe">
+      <p>毕竟是官方的，兼容性方面应该做的不错的</p>
+    </div>
+
+    <div class="actions clearfix">
+      <a href="http://www.atatech.org/comments/95935/subcomments/30242/voteup" title="赞" class="btn btn-link btn-sm action" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).hide().siblings(&#39;:hidden&#39;).show()">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        0
+      </a>
+      <a href="http://www.atatech.org/comments/95935/subcomments/30242/unvoteup" title="取消赞" class="btn btn-link btn-sm action active" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).hide().siblings(&#39;:hidden&#39;).show()" style="display:none">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        1
+      </a>
+      <span class="sep"></span>
+      <button class="btn btn-link btn-sm action" onclick="$(&#39;#sub-comment-30242&#39;).toggle().find(&#39;textarea&#39;).focusend()"><span class="glyphicon glyphicon-comment"></span></button>
+
+          </div>
+
+    <form id="sub-comment-30242" class="js-active-on-valid js-comment-create" style="display:none" action="http://www.atatech.org/comments/95935/subcomments/" method="POST" data-remote="true" data-target="#comment-95935-sub" data-done="$(&#39;#sub-comments-count-95935&#39;).inc();$(this).hide();$.scrollTo($r)">
+      <input type="hidden" name="isCheck" value="1">
+            <div class="form-group">
+        <textarea name="content" rows="1" class="form-control js-mention js-auto-expand" required="">@莫川 </textarea>          
+      </div>
+      <div class="form-group text-right">
+        <button type="reset" class="btn btn-default btn-sm" onclick="$(this.form).hide()">取消</button>
+        <button type="submit" class="btn btn-primary btn-sm" disabled="">评论</button>
+      </div>
+    </form>
+  </div><!-- /.media-body -->
+
+  </div>
+
+  
+
+</div>
+
+
+<form action="http://www.atatech.org/comments/95935/subcomments/" method="POST" data-remote="true" data-target="#comment-95935-sub" data-done="$(&#39;#sub-comments-count-95935&#39;).inc()" class="sub-comment-form js-comment-create js-active-on-valid">
+  <input type="hidden" name="isCheck" value="1">
+    <div class="form-group">
+    <textarea name="content" rows="1" class="form-control js-mention js-auto-expand" placeholder="写下你的评论…" onfocus="$(this).closest(&#39;form&#39;).addClass(&#39;active&#39;)" required=""></textarea>
+  </div>
+  <div class="form-group text-right actions">
+    <button type="reset" class="btn btn-default btn-sm" onclick="$(this).closest(&#39;form&#39;).removeClass(&#39;active&#39;)">取消</button>
+    <button type="submit" class="btn btn-primary btn-sm" disabled="">评论</button>
+  </div>
+</form>
+    </div><!-- /.sub-comments-box -->
+  </div>
+  
+  </div>
+<div class="comment media gaze in" id="comment-95943">
+  <div class="pull-left">
+    <a href="http://www.atatech.org/users/97119" class="avatar">
+      <img class="media-object img-circle" src="./深度理解Android InstantRun原理以及源码分析_files/img_20150416165641.JPG_120x120" width="42" height="42" alt="">
+    </a>
+        <span style="margin-left: 10px">
+        2F
+    </span>
+      </div>
+  <div class="media-body">
+    <div class="source clearfix">
+      <a href="http://www.atatech.org/users/97119" class="author">雪梦</a>
+                  <span class="pull-right small">
+        <a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#comment-95943" class="link"><span class="glyphicon glyphicon-link"></span></a>
+        <time class="js-relative-time" datetime="2016-07-01T12:03:22+08:00">2016-07-01 12:03:22</time>
+      </span>
+    </div>
+
+    <div class="content unsafe">
+      <p>反正我们是没用起来。<br>
+Instant Run</p>
+    </div>
+    
+        <div class="voters-p"></div>
+    
+    
+    <div class="actions clearfix">
+            <a href="http://www.atatech.org/comments/95943/voteup" title="赞" class="btn btn-link btn-sm action" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).closest(&#39;.comment&#39;).find(&#39;.voters-p:first&#39;).replaceWith(r);$(this).hide().siblings(&#39;:hidden&#39;).show()">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        0
+      </a>
+      <a href="http://www.atatech.org/comments/95943/unvoteup" title="取消赞" class="btn btn-link btn-sm action active" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).closest(&#39;.comment&#39;).find(&#39;.voters-p:first&#39;).replaceWith(r);$(this).hide().siblings(&#39;:hidden&#39;).show()" style="display:none">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        1
+      </a>
+      <span class="sep"></span>
+      <button class="btn btn-link btn-sm action" onclick="$(&#39;#sub-comments-box-95943&#39;).toggle()">
+        <span class="glyphicon glyphicon-comment"></span> 
+        <span id="sub-comments-count-95943">0</span>
+      </button>
+            
+          </div><!-- /.media-body -->
+    
+    <div class="sub-comments-box" id="sub-comments-box-95943" style="display:none">
+      <div class="sub-comments media-list" id="comment-95943-sub">
+
+
+  
+
+</div>
+
+
+<form action="http://www.atatech.org/comments/95943/subcomments/" method="POST" data-remote="true" data-target="#comment-95943-sub" data-done="$(&#39;#sub-comments-count-95943&#39;).inc()" class="sub-comment-form js-comment-create js-active-on-valid">
+  <input type="hidden" name="isCheck" value="1">
+    <div class="form-group">
+    <textarea name="content" rows="1" class="form-control js-mention js-auto-expand" placeholder="写下你的评论…" onfocus="$(this).closest(&#39;form&#39;).addClass(&#39;active&#39;)" required=""></textarea>
+  </div>
+  <div class="form-group text-right actions">
+    <button type="reset" class="btn btn-default btn-sm" onclick="$(this).closest(&#39;form&#39;).removeClass(&#39;active&#39;)">取消</button>
+    <button type="submit" class="btn btn-primary btn-sm" disabled="">评论</button>
+  </div>
+</form>
+    </div><!-- /.sub-comments-box -->
+  </div>
+  
+  </div>
+<div class="comment media gaze in" id="comment-95951">
+  <div class="pull-left">
+    <a href="http://www.atatech.org/users/136474" class="avatar">
+      <img class="media-object img-circle" src="./深度理解Android InstantRun原理以及源码分析_files/img_20150626105358.jpg_120x120" width="42" height="42" alt="">
+    </a>
+        <span style="margin-left: 10px">
+        3F
+    </span>
+      </div>
+  <div class="media-body">
+    <div class="source clearfix">
+      <a href="http://www.atatech.org/users/136474" class="author">莫川</a>
+                  <span class="pull-right small">
+        <a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#comment-95951" class="link"><span class="glyphicon glyphicon-link"></span></a>
+        <time class="js-relative-time" datetime="2016-07-01T13:03:37+08:00">2016-07-01 13:03:37</time>
+      </span>
+    </div>
+
+    <div class="content unsafe">
+      <p>我们目前的框架，支持Instant Run还是比较困难的</p>
+    </div>
+    
+        <div class="voters-p"></div>
+    
+    
+    <div class="actions clearfix">
+            <a href="http://www.atatech.org/comments/95951/voteup" title="赞" class="btn btn-link btn-sm action" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).closest(&#39;.comment&#39;).find(&#39;.voters-p:first&#39;).replaceWith(r);$(this).hide().siblings(&#39;:hidden&#39;).show()">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        0
+      </a>
+      <a href="http://www.atatech.org/comments/95951/unvoteup" title="取消赞" class="btn btn-link btn-sm action active" role="button" rel="nofollow" data-remote="true" data-method="post" data-done="$(this).closest(&#39;.comment&#39;).find(&#39;.voters-p:first&#39;).replaceWith(r);$(this).hide().siblings(&#39;:hidden&#39;).show()" style="display:none">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        1
+      </a>
+      <span class="sep"></span>
+      <button class="btn btn-link btn-sm action" onclick="$(&#39;#sub-comments-box-95951&#39;).toggle()">
+        <span class="glyphicon glyphicon-comment"></span> 
+        <span id="sub-comments-count-95951">0</span>
+      </button>
+            
+          </div><!-- /.media-body -->
+    
+    <div class="sub-comments-box" id="sub-comments-box-95951" style="display:none">
+      <div class="sub-comments media-list" id="comment-95951-sub">
+
+
+  
+
+</div>
+
+
+<form action="http://www.atatech.org/comments/95951/subcomments/" method="POST" data-remote="true" data-target="#comment-95951-sub" data-done="$(&#39;#sub-comments-count-95951&#39;).inc()" class="sub-comment-form js-comment-create js-active-on-valid">
+  <input type="hidden" name="isCheck" value="1">
+    <div class="form-group">
+    <textarea name="content" rows="1" class="form-control js-mention js-auto-expand" placeholder="写下你的评论…" onfocus="$(this).closest(&#39;form&#39;).addClass(&#39;active&#39;)" required=""></textarea>
+  </div>
+  <div class="form-group text-right actions">
+    <button type="reset" class="btn btn-default btn-sm" onclick="$(this).closest(&#39;form&#39;).removeClass(&#39;active&#39;)">取消</button>
+    <button type="submit" class="btn btn-primary btn-sm" disabled="">评论</button>
+  </div>
+</form>
+    </div><!-- /.sub-comments-box -->
+  </div>
+  
+  </div>
+
+<div class="pages comment-tip">
+      
+    
+</div>
+      </div>
+      <script>require('comments')</script>
+
+      <form accept-charset="UTF-8" action="http://www.atatech.org/comments" method="POST" data-remote="true" data-target="#comments" class="js-comment-create js-active-on-valid">
+        <input type="hidden" name="type" value="article">
+        <input type="hidden" name="isCheck" value="1">
+        <input type="hidden" name="pid" value="57274">
+        <div class="form-group">
+          <div class="editor">
+            <div class="editor-container">
+              <div class="editor-actions">
+                <button type="button" class="btn btn-xs editor-action js-editor-fullscreen" data-original-title="全屏">
+                  <span class="glyphicon glyphicon-fullscreen"></span>
+                </button>
+                <button type="button" class="btn btn-xs editor-action js-editor-preview" data-original-title="预览">
+                  <span class="glyphicon glyphicon-eye-open"></span>
+                </button>
+                <button type="button" class="btn btn-xs editor-action js-editor-upload" data-original-title="插入图片">
+                  <span class="glyphicon glyphicon-picture"></span>
+                </button>
+              </div><!-- /.editor-actions -->
+              <textarea name="content" rows="4" class="form-control js-mention js-auto-expand editor-content" id="comment" placeholder="写下你的评论…" required=""></textarea>
+            </div><!-- /.editor-container -->
+
+            <div class="editor-preview-container">
+              <div class="editor-actions">
+                <button type="button" class="btn btn-xs editor-action js-editor-preview-off" data-original-title="取消预览">
+                  <span class="glyphicon glyphicon-eye-close"></span>
+                </button>
+              </div><!-- /.editor-actions -->
+              <div class="editor-preview content unsafe" data-disable-with="&lt;span class=&quot;text-muted&quot;&gt;loading...&lt;/span&gt;"></div>
+            </div><!-- /.editor-preview-container -->
+          </div><!-- /.editor  -->
+        </div>
+        <div class="form-group text-right">
+          <button type="submit" class="btn btn-primary" disabled="">评论</button>          
+        </div>
+      </form>
+    </section><!-- /.comments -->
+
+  </div><!-- /._article-box -->
+</div></div><!-- /.container -->
+        <footer class="footer" role="contentinfo">
+  <div class="container">
+	  <p class="copyright pull-left">
+	  	© 2016 阿里巴巴集团 版权所有 Copyright© 16 ATA. All rights reserved.
+
+	    <!-- cnzz PC-->
+	    <script>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5837538'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s5.cnzz.com/stat.php%3Fid%3D5837538%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_5837538"><a href="http://www.cnzz.com/stat/website.php?web_id=5837538" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./深度理解Android InstantRun原理以及源码分析_files/pic.gif"></a></span><script src="./深度理解Android InstantRun原理以及源码分析_files/stat.php" type="text/javascript"></script><script src="./深度理解Android InstantRun原理以及源码分析_files/core.php" charset="utf-8" type="text/javascript"></script>
+
+	    <!-- cnzz 整站-->
+	    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254194462'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1254194462%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1254194462"><a href="http://www.cnzz.com/stat/website.php?web_id=1254194462" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./深度理解Android InstantRun原理以及源码分析_files/pic.gif"></a></span><script src="./深度理解Android InstantRun原理以及源码分析_files/stat(1).php" type="text/javascript"></script><script src="./深度理解Android InstantRun原理以及源码分析_files/core(1).php" charset="utf-8" type="text/javascript"></script>
+	    <!-- /cnzz -->
+	    	  </p>
+    <ul class="list-inline pull-right">
+      <li><a href="http://www.atatech.org/articles/17702/" target="_blank">技术专题</a></li>
+      <li><a href="http://www.atatech.org/articles/13783" target="_blank">如何玩转ATA2.0</a></li>
+    </ul>
+  </div>
+</footer>
+          <div id="modal-followers" class="modal fade" role="dialog" aria-labelledby="followers" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">关注者</h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary">分享</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /#modal-share -->  <div id="modal-share" class="modal fade" role="dialog" aria-labelledby="share" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="http://www.atatech.org/articles/#{id}/share" method="POST" data-remote="true" data-done="$(this).closest(&#39;.modal&#39;).modal(&#39;hide&#39;);$(&#39;#share-group-or-team&#39;).selectize({plugins: [&#39;remove_button&#39;]})[0].selectize.clear();$($(this).data(&#39;shareCountTarget&#39;)).inc();$.alert(&#39;分享成功&#39;, &#39;success&#39;)" class="js-active-on-valid" novalidate="">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">分享</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <a href="https://work.alibaba-inc.com/home?publicAccount=%E5%91%A8%E6%9C%AB%E4%BA%86%EF%BC%8C%E6%8E%A8%E8%8D%90%E4%B8%80%E7%AF%87ATA%E4%B8%8A%E7%9A%84%E5%B9%B2%E8%B4%A7%E5%B8%A6%E5%9B%9E%E5%AE%B6%E5%85%85%E5%85%85%E7%94%B5%E5%90%A7%3A-%29%EF%BC%81%E6%B7%B1%E5%BA%A6%E7%90%86%E8%A7%A3Android+InstantRun%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%28http%3A%2F%2Fwww.atatech.org%2Farticles%2F57274%29" target="_blank">分享到阿里内外</a>
+        </div>
+        <div class="form-group">
+            <label for="share-group">分享到我的团队/圈子</label>
+                        <select name="share-group-or-team[]" id="share-group-or-team" class="form-control selectized" autocomplete="off" placeholder="Groups or Teams" required="1" multiple="multiple" tabindex="-1" style="display: none;"></select><div class="selectize-control form-control multi plugin-remove_button"><div class="selectize-input items required not-full has-options"><input type="text" autocomplete="off" tabindex="" placeholder="请选择" required="" style="width: 46px;"></div><div class="selectize-dropdown form-control multi plugin-remove_button" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+        </div>
+        <div class="form-group">
+          <label for="share-users">分享给同事</label>
+          <input type="text" name="users" class="form-control js-user-complete" id="share-users" placeholder="Users" required="1">
+        </div>
+        <div class="form-group">
+          <textarea name="content" rows="3" class="form-control" placeholder="羞羞的内容"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary" disabled="">分享</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div><!-- /#modal-share -->
+<script>require('modal-share')</script>
+<script>
+$('#share-group-or-team').selectize({
+    plugins: ['remove_button']
+})[0].selectize.clear();
+</script>
+  <div id="modal-tag-history" class="modal fade" role="dialog" aria-labelledby="tag history" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">标签历史</h4>
+      </div>
+      <div class="modal-body">      
+        <p class="text-muted">Loading...</p>
+      </div>
+    </div>
+  </div>
+</div><!-- /#modal-share -->
+  <div id="modal-article-modify-history" class="modal fade" role="dialog" aria-labelledby="article modify history" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">编辑历史</h4>
+      </div>
+      <div class="modal-body">      
+        <p class="text-muted">Loading...</p>
+      </div>
+    </div>
+  </div>
+</div><!-- /#modal-share -->
+        <script data-group-id="" data-user-id="136474">require('module/mention')</script>  <script data-group-id="" data-user-id="136474">require('module/user-complete')</script>  <script>require('module/tag-complete')</script>
+  <script>require('module/editor')</script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="./深度理解Android InstantRun原理以及源码分析_files/swfobject_modified.js"></script>
+    <script>
+  var _czc = _czc || [];
+  var statistics_obj = {
+  "article-recommend": ["文章", "相似文章"]
+  };
+  $('.cnzz-event a').on('click', function(){
+    var id = $(this).parents('.cnzz-event').attr('id');
+  _czc.push(["_trackEvent", statistics_obj[id][0], statistics_obj[id][1], "", "", id]);
+  })
+  </script>
+    <script>
+  $('.js-video').on('click', function(){
+
+    if ($('#taobao-online-video').length > 0)
+    {
+      swfobject.registerObject("taobao-online-video");
+    }
+    
+          setTimeout(function(){
+        _czc.push(["_trackEvent", '文章', "深度理解Android InstantRun原理以及源码分析", "", "", 'article-57274']);
+      }, 1000);
+      })
+
+  $(function(){
+
+    $('body').append('<div id="article-outline"><div style="height:15px;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div></div><style>#article-outline{display:none;min-width:140p;max-width: 200px; max-height: 350px;position:absolute;top:150px;left:-999px;border:1px solid #ccc;box-shadow:5px 5px 2px #ccc;padding: 5px 10px;background-color: #fff;overflow-y: auto;scroll-x: auto;}#article-outline ul{margin:5px 0 5px 0;padding-left:30px;font-size:12px;border-left:1px dotted #ccc;}#article-outline ul:first-child{padding-left:15px;border:none;}#article-outline li{list-style-type:decimal;margin:3px 0;}</style>')
+    var jOutline = $('#article-outline');
+
+    var jContent = $('article .content');
+    var jContentHeight = jContent.height();
+    jOutline.find('.close').on('click', function(){
+      jOutline.hide();
+    })
+
+    updateOutline();
+
+    var top = jOutline.offset().top;
+    scrollOutline();
+    $(window).on('scroll', scrollOutline);
+    function scrollOutline() {
+      var scrollTop = $(document).scrollTop();
+      var maxTop = jContent.offset().top + jContent.height() - jOutline.height();
+      if (scrollTop >= top && scrollTop <= maxTop)
+      {
+        jOutline.css({'position': 'fixed', 'top': 0});
+      }
+      else if(scrollTop < top)
+      {
+        jOutline.css({'position': 'absolute', 'top': '150px'});
+      }
+      else
+      {
+        jOutline.css({'position': 'absolute', 'top': maxTop+'px'});
+      }
+
+    }
+
+    function updateOutline() {
+        var arrAllHeader = jContent.find("h1,h2,h3,h4,h5,h6");
+        var arrOutline = ['<ul>'];
+        var header, headerText;
+        var id = 0;
+        var level = 0,
+            lastLevel = 1;
+        var levelCount = 0;
+        for (var i = 0, c = arrAllHeader.length; i < c; i++) {
+            header = arrAllHeader[i];
+            headerText = $(header).text();
+
+            header.setAttribute('id', id);
+
+            level = header.tagName.match(/^h(\d)$/i)[1];
+            levelCount = level - lastLevel;
+
+            if (levelCount > 0) {
+                for (var j = 0; j < levelCount; j++) {
+                    arrOutline.push('<ul>');
+                }
+            } else if (levelCount < 0) {
+                levelCount *= -1;
+                for (var j = 0; j < levelCount; j++) {
+                    arrOutline.push('</ul>');
+                }
+            };
+            arrOutline.push('<li>');
+            arrOutline.push('<a href="#' + id + '">' + headerText + '</a>');
+            arrOutline.push('</li>');
+            lastLevel = level;
+            id++;
+        }
+        arrOutline.push('</ul>')
+        if(arrOutline.length > 2){
+            jOutline.append(arrOutline.join(''));
+            jOutline.find('ul').each(function(i,n){
+                var jThis = $(this);
+                if(jThis.children('li').length === 0){
+                    jThis.replaceWith(jThis.children());
+                }
+            });
+            showOutline();
+        }
+        else {
+            hideOutline();
+        }
+    }
+
+    function showOutline() {
+        var offset = jContent.offset();
+
+        jOutline.css({
+            left: offset.left + jContent.width() + 10 + 'px',
+        }).show();
+    }
+
+    function hideOutline(){
+        jOutline.hide();
+    }
+});
+  </script>
+  
+
+
+<script src="./深度理解Android InstantRun原理以及源码分析_files/MathJax.js"></script>
+  <script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['\\$','\\$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    displayAlign: "left"
+  });
+  </script>
+    <a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#" class="go-top" style="display:none"><span class="glyphicon glyphicon-arrow-up"></span></a>
+<script>require('module/go-top')</script>        <a href="https://work.alibaba-inc.com/work/group/8401" target="_blank" title="为ATA2.0提供反馈" style="position:fixed;right:0;bottom:200px;" class="hidden-xs">
+  <img src="./深度理解Android InstantRun原理以及源码分析_files/T17D1tFrVeXXcUfo_w-30-100.png" alt="">
+</a>
+
+        <script type="text/javascript">
+    $('.form-submit-btn').click(function(){
+      var form = $(this).parents('form');
+      form.find('input').focus();
+      form.submit();
+    });
+    //导航 dropdown
+    (function(){
+    var t;
+    $('.dropdown').hover(function(){
+      var that = $(this);
+      that.siblings().find('.dropdown-menu').hide();
+      that.children('.dropdown-menu').show();
+      clearTimeout(t);
+    }, function(){
+      var that = $(this);
+      t = setTimeout(function(){
+        that.children('.dropdown-menu').hide();
+      }, 500)
+      
+    })
+    }())
+    </script>
+  
+
+<div class="alert-container"></div><div id="article-outline" style="left: 1114.5px; display: none; position: absolute; top: 150px;"><div style="height:15px;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#0">深度理解Android InstantRun原理以及源码分析</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#1">Instant Run官方介绍</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#2">传统的代码修改及编译部署流程</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#3">Instant Run编译和部署流程
+</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#4">热部署</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#5">温部署</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#6">冷部署</a></li></ul></ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#7">Demo案例</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#8">InstantRun启动app</a></li><ul><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#9">1.attachBaseContext方法</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#10">1.1.createResources</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#11">1.2.setupClassLoaders</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#12">1.3.createRealApplication</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#13">1.4.调用realApplication的attachBaseContext方法</a></li></ul></ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#14">2.onCreate</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#15">2.1 monkeyPatchApplication</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#16">1.替换ActivityThread的mInitialApplication为realApplication</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#17">2.替换mAllApplications 中所有的Application为realApplication</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#18">3.替换ActivityThread的mPackages,mResourcePackages中的mLoaderApk中的application为realApplication。</a></li></ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#19">2.2 monkeyPatchExistingResources</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#20">2.3 Server启动</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#21">2.4 调用realApplication的onCreate方法</a></li></ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#22">3.Server负责的热部署、温部署和冷部署</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#23">3.1 SocketServerReplyThread</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#24">3.2 handlePatches</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#25">handleColdSwapPatch冷部署</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#26">handleHotSwapPatch热部署</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#27">1</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#28">2</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#29">3</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#30">4</a></li></ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#31">handleResourcePatch</a></li></ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#32">restart</a></li></ul></ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#33">总体总结</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#34">第一次编译apk：</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#35">app运行期：</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#36">有代码修改时</a></li></ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#37">Instant Run的借鉴意义</a></li><ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#38">Android插件化框架改进</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#39">Android热修复方案</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#40">app加壳
+</a></li></ul><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#41">InstantRun源码</a></li><li><a href="http://www.atatech.org/articles/57274/?frm=mail_daily&amp;uid=126063#42">参考博文</a></li></ul></ul></div><style>#article-outline{display:none;min-width:140p;max-width: 200px; max-height: 350px;position:absolute;top:150px;left:-999px;border:1px solid #ccc;box-shadow:5px 5px 2px #ccc;padding: 5px 10px;background-color: #fff;overflow-y: auto;scroll-x: auto;}#article-outline ul{margin:5px 0 5px 0;padding-left:30px;font-size:12px;border-left:1px dotted #ccc;}#article-outline ul:first-child{padding-left:15px;border:none;}#article-outline li{list-style-type:decimal;margin:3px 0;}</style><audio controls="controls" style="display: none;"></audio><div></div></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>

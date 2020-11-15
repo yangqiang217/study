@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.yq.imageviewer.activity.MainActivity"
+    android:padding="@dimen/dimen_10dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="TITLE"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:textSize="@dimen/textsize_14sp"
+        android:imeOptions="actionDone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:hint="YEAR"
+            android:textSize="@dimen/textsize_14sp"
+            android:imeOptions="actionDone"/>
+
+        <EditText
+            android:id="@+id/et_month"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:hint="MONTH(02)"
+            android:textSize="@dimen/textsize_14sp"
+            android:imeOptions="actionDone"/>
+
+        <EditText
+            android:id="@+id/et_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:hint="DAY(17)"
+            android:textSize="@dimen/textsize_14sp"
+            android:imeOptions="actionDone"/>
+    </LinearLayout>
+</LinearLayout>

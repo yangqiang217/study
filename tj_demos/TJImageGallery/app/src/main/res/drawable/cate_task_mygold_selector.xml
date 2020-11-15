@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/tab_arrow_up_2x" android:state_selected="true"/>
+    <item android:drawable="@drawable/category_select_open"/>
+
+</selector>

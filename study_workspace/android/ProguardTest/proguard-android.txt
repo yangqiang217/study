@@ -1,0 +1,48 @@
+#需要keep的地方：
+#1.用到反射的地方。
+#2.代码依赖于系统的接口，比如被系统代码调用的回调方法，这种情况最复杂。比如com.yq.jaroutput.Run里的run如果被混淆，用的时候就不会走里边的线程内容
+#3.java元素名称是在配置文件中配置好的。
+
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-verbose
+
+-dontoptimize
+-dontpreverify
+
+-keepattributes *Annotation*
+-keep public class com.google.vending.licensing.ILicensingService
+-keep public class com.android.vending.licensing.ILicensingService
+
+-dontwarn java.** #有warn就会失败，提示要把warn处理掉
+-dontwarn com.yq.jaroutput.**
+
+#把okio打进来的方法，在module setting -》 artifact页面那儿点向下的加号，点extracted dir...那个，然后选jar包，继续打包就行了
+-dontwarn okio.**
+-keep class okio.** { *; } #这里不keep的话okio里边的东西全都被混淆了
+
+#首先理解keep是什么意思，两个作用：1.不shrink；2.不改名。所以如果keep后面加了allowshrinking的话，就只有第2个功能
+
+-keep class com.yq.jaroutput.Main { *; } #keep Main里边的所有元素：构造方法，field，method
+-keep class * extends com.yq.jaroutput.School{ *; } #继承了这个类的不被混淆
+-keep class com.yq.jaroutput.Run { *; }#* extends java.lang.Thread{ *; }
+-keep class com.yq.jaroutput.Person$* { *; } #不要混淆Person及其内部类（不管是static/private）（但是如果是keep public class，那么只有public方法才会被keep）
+
+#-keep class com.yq.jaroutput.Student #只keep Student的类名，里边的元素方法都会被混淆或shrink
+#-keepclassmembers class com.yq.jaroutput.Student { #只keep里边元素，类名还是被混淆
+#    private int age;
+#    public *** get*();
+#    public *** set*();
+#}
+#-keepclasseswithmembers class com.yq.jaroutput.Student  #效果同keep
+-keepclasseswithmembers class ** { #有括号里这些东西的keep住，包括类名和括号中的这些东西，这个貌似是由里推外，里边是条件，这里的效果是虽然student没被调用，但是会保留此类和age属性
+    private int age;
+}#如果这里改成keepclasseswithmembernames，即=keepclasseswithmembers,allowshrinking 由于student类没被用，所以这里student类会被shrink掉
+
+-keep,allowshrinking class com.yq.jaroutput.School { *; } #如果只keep，即便这个类没有被用，还是会出现在jar包中，有了allowshrinking如果此类没用过，就会被shrink。（keep,allowshrinking=keepnames）
+
+-keepclassmembers class * extends java.lang.Thread {###########################################
+    public void run();
+}
+
+-keep class com.yq.jaroutput.UseOutJar{ *; }

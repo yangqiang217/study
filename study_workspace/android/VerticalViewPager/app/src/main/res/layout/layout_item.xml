@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_333333">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/act_videoplay_playview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        fresco:actualImageScaleType="focusCrop"
+        fresco:roundAsCircle="false" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/act_videoplay_avatar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/dimen_20dp" />
+
+        <TextView
+            android:id="@+id/act_videoplay_tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/textsize_16sp"
+            android:textColor="@color/color_ffffff"/>
+
+        <Button
+            android:id="@+id/act_videoplay_btn_follow"
+            android:layout_width="45dp"
+            android:layout_height="25dp"
+            android:text="@string/act_videoplay_follow"
+            android:layout_marginLeft="17.5dp"
+            android:background="@drawable/shape_act_videoplay_btn_follow"
+            android:textSize="@dimen/textsize_13sp"
+            android:textColor="@color/act_videoplay_follow"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/act_videoplay_iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_marginTop="26.5dp"
+        android:src="@mipmap/icon_videoplay_close"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_marginBottom="22.5dp">
+
+        <ImageView
+            android:id="@+id/act_videoplay_iv_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_videoplay_comment"/>
+
+        <TextView
+            android:id="@+id/act_videoplay_tv_commentcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/act_videoplay_iv_comment"
+            android:layout_marginLeft="4dp"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/textsize_12sp"
+            android:textColor="@color/color_ffffff"
+            android:text="1234"/>
+
+        <ImageView
+            android:id="@+id/act_videoplay_iv_liked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/act_videoplay_iv_comment"
+            android:layout_marginLeft="45dp"
+            android:src="@mipmap/icon_videoplay_liked"/>
+
+        <TextView
+            android:id="@+id/act_videoplay_tv_likedcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/act_videoplay_iv_liked"
+            android:layout_marginLeft="4dp"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/textsize_12sp"
+            android:textColor="@color/color_ffffff"
+            android:text="1234"/>
+
+
+        <ImageView
+            android:id="@+id/act_videoplay_iv_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/act_videoplay_iv_liked"
+            android:layout_marginLeft="44.5dp"
+            android:src="@mipmap/icon_videoplay_share"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/act_videoplay_btn_addcomment"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:background="@drawable/shape_act_videoplay_addcomment"
+        android:layout_marginBottom="17.5dp"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/textsize_13sp"
+        android:gravity="center_vertical"
+        android:text="喜欢就要说出来~"/>
+</RelativeLayout>

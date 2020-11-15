@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.example.qiangyang.dialogfragment.MainActivity">
+
+    <Button
+        android:id="@+id/btnShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="show"/>
+
+    <EditText
+        android:id="@+id/etMain"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#77FF44"/>
+
+</RelativeLayout>

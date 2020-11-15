@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name">vtell</string>
+    <string name="start">开始</string>
+    <string name="end">结束</string>
+    <string name="confirm">确定</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="i_got_it">我知道了</string>
+    <string name="save">保存</string>
+    <string name="saving">保存中...</string>
+    <string name="uploading">上传中...</string>
+    <string name="add">添加</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="select">选择</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="register">注册</string>
+    <string name="login">登录</string>
+    <string name="next">下一步</string>
+
+    <string name="format_country_number" formatted="false">%04d</string>
+
+    <string name="start_to_use">开始使用</string>
+
+    <string name="permission_rationale_title">需要授权</string>
+    <string name="permission_rationale_message">为确保您正常使用应用，需要您授权以下权限</string>
+    <string name="permission_denied_dialog_title">权限申请</string>
+    <string name="permission_denied_dialog_feedback">去[设置-应用-babble-权限管理]中，打开</string>
+    <string name="permission_rationale_settings_goto_text">去设置</string>
+    <string name="permission_rationale_settings_cancel_text">取消</string>
+    <string name="storage_permission_denied_msg">“存储空间”权限，否则app无法正常使用</string>
+    <string name="camera_permission_denied_msg">“相机和麦克风”权限，以正常使用发送视频等功能</string>
+    <string name="audio_permission_denied_msg">“相机和麦克风”权限，以正常使用发送视频等功能</string>
+    <string name="contact_permission_denied_msg">“读取联系人”权限，以正常使用查看通讯录好友等功能</string>
+    <string name="storage_permission_denied_title">需要存储权限</string>
+    <string name="camera_permission_denied_title">打开摄像头和麦克风</string>
+    <string name="audio_permission_denied_title">打开摄像头和麦克风</string>
+    <string name="contact_permission_denied_title">没有通讯录好友</string>
+    <string name="no_permission_storage">没有SdCard存取权限</string>
+
+    <string name="loading_dialog_message">请稍候…</string>
+    <string name="network_cannot_connect">无法连接网络</string>
+
+    <!-- main activity -->
+    <string name="act_main_tabbar_home">首页</string>
+    <string name="act_main_tabbar_my">我的</string>
+
+    <string name="dialog_login_need_login">登录vtell才能操作哦～</string>
+    <string name="dialog_login_agreement">登录即表示你同意 《服务和隐私条款》</string>
+
+    <!-- Login activity -->
+    <string name="act_login_mobile_hint">手机号</string>
+    <string name="act_login_password_hint">请输入密码</string>
+    <string name="act_login_title">手机号登录</string>
+    <string name="act_login_confirm">登  录</string>
+    <string name="act_login_forgot_password">忘记密码</string>
+    <string name="alert_no_input_mobile">请输入手机号</string>
+    <string name="alert_mobile_length_error">手机号位数不正确</string>
+    <string name="alert_no_input_password">密码不能为空</string>
+    <string name="toast_password_error">手机号或密码有误，请重试</string>
+    <string name="toast_password_error_multi">密码多次输入错误，忘记密码可找回密码</string>
+
+    <string name="act_register_title">手机号注册</string>
+    <string name="please_input_mobile">请输入手机号码</string>
+    <string name="act_register_agreement"><![CDATA[同意<vtell用户协议>]]></string>
+    <string name="act_register_agreement_not_checked"><![CDATA[请同意<vtell用户协议>]]></string>
+    <string name="alert_mobile_invalidate">手机号不正确，请重新输入</string>
+    <string name="toast_mobile_already_register">手机号已注册，可直接登录</string>
+
+    <string name="act_register_verify_sent" formatted="false"><![CDATA[已将验证码发送至<font color="#f4691d">%s</font><br />30分钟之内输入即可登录]]></string>
+    <string name="act_register_resend_delay">重新发送(%d)</string>
+    <string name="act_register_resend">重新发送</string>
+    <string name="act_register_verify_code_hint">请输入验证码</string>
+    <string name="act_register_password_hint">请输入密码(8-20位英文或数字)</string>
+    <string name="act_register_confirm">完  成</string>
+    <string name="act_register_success">注册成功</string>
+    <string name="act_register_error_verify_code">短信验证码错误，请重试</string>
+    <string name="alert_password_length_error">密码位数需大于8位，小于20位</string>
+    <string name="alert_no_input_verify_code">请输入验证码</string>
+    <string name="alert_password_invalidate">密码格式不正确，请重新输入</string>
+    <string name="alert_mobile_not_register">手机号未注册</string>
+
+    <string name="act_reset_password_title">找回密码</string>
+    <string name="toast_password_reset_success">新密码设置成功</string>
+
+    <!-- 播放页 -->
+    <string name="act_videoplay_follow">关注</string>
+
+</resources>

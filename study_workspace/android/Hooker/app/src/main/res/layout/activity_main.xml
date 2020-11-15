@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_write_random_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WRITE_RANDOM_INFO" />
+    <TextView
+        android:id="@+id/tv_write_random_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_clear_sdcard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="CLEAR_SDCARD"/>
+    <TextView
+        android:id="@+id/tv_clear_sdcard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_read_random_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="read"
+        android:visibility="visible"/>
+    <TextView
+        android:id="@+id/tv_read_random_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

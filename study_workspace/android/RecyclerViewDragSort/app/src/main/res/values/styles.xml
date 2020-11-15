@@ -1,0 +1,124 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    </style>
+
+    <style name="t0">
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t0_1">
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t1">
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t1_1">
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t2">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t2_1">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t3">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t3_1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t4">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t4_1">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t5">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t5_1">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t6">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t6_1">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t7">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t7_1">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t8">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t8_1">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="t9">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+</resources>

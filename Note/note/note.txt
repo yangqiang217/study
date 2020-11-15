@@ -1,0 +1,123 @@
+遍历hashset：
+for (Iterator<Polyline> it = mSelectedRoadSet.iterator(); it.hasNext();) {
+            it.next().setWidth(WIDTH_ROAD_NORMAL * mDensity);
+        }
+遍历hashmap:
+for(Entry<Integer, String> entry:map.entrySet())
+  {
+   System.out.println(entry.getKey()+"="+entry.getValue());
+  }
+
+
+遍历集合如果是foreach的形式，对集合有添加或删除会导致java.util.ConcurrentModificationException，所以用for不用foreach
+
+集合外Object o = new Object(), 集合中加入对象o，单纯把o=null，集合中的相对位置的对象还是不会为null。另外，单纯在一个有数据的集合中遍历把每个元素=null，集合中的元素也不会为null
+
+map的嵌套同步：只需要像第一行同步外边的，或者用第二行的方法，也只需要同步外边（但是如果不嵌套，用第二种方法不管用，）
+ConcurrentHashMap<String, HashMap<String, Person>> map = new ConcurrentHashMap<>();
+//        Map<String, HashMap<String, Person>> map = Collections.synchronizedMap(new ConcurrentHashMap<>());
+        
+        Thread t1 = new Thread() {
+            public void run() {
+                for (int i = 0; i < 10000; i++) {
+                    HashMap<String, Person> m= new HashMap<>();
+                    for (int j = 0; j < 100; j++) {
+                        Person p = new Person(j);
+                        m.put(String.valueOf(j), p);
+                    }
+                    map.put(String.valueOf(i), m);
+                }
+            }
+        };
+        Thread t2 = new Thread() {
+            public void run() {
+                while(true) {
+                    for (Entry<String, HashMap<String, Person>> entry: map.entrySet()) {
+                        for (Entry<String, Person> e: entry.getValue().entrySet()) {
+                            System.out.println(e.getValue());
+                        }
+                    }
+                }
+                
+            }
+        };
+        
+        t1.start();
+        t2.start();
+
+
+
+尽量避免在视图层级的顶层使用相对布局 RelativeLayout 。相对布局 RelativeLayout 比较耗资源，因为一个相对布局 RelativeLayout 需要两次度量来确保自己处理了所有的布局关系，而且这个问题会伴随着视图层级中的相对布局 RelativeLayout 的增多，而变得更严重；
+布局层级一样的情况建议使用线性布局 LinearLayout 代替相对布局 RelativeLayout，因为线性布局 LinearLayout 性能要更高一些；确实需要对分支进行相对布局 RelativeLayout 的时候，可以考虑更优化的网格布局 GridLayout ，它已经预处理了分支视图的关系，可以避免两次度量的问题；
+相对复杂的布局建议采用相对布局 RelativeLayout ，相对布局 RelativeLayout 可以简单实现线性布局 LinearLayout 嵌套才能实现的布局；
+不要使用绝对布局 AbsoluteLayout ；
+
+
+volatile和atomic：
+volatile保证可见性，不能保证原子性：下面的例子最终结果不能保证count为1，因为volatile 虽然保证了可见性，但是由于--操作本身不是原子的，所以会出现误差，而如果用AtomicInteger，syso里用decreaseAndGet，就没问题，因为这个操作是原子的
+public class Test {
+
+    public static void main(String[] args) throws InterruptedException {
+        MyThread m1 = new MyThread();
+        for (int i = 0; i < 20; i++) {
+            new Thread(m1).start();
+        }
+    }
+}
+class MyThread implements Runnable {
+    private volatile int count = 100;
+    @Override
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(count-- + " " + Thread.currentThread().getName());
+        }
+    }
+}
+
+
+
+linkedhashmap如果把其中一个元素remove调，重新add，会添加到末尾
+
+
+Collections.synchronizedList得到的list的遍历读方法并没有同步，所以一个线程读，一个线程写，也会报错。把读的方法同步了就行了
+
+hashmap或hashset等这类唯一key的地方，如果key是对象，要想两次put的值一样，第二次覆盖第一次，必须保证作为key的两次对象的hashCode相同&&对象的equals方法返回true
+java中的hash好比教室一列列的座位，hashcode可以确定列，而equals确定座位是否相同，所以即便hashcode相同，由于冲突的存在，equals不一定为true：
+两个对象，如果调用equals方法得到的结果为true，则两个对象的hashcode值必定相等；
+如果equals方法得到的结果为false，则两个对象的hashcode值不一定不同；
+如果两个对象的hashcode值不等，则equals方法得到的结果必定为false；
+如果两个对象的hashcode值相等，则equals方法得到的结果未知。
+注：==直接比较的是两个对象的内存地址。
+
+
+
+静态代码块、构造代码块、构造函数在父子类中的顺序：
+调用代码：Son son = new Son();System.out.println();Son son1 = new Son();
+结果；（构造代码块和构造函数是连续执行的，静态代码块先执行）
+Father静态代码块
+Son静态代码块
+Father构造代码块
+Father构造函数
+Son构造代码块
+Son构造函数
+
+Father构造代码块
+Father构造函数
+Son构造代码块
+Son构造函数
+
+
+fragment用replace的时候，如果接着addToBackStack，则不会掉那个fragment的onDestroy，如果没接addToBackStack，会调
+
+java的protected限父子，可以跨包，default只限包内，如果父子不在同包，也不能继承default的方法
+
+平常用的外部new个Handler，子线程中用handler.sendMessage发的消息，其实也是发到了main线程的MessageQueue中，因为Handler给其变量mLooper赋值是在其构造函数中，而构造函数是在main线程的
+
+二分查找如果没找到一般都返回-1，但是更好的方式是返回low，如果没有找到，想要插入这个元素的话，low表示这个元素可以插入的下标（见SparseArray）
+
+classes.dex 反编译步骤：
+先去~/tools/dex2jar-2.0$ sh d2j-dex2jar.sh ../../temp/classes.dex 在tools/dex2jar..这个目录下得到jar包
+再去桌面打开jd-gui，把得到的jar包打开就行了
+
+解混淆：在android-sdk-linux/tools/proguard/bin下：
+./retrace.sh -verbose ~/mapping.txt ~/1.txt    1.txt表示被混淆的log.

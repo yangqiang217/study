@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c1">
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="66.5dp"
+        android:text="@string/item_sort"
+        android:textAppearance="@style/t0_1"
+        android:textColor="@color/c6" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text1"
+        android:layout_marginTop="10dp"
+        android:text="@string/change_position" />
+
+    <LinearLayout
+        android:id="@+id/layout_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_alignParentRight="true">
+
+        <Button
+            android:id="@+id/button_finish"
+            android:layout_width="56dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/radius_r16_c7"
+            android:text="@string/item_sort_finish"
+            android:textAppearance="@style/t5"
+            android:textColor="@color/c7"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingEnd="25dp"
+            android:paddingStart="20dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/iclose" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:overScrollMode="never"
+        android:layout_below="@+id/text2"
+        android:layout_marginTop="20dp"/>
+</RelativeLayout>
+

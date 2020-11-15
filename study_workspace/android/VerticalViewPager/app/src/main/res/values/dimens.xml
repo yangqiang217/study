@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_2dp">2dp</dimen>
+    <dimen name="dimen_3dp">3dp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_8dp">8dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_12dp">12dp</dimen>
+    <dimen name="dimen_15dp">15dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_30dp">30dp</dimen>
+    <dimen name="dimen_38dp">38dp</dimen>
+
+    <dimen name="textsize_10sp">10sp</dimen>
+    <dimen name="textsize_11sp">11sp</dimen>
+    <dimen name="textsize_12sp">12sp</dimen>
+    <dimen name="textsize_13sp">13sp</dimen>
+    <dimen name="textsize_14sp">14sp</dimen>
+    <dimen name="textsize_15sp">15sp</dimen>
+    <dimen name="textsize_16sp">16sp</dimen>
+    <dimen name="textsize_18sp">18sp</dimen>
+    <dimen name="textsize_20sp">20sp</dimen>
+
+    <dimen name="edittext_textsize_default">15sp</dimen>
+
+    <!-- copy from api 25 -->
+    <dimen name="status_bar_height">24dp</dimen>
+
+    <dimen name="corner_default">3dp</dimen>
+    <dimen name="stroke_default">0.5dp</dimen>
+    <dimen name="divider_default">0.5dp</dimen>
+    <dimen name="actionbar_height_default">44dp</dimen>
+    <dimen name="actionbar_textsize">17sp</dimen>
+    <dimen name="default_activity_padding">20dp</dimen>
+
+    <dimen name="act_main_tabbar_height">49dp</dimen>
+    <dimen name="act_main_tabbar_camera">58dp</dimen>
+    <dimen name="act_main_tabbar_padding_top">10dp</dimen>
+    <dimen name="act_main_tabbar_padding_bottom">2dp</dimen>
+    <dimen name="act_main_tabbar_textsize">10sp</dimen>
+
+    <dimen name="dialog_login_corner">10dp</dimen>
+
+    <dimen name="my_count_38dp">@dimen/dimen_38dp</dimen>
+    <dimen name="my_count_12dp">@dimen/dimen_12dp</dimen>
+    <dimen name="my_count_22dp">22dp</dimen>
+    <dimen name="my_count_title_height">@dimen/act_main_tabbar_height</dimen>
+</resources>

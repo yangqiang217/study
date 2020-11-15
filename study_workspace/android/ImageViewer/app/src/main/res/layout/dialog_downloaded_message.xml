@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.yq.imageviewer.activity.MainActivity"
+    android:padding="@dimen/dimen_20dp"
+    android:orientation="vertical">
+
+    <com.yq.imageviewer.view.TitleAndDateView
+        android:id="@+id/dlg_dld_titleanddate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/dlg_dld_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner_c7"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/textsize_18sp"
+        android:text="Confirm"
+        style="?android:attr/borderlessButtonStyle"/>
+</LinearLayout>

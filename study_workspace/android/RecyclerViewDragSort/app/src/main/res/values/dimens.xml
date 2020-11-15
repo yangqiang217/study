@@ -1,0 +1,292 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_main_margin_left">8dp</dimen>
+    <dimen name="activity_main_word_size">15dp</dimen>
+    <dimen name="activity_main_arrow_width">8dp</dimen>
+    <dimen name="activity_main_arrow_heigh">15dp</dimen>
+    <dimen name="textview_heigh">15dp</dimen>
+    <dimen name="title_bar_height">44dp</dimen>
+    <dimen name="divider_width">0.5dp</dimen>
+
+    <dimen name="login_edit_h">35dp</dimen>
+    <dimen name="login_edit_margin_t">40dp</dimen>
+    <dimen name="login_btn_h">49dp</dimen>
+    <dimen name="login_edit_margin_lr">53dp</dimen>
+
+    <!-- 1.1.0相关-->
+    <dimen name="card_height">219.5dp</dimen>
+
+    <!--视频播放相关-->
+    <dimen name="controller_top_h">80dp</dimen>
+    <dimen name="controller_bottom_h">35dp</dimen>
+    <dimen name="reset_btn_margin_b">90dp</dimen>
+    <dimen name="reset_btn_margin_r">16dp</dimen>
+
+    <!--新版文字大小，其中0、2、4 是粗体-->
+    <dimen name="t0_lineSpacing">23sp</dimen>
+    <dimen name="t1_lineSpacing">23sp</dimen>
+    <dimen name="t2_lineSpacing">21sp</dimen>
+    <dimen name="t3_lineSpacing">21sp</dimen>
+    <dimen name="t4_lineSpacing">19sp</dimen>
+    <dimen name="t5_lineSpacing">19sp</dimen>
+    <dimen name="t6_lineSpacing">17sp</dimen>
+    <dimen name="t6_1_lineSpacing">16sp</dimen>
+    <dimen name="t7_lineSpacing">15sp</dimen>
+
+    <dimen name="padding_page_lr">10dp</dimen>
+    <dimen name="padding_modules">5dp</dimen>
+
+    <dimen name="padding_modules_half">2.5dp</dimen>
+
+    <!--通用尺寸-->
+    <dimen name="dimen_0.5">0.5dp</dimen>
+    <dimen name="dimen_1">1dp</dimen>
+    <dimen name="dimen_2">2dp</dimen>
+    <dimen name="dimen_3">3dp</dimen>
+    <dimen name="dimen_4">4dp</dimen>
+    <dimen name="dimen_5">5dp</dimen>
+    <dimen name="dimen_5.5">5.5dp</dimen>
+    <dimen name="dimen_6">6dp</dimen>
+    <dimen name="dimen_7">7dp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
+    <dimen name="dimen_10">10dp</dimen>
+    <dimen name="dimen_11">11dp</dimen>
+    <dimen name="dimen_12">12dp</dimen>
+    <dimen name="dimen_13">13dp</dimen>
+    <dimen name="dimen_13.5">13.5dp</dimen>
+    <dimen name="dimen_14">14dp</dimen>
+    <dimen name="dimen_15">15dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_17">17dp</dimen>
+    <dimen name="dimen_18">18dp</dimen>
+    <dimen name="dimen_19">19dp</dimen>
+    <dimen name="dimen_20">20dp</dimen>
+    <dimen name="dimen_22">22dp</dimen>
+    <dimen name="dimen_23">23dp</dimen>
+    <dimen name="dimen_25">25dp</dimen>
+    <dimen name="dimen_25.5">25.5dp</dimen>
+    <dimen name="dimen_26">26dp</dimen>
+    <dimen name="dimen_28">28dp</dimen>
+    <dimen name="dimen_29">29dp</dimen>
+    <dimen name="dimen_30">30dp</dimen>
+    <dimen name="dimen_32.5">32.5dp</dimen>
+    <dimen name="dimen_35">35dp</dimen>
+    <dimen name="dimen_37">37dp</dimen>
+    <dimen name="dimen_40">40dp</dimen>
+    <dimen name="dimen_42">42dp</dimen>
+    <dimen name="dimen_43">43dp</dimen>
+    <dimen name="dimen_44">44dp</dimen>
+    <dimen name="dimen_46">46dp</dimen>
+    <dimen name="dimen_49">49dp</dimen>
+    <dimen name="dimen_50">50dp</dimen>
+    <dimen name="dimen_51">51dp</dimen>
+    <dimen name="dimen_52">52dp</dimen>
+    <dimen name="dimen_54">54dp</dimen>
+    <dimen name="dimen_55">55dp</dimen>
+    <dimen name="dimen_56">56dp</dimen>
+    <dimen name="dimen_59">59dp</dimen>
+    <dimen name="dimen_60">60dp</dimen>
+    <dimen name="dimen_61">61dp</dimen>
+    <dimen name="dimen_65">65dp</dimen>
+    <dimen name="dimen_70">70dp</dimen>
+    <dimen name="dimen_75">75dp</dimen>
+    <dimen name="dimen_80">80dp</dimen>
+    <dimen name="dimen_83.5">83.5dp</dimen>
+    <dimen name="dimen_98">98dp</dimen>
+    <dimen name="dimen_100">100dp</dimen>
+    <dimen name="dimen_130">130dp</dimen>
+    <dimen name="dimen_150">150dp</dimen>
+    <dimen name="dimen_160">160dp</dimen>
+    <dimen name="dimen_168">168dp</dimen>
+    <dimen name="dimen_200">200dp</dimen>
+    <dimen name="dimen_282">282dp</dimen>
+    <dimen name="dimen_300">300dp</dimen>
+    <dimen name="dimen_330">330dp</dimen>
+
+    <dimen name="split_line_h">0.5dp</dimen>
+
+    <dimen name="video_width_1x">120dp</dimen>
+    <dimen name="video_height_1x">67.5dp</dimen>
+
+    <dimen name="indicator_line_h">1.5dp</dimen>
+    <dimen name="indicator_line_w">34dp</dimen>
+
+    <!--横屏播放暂停界面-->
+    <dimen name="new_height">84.5dp</dimen>
+    <dimen name="recommend_height">120dp</dimen>
+    <dimen name="tab_bar_height">45dp</dimen>
+    <dimen name="select_icon_w">22dp</dimen>
+    <dimen name="select_options_bottom_h">49dp</dimen>
+    <dimen name="select_options_delete_w">125dp</dimen>
+    <dimen name="select_options_delete_h">33dp</dimen>
+
+    <dimen name="play_with_glass_button_m">-17.5dp</dimen>
+
+    <dimen name="main_title">44dp</dimen>
+    <dimen name="main_title_ml">16dp</dimen>
+    <dimen name="main_title_mr">5dp</dimen>
+    <dimen name="main_title_p">10dp</dimen>
+    <dimen name="main_title_p_lr">15dp</dimen>
+    <dimen name="layout_no_network_w">160dp</dimen>
+    <dimen name="layout_no_network_h">130dp</dimen>
+    <dimen name="video_w">144dp</dimen>
+    <dimen name="video_h">81dp</dimen>
+
+    <dimen name="activity_main_arrow_margin_right">15dp</dimen>
+    <dimen name="activity_main_goToSee_margin_right">8dp</dimen>
+    <dimen name="user_avator_width">168dp</dimen>
+    <dimen name="user_avator_heigh">95dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="act_main_tabbar_height">44dp</dimen>
+    <dimen name="act_main_tabbar_total_height">44.5dp</dimen>
+
+    <dimen name="classify_tag_layout_h">44dp</dimen>
+    <!-- 区块间隔 -->
+    <dimen name="section_margin">4dp</dimen>
+    <!-- textView横向间隔 -->
+    <dimen name="text_margin_horizontal">8dp</dimen>
+    <!-- switchButton横向间隔 -->
+    <dimen name="toggle_margin_horizontal">16dp</dimen>
+    <!-- search界面搜索历史的item高度 -->
+    <dimen name="item_heigh">46.5dp</dimen>
+    <!-- 条目高度 -->
+    <dimen name="item_height">57dp</dimen>
+    <dimen name="personal_info_item_height">65dp</dimen>
+    <dimen name="mine_menu_item_height">46dp</dimen>
+    <dimen name="setting_block_margin">15dp</dimen>
+
+    <!-- 圆角半径 -->
+    <dimen name="radius_dialog">5dp</dimen>
+    <dimen name="radius_thumb_large">7dp</dimen>
+    <dimen name="radius_thumb_small">5dp</dimen>
+    <dimen name="radius_3">3dp</dimen>
+    <dimen name="radius_pic">2dp</dimen>
+
+    <!-- grid图片间距 -->
+    <dimen name="layout_spacing">2dp</dimen>
+
+    <!-- 内边距 -->
+    <dimen name="line_height">0.5dp</dimen>
+    <dimen name="layout_padding">10dp</dimen>
+
+    <dimen name="layout_listview_padding_bottom">15dp</dimen>
+
+    <dimen name="border_width">0.5dp</dimen>
+
+    <dimen name="listview_padding_bottom">10dp</dimen>
+
+    <dimen name="toolbar_marginleft">10dp</dimen>
+    <dimen name="alert_dialog_w">255dp</dimen>
+
+    <!-- 消息相关 -->
+    <dimen name="common_message_icon_h">60dp</dimen>
+    <dimen name="common_message_layout_h">91dp</dimen>
+    <dimen name="poster_message_layout_h">203dp</dimen>
+    <dimen name="poster_message_pic_w">210dp</dimen>
+    <dimen name="poster_message_pic_h">118dp</dimen>
+    <dimen name="message_letter_dot_m">-3dp</dimen>
+
+    <!-- 分类页 -->
+    <dimen name="hot_tag_layout_h">98dp</dimen>
+    <!-- 视频竖屏播放页 -->
+    <dimen name="layout_tag_h">45dp</dimen>
+
+    <!-- 播放器相关 -->
+    <dimen name="controller_padding_lr">20dp</dimen>
+    <dimen name="controller_padding_lr_sp">5dp</dimen>
+    <dimen name="controller_padding_tb">10dp</dimen>
+    <dimen name="small_video_w">160dp</dimen>
+    <dimen name="small_video_h">90dp</dimen>
+    <dimen name="small_video_margin_end">15.5dp</dimen>
+    <dimen name="small_video_margin_bottom">18dp</dimen>
+
+    <dimen name="corner_mark_w">37.5dp</dimen>
+    <dimen name="corner_mark_h">15dp</dimen>
+
+    <!--MainActivity-->
+    <dimen name="main_tab_height">54.5dp</dimen>
+    <dimen name="main_tab_contain_line_height">56.5dp</dimen>
+
+    <!-- 2018年01月02日 1.2.0版本 新字体规范-->
+    <dimen name="t0">20sp</dimen>
+    <dimen name="t1">18sp</dimen>
+    <dimen name="t2">17sp</dimen>
+    <dimen name="t3">16sp</dimen>
+    <dimen name="t3_1">16sp</dimen>
+    <dimen name="t4">15sp</dimen>
+    <dimen name="t5">14sp</dimen>
+    <dimen name="t6">13sp</dimen>
+    <dimen name="t6_1">13sp</dimen>
+    <dimen name="t7">12sp</dimen>
+    <dimen name="t8">11sp</dimen>
+    <dimen name="t9">10sp</dimen>
+
+    <dimen name="font_10">10sp</dimen>
+    <dimen name="font_11">11sp</dimen>
+    <dimen name="font_12">12sp</dimen>
+    <dimen name="font_13">13sp</dimen>
+    <dimen name="font_14">14sp</dimen>
+    <dimen name="font_15">15sp</dimen>
+    <dimen name="font_16">16sp</dimen>
+    <dimen name="font_17">17sp</dimen>
+    <dimen name="font_18">18sp</dimen>
+    <dimen name="font_19">19sp</dimen>
+    <dimen name="font_20">20sp</dimen>
+    <dimen name="font_25">25sp</dimen>
+    <dimen name="font_28">28sp</dimen>
+
+    <dimen name="pager_margin">37.5dp</dimen>
+
+    <dimen name="switch_thumb_h">13dp</dimen>
+    <dimen name="switch_thumb_h_inner">11dp</dimen>
+
+    <!-- 邀请好友页面 -->
+    <dimen name="activity_invite_height_bottom_share">170dp</dimen>
+    <dimen name="activity_invite_height_bottom_cancel">50dp</dimen>
+
+    <dimen name="margin_new_user_reward_tip">47.5dp</dimen>
+    <dimen name="margin_dialog_open_box">35dp</dimen>
+
+    <dimen name="simple_video_info_thumb_width">100dp</dimen>
+    <dimen name="simple_video_info_thumb_height">67.5dp</dimen>
+
+    <dimen name="item_small_video_feed_shadow_height">80dp</dimen>
+
+    <!-- small video play -->
+    <dimen name="frag_videyplay_commentlist_height">470dp</dimen>
+    <dimen name="frag_videyplay_comment_input_height">32dp</dimen>
+    <dimen name="frag_videyplay_commentlist_no_data_margin">15.5dp</dimen>
+    <dimen name="frag_videyplay_share_line_height">130dp</dimen>
+    <dimen name="frag_videyplay_share_cancel_height">49dp</dimen>
+    <dimen name="frag_videyplay_share_icon_size">45dp</dimen>
+    <!-- SwipeRefreshLayout的初始高度和下沉最大高度 -->
+    <dimen name="swipe_refresh_layout_init_height">40dp</dimen>
+    <dimen name="swipe_refresh_layout_max_height">110dp</dimen>
+
+    <!-- 用户主页 -->
+    <dimen name="user_home_header_h">263dp</dimen>
+
+    <dimen name="feed_recommend_smallvideo_set_height">141.5dp</dimen>
+    <dimen name="feed_recommend_album_top_bottom_margin">5dp</dimen>
+    <dimen name="dot_message_right_margin">20dp</dimen>
+    <dimen name="dot_message_top_margin">39dp</dimen>
+
+    <dimen name="login_top_image_height">147dp</dimen>
+    <dimen name="login_top_image_bottommargin">20dp</dimen>
+    <dimen name="task_sex_select_dialog_width">295dp</dimen>
+
+    <dimen name="pull_refresh_height">70dp</dimen>
+
+    <dimen name="merge_account_avatar_padding">74dp</dimen>
+    <dimen name="merge_account_avatar_width">55dp</dimen>
+
+    <!-- 一元提现dialog -->
+    <dimen name="oneyuan_withdraw_dialog_code_size">32.5dp</dimen>
+    <dimen name="oneyuan_withdraw_dialog_code_padding">7.5dp</dimen>
+
+    <!-- 频道排序 -->
+    <dimen name="channel_resort_item_size">70dp</dimen>
+    <dimen name="channel_resort_item_size_magnify">75dp</dimen>
+</resources>

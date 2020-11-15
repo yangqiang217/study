@@ -1,0 +1,926 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">沙发视频</string>
+    <string name="slogan">世界之大  万象由我</string>
+    <string name="channel_id">baidu</string>
+    <string name="network_unavailable">无可用网络</string>
+    <string name="video_play_error">@string/video_unavailable</string>
+    <string name="network_unavailable_back_view">无可用网络，请检查网络状况</string>
+    <string name="click_to_retry">点击重试</string>
+    <string name="http_error_401">请先登录</string>
+    <string name="http_error_403">没有权限</string>
+    <string name="http_error_404">无效的请求</string>
+    <string name="http_timeout">连接超时，请稍后重试</string>
+    <string name="http_timeout_back_view">网络请求超时，请检查网络状况</string>
+    <string name="http_error_other">沙发酱睡着啦！正在努力叫醒中</string>
+    <string name="http_error_make_money">沙发酱睡着了，点击重试</string>
+    <string name="length_to_big">简介字数必须是1-100个字</string>
+    <string name="nick_name_not_null">昵称还是要有的，万一红了呢</string>
+    <string name="edit_nick_name">编辑昵称</string>
+    <string name="nick_name">昵称</string>
+    <string name="input_nick_name">请输入昵称</string>
+    <string name="input_introduce_you">快来向沙发酱介绍一下自己吧</string>
+    <string name="rule_nick_name">2–8个字符，可用汉字、字母、数字</string>
+    <string name="rule_nick_name_min">至少2个字符</string>
+    <string name="rule_nick_name_max">至多20个字符</string>
+    <string name="rule_nick_name1">请输入中英文、数字</string>
+    <string name="rule_nick_edit">简介不能包含特殊字符</string>
+    <string name="my_user_info_default_nickname">沙发剧组大咖</string>
+
+    <!-- 欢迎界面用户和钱数据 -->
+    <string name="hello_number_line1">昨天已有</string>
+    <string name="hello_number_line2">名用户</string>
+    <string name="hello_number_line3">获得平台奖励，累计金额超过</string>
+    <string name="hello_number_line4">元</string>
+
+    <string name="enter">点击进入</string>
+    <string name="pic_save_success">图片保存成功</string>
+    <string name="pic_save_fail">图片下载失败</string>
+    <string name="pic_save_start_download">已添加到下载队列</string>
+    <string name="hot_tag">热门标签</string>
+    <string name="classify">分类</string>
+    <string name="recommend_today">今日推荐</string>
+    <string name="sys_setting_version_check">检测新版本</string>
+    <string name="sys_setting_version_newest">当前已经是最新版本</string>
+    <string name="sys_setting_version_timeout">连接超时</string>
+    <string name="sys_setting_version_download_failed">新版本下载失败，请重新尝试版本更新</string>
+    <string name="version_dialog_update">立即更新</string>
+    <string name="version_dialog_update_retry">重试更新</string>
+    <string name="version_low">当前版本低</string>
+    <string name="version_low_content">更新到最新版本，才能参与活动哦</string>
+    <string name="update_now">马上更新</string>
+
+    <string name="share_income_tips">分享后返回，立得10金币</string>
+
+    <string name="version_dialog_install">安装</string>
+    <string name="sys_setting_version_found">发现新版本</string>
+    <string name="version_dialog_skip">忽略</string>
+    <string name="change_recommend">换一换</string>
+
+    <string name="file_not_exist">文件不存在</string>
+    <string name="user_cancel">用户取消</string>
+
+    <string name="net_mobile">已切换到移动网络，点击继续播放</string>
+    <string name="play_in_net_mobile">已切换到移动网络播放</string>
+    <string name="change_to_mobile_network">已切换到移动网络，点击继续播放</string>
+    <string name="warn_mobile_network">当前为移动网络，是否继续下载？</string>
+    <string name="warn_mobile_network_play">播放将消耗%1$s流量，请注意您的流量哦~</string>
+    <string name="tip_mobile_network_play">本视频播放约消耗%1$s流量</string>
+    <string name="no_more_video_add_focus">没有新视频了，添加新的关注吧</string>
+    <string name="flow">流量</string>
+    <string name="download">下载</string>
+    <string name="mobile_flow_title">流量消耗提醒</string>
+    <string name="mobile_flow_tips">当前为移动网络，下载需消耗%1$s流量，是否继续下载？</string>
+    <string name="remote_apk_info_failed">获取安装包信息失败</string>
+    <string name="continue_play">继续播放</string>
+    <string name="not_allow_mobile_download">已禁止移动网络下载</string>
+    <string name="download_fail">下载失败</string>
+    <string name="alert_sorry">抱歉</string>
+    <string name="alert_title">提示</string>
+    <string name="alert_confirm">确定</string>
+    <string name="alert_cancel">取消</string>
+    <string name="back_oncemore_to_exit">再按一次退出程序</string>
+    <string name="edit">编辑</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="publish">发布</string>
+    <string name="delete">删除</string>
+    <string name="back">返回</string>
+    <string name="i_know">我知道了</string>
+    <string name="need_upgrade">打开失败，请升级客户端后再尝试打开</string>
+    <string name="watch_video">看视频</string>
+    <string name="add_focus">添加关注</string>
+    <!-- 注册登录 -->
+    <string name="not_sign_in">登录 / 注册</string>
+    <string name="login_succeed">登录成功</string>
+    <string name="not_sign_in_description">点击头像登录</string>
+
+    <!-- 首页栏目分类 -->
+    <string name="main_tab_recommend">首页</string>
+    <string name="main_tab_follow">关注</string>
+    <string name="main_tab_small_video">小视频</string>
+    <string name="main_tab_mine">我的</string>
+
+    <!-- 首页栏目分类 -->
+    <string name="label_hot">HOT!</string>
+
+    <!--“我的”栏目-->
+    <string name="tip_view">当日金币将在当日24:00自动兑换为现金</string>
+    <string name="collect">收藏</string>
+    <string name="collected">已收藏</string>
+    <string name="collection">我的收藏</string>
+    <string name="collection_success">收藏成功</string>
+    <string name="collection_cancel_success">取消收藏</string>
+    <string name="collection_empty">你还没有收藏视频哟，快去首页瞧瞧</string>
+    <string name="no_more">没有更多了...</string>
+    <string name="history">观看历史</string>
+    <string name="upload">我上传的视频</string>
+    <string name="consumer_page">用户主页</string>
+    <string name="my_follow">我的关注</string>
+    <string name="my_fans">我的粉丝</string>
+    <string name="videos">视频</string>
+    <string name="fans">粉丝</string>
+    <string name="followed">已关注</string>
+    <string name="follow">关注</string>
+    <string name="watch_count">%s次观看</string>
+    <string name="no_follower">没粉丝？多陪沙发酱玩玩就有啦</string>
+    <string name="no_follow_others">你喜欢的TA在首页等你呢，快去瞧瞧</string>
+    <string name="cancel_follow">取消关注</string>
+    <string name="you_sure_cancel_follow">确认取消关注此人</string>
+    <string name="cash_notice">当日金币将在当日24:00自动兑换为现金</string>
+    <string name="tip_focus">80%用户关注了3个以上作者</string>
+    <string name="wechat_child">微信收徒</string>
+    <string name="wechat_pengyouquan_child">朋友圈</string>
+    <string name="qq_child">QQ收徒</string>
+    <string name="mine_invite_friend_tip">收徒弟可得3元现金</string>
+    <string name="mine_invite_friend_sub_tip">徒弟每天看视频，都能持续向您进贡金币</string>
+
+    <string name="set">设置</string>
+    <string name="message_center">消息中心</string>
+    <string name="current_version">当前版本</string>
+    <string name="collection_video">收藏的视频</string>
+    <string name="collection_videoSeries">收藏的剧集</string>
+    <string name="local_video_load_failed">读取本地视频失败</string>
+
+    <string name="video_set">专题</string>
+    <string name="yesterday">昨天</string>
+    <string name="today">今天</string>
+    <string name="in_a_week">一周内</string>
+    <string name="more_than_a_week">更早</string>
+
+    <string name="list_of_video">作品列表</string>
+
+    <string name="have_finished">已完成</string>
+    <string name="finish">完成</string>
+    <string name="next_step">下一步</string>
+
+    <string name="back_to_mainactivity">回主页</string>
+    <string name="protocal_pre">我已阅读并同意</string>
+    <string name="protocal">《用户协议》和《隐私条款》</string>
+    <string name="protocal_url">https://h5.youju.sohu.com/about/eula</string>
+    <string name="disclaimer_url">%1$s/about/userDeclaration.html</string>
+    <string name="task_rules">常见问题</string>
+    <string name="task_url">https://h5.youju.sohu.com/partner_explain</string>
+    <string name="no_password">密码不能为空</string>
+    <string name="no_phone">手机号不能为空</string>
+    <string name="wrong_phone">手机号码格式不正确</string>
+    <string name="reset_password_success">重置密码成功</string>
+    <string name="reset_password_fail">重置密码失败</string>
+
+    <string name="hint_input_again_password">请再次输入密码</string>
+    <string name="hint_user_name">@string/hint_phone</string>
+    <string name="wrong_format_code">邀请码格式不正确</string>
+    <string name="submit_success">提交成功</string>
+    <!-- 注册界面-->
+    <string name="register">注册</string>
+    <string name="verification_code">验证码</string>
+    <string name="register_and_login">注册并登录</string>
+    <string name="agree_youju_protocol">请点击同意沙发视频协议</string>
+
+    <!-- 登录界面-->
+    <string name="hint_phone">手机号</string>
+    <string name="hint_password">密码</string>
+    <string name="hint_new_password">新密码</string>
+    <string name="login_success">进入沙发视频</string>
+    <string name="login">登录</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="get_verification_code">获取验证码</string>
+    <string name="get_verification_code_again">重新获取验证码</string>
+    <string name="find_back_password">找回密码</string>
+    <string name="wrong_phone_number">手机号输入不正确</string>
+    <string name="password_input_tips">密码需为8~20位，可包含字母、数字、符号</string>
+    <string name="wrong_verification_code">验证码不正确</string>
+    <string name="finish_and_login">完成并登录</string>
+
+
+    <string name="hint_register_phone">请输入您用于注册账号的手机号</string>
+    <string name="sign_out">退出登录</string>
+    <string name="hint_identifying_code">请输入验证码</string>
+
+    <string name="last_watch"><Data><![CDATA[<font color="#989a9e">刚刚看到这里，点击</font><font color="#ff9528">刷新</font>]]></Data></string>
+    <string name="error_phone_already_signup">手机号已被注册</string>
+    <string name="error_phone_not_signup">手机号没有注册</string>
+    <string name="exceed_max_req_num">超过每日验证码发送上限</string>
+    <string name="phone_num_invalid">不是合法的中国大陆地区手机号码</string>
+    <string name="error_invalid_username">用户名不合法</string>
+    <string name="error_username_exists">用户名已存在</string>
+    <string name="error_invalid_email">邮箱格式不合法</string>
+    <string name="error_param_incorrect">参数错误</string>
+    <string name="error_verify_code_expired">验证码已过期</string>
+    <string name="error_wrong_verify_code">验证码错误</string>
+    <string name="error_wrong_password_usr_name">手机号或密码错误</string>
+    <string name="error_empty_password_usr_name">手机号、密码不能为空</string>
+    <string name="please_input_phone">请输入手机号</string>
+    <string name="please_input_password">请输入8–20位密码</string>
+    <string name="please_input_again_password">请再次输入密码</string>
+    <string name="please_input_identify_code">请输入验证码</string>
+    <string name="phone_form_not_right">手机号码格式不正确</string>
+    <string name="double_password_not_sames">两次输入的密码不相同</string>
+    <string name="girl">美女</string>
+    <string name="boy">帅哥</string>
+    <string name="iamboy">我是帅哥</string>
+    <string name="iamgirl">我是美女</string>
+    <string name="most_popular">最热门的</string>
+    <string name="hot_search">热门搜索</string>
+    <string name="no_network"><Data><![CDATA[<font color="#cccccc">网络开小差啦，点击重试一下呗</font>]]></Data></string>
+    <string name="no_service"><Data><![CDATA[<font color="#cccccc">沙发酱睡着啦！</font><font color="#FF9528">点击叫醒TA</font>]]></Data></string>
+    <string name="search_video">搜索视频</string>
+    <string name="video_count_text">个视频</string>
+    <string name="clean_search_history">搜索历史</string>
+    <string name="up_load_time">上传于%s</string>
+    <string name="search_filter_empty">客官，不输入你想搜毛线呢</string>
+    <string name="search_result_empty">找不到资源？\n不妨加Q群问问沙发酱[群号：639680896]</string>
+    <string name="my_uploads">你还没有上传视频，很期待哟</string>
+    <string name="others_uploads">TA还没有上传视频，再等等呗</string>
+    <string name="illegal_input">非法输入</string>
+    <string name="file_deleted">客官，不许难为奴家，你都删了，还播放神马</string>
+    <string name="out_of_space">下载失败，剩余存储空间不足</string>
+    <string name="source_not_found">下载失败，无效的下载地址</string>
+
+    <string name="video_resources">汁源</string>
+    <string name="details">详情</string>
+    <string name="all_tags">全部标签</string>
+    <string name="all_categories">全部分类</string>
+    <string name="hot_tags">热门标签</string>
+    <string name="helmet_play">有眼镜</string>
+    <string name="no_helmet_play">无眼镜</string>
+    <string name="recommend">猜你喜欢</string>
+    <string name="upload_time">上传于 %s</string>
+    <string name="last_time_watch">上次观看：%s</string>
+    <string name="video_count">%1$d个视频</string>
+    <string name="seconds">%s秒</string>
+    <string name="second">秒</string>
+    <string name="reset_password">重置密码</string>
+
+    <string name="Import_activity_folder_all">全部</string>
+    <string name="Import_activity_preview">预览</string>
+    <string name="Import_activity_no_selected">还没有选择照片哟</string>
+    <string name="Import_activity_ok">完成(%1$d/%2$d)</string>
+    <string name="Import_activity_folder_camera">相机胶卷</string>
+    <string name="Import_activity_max_num">最多只能选择%1$d照片</string>
+    <string name="crop_picture">裁剪图片</string>
+    <string name="personal_info">个人信息</string>
+    <string name="personal_information_modify_complete">个人信息修改完成</string>
+    <string name="nick_name_set_up_rule">昵称必须少于20个字符，可用汉字、字母、数字</string>
+
+    <string name="video_error">无法播放此视频</string>
+    <string name="video_error_not_found">找不到视频</string>
+    <string name="video_error_render">视频格式不支持</string>
+    <string name="video_error_unexpected">视频未知错误</string>
+    <string name="delete_success">就是告诉你一声，成功删除啦</string>
+    <string name="must_chose_one">客官，先翻牌子，再删除。一个不选，布吉岛怎么删啊</string>
+    <string name="please_choose_one">请先选择</string>
+    <string name="download_list_empty">客官，听说你还没有下载，赶紧啊！</string>
+    <string name="video_deleted">客官,不许难为人哈，你都删了，还咋播放？？</string>
+    <string name="no_watch_history">暂时没有观看记录呢~</string>
+    <string name="loading">正在加载，请稍候…</string>
+    <string name="video_seek_cancel">松手取消快进/退</string>
+    <string name="video_seek_speed_fast">快速进退</string>
+    <!--    <string name="video_seek_speed_middle">中速进退</string>
+        <string name="video_seek_speed_slow">慢速进退</string>-->
+    <string name="brightness">亮度</string>
+    <string name="volume">音量</string>
+
+    <!-- SystemSetting -->
+    <string name="system_setting_title">设置</string>
+    <string name="continue_on_mobile_net">允许非WIFI网络观看/下载</string>
+    <string name="dont_disturb_during_night">22:30-翌日08:30免打扰</string>
+    <string name="notification_tool_name">常驻通知栏</string>
+    <string name="auto_download_recommend_videos">WiFi环境自动下载每日推荐的三条短视频</string>
+    <string name="clean_cache">清理缓存</string>
+    <string name="cache_cleaned">缓存已清空</string>
+    <string name="service_agreement">沙发视频服务协议</string>
+    <string name="url_service_agreement">@string/protocal_url</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="url_privacy_policy_online">https://h5.youju.sohu.com/about/privacy</string>
+    <string name="url_privacy_policy_test">https://testh5.youju.sohu.com/about/privacy</string>
+    <string name="toast_did_copied">did信息已复制</string>
+    <string name="toast_did_copy_error">复制失败</string>
+
+    <!-- UserSignEditAcitivyt -->
+    <string name="user_sign_title">个性签名</string>
+    <string name="user_sign_hint">%1$d/%2$d字符</string>
+
+    <!-- ContactUsActivity -->
+    <string name="contact_us_title">意见反馈</string>
+    <string name="contact_us_live">直播合作</string>
+    <string name="contact_us_business">商务合作</string>
+    <string name="contact_us_disclaimer">免责声明</string>
+    <string name="contact_type_qq">QQ：</string>
+    <string name="contact_type_wechat">微信：</string>
+    <string name="contact_type_web">网址：</string>
+    <string name="contact_type_phone">手机：</string>
+    <string name="contact_type_email">邮箱：</string>
+
+    <!-- OfflineVideoActivity -->
+    <string name="offline_video_title">离线视频</string>
+    <string name="videos_downloading">正在下载</string>
+    <string name="prepare_download">等待下载</string>
+    <string name="videos_downloaded">已下载</string>
+    <string name="videos_local">本地视频</string>
+    <string name="video_already_in_queue">已添加至下载队列</string>
+    <string name="video_already_downloaded">早就下过了，已下载中直接看哈！！！</string>
+    <string name="select_all">全选</string>
+    <string name="local_videos_loading">正在扫描本地视频，客官稍后…</string>
+    <string name="cache_all">全部缓存</string>
+    <string name="ask_cache_all">是否缓存所有视频?</string>
+    <string name="already_cached">已缓存文件</string>
+    <string name="cache_memory_info">预计新增%1$s,剩余%2$s可用</string>
+    <string name="cache_more_set">缓存更多集数</string>
+    <string name="already_downloaded_all">您已经下载了全部视频啦</string>
+
+    <string name="video_source_deleted">视频已被删除</string>
+    <string name="live_not_started">直播还未开始</string>
+
+    <!--分享 share-->
+    <string name="share_to_moments">分享朋友圈</string>
+    <string name="share_to_wechat">分享微信</string>
+    <string name="share_to_qq">分享QQ</string>
+    <string name="share_to">分享到</string>
+    <string name="blog">微博</string>
+    <string name="qq">QQ</string>
+    <string name="qqzone">QQ空间</string>
+    <string name="wechat">微信</string>
+    <string name="wechatfried">朋友圈</string>
+    <string name="wechat_client_inavailable">目前您的微信版本过低或未安装微信，需要安装微信才能使用</string>
+    <string name="qq_client_inavailable">QQ 版本过低或者没有安装，需要升级或安装QQ才能使用！</string>
+    <string name="weibo_client_inavailable">微博版本过低或者没有安装，需要升级或安装微博才能使用！</string>
+
+    <string name="wechat_client_share_error_not_exist">您还没有安装微信，无法分享哟</string>
+    <string name="wechat_client_share_error_default">微信拉起失败，请检查微信登录状态</string>
+
+
+    <!-- Security -->
+    <string name="security_warning">开启权限</string>
+    <string name="security_set">马上开启</string>
+    <string name="security_warning_write_external_storage">请开启SD卡访问权限以使用沙发视频</string>
+    <string name="security_warning_camera">摄像头打开失败，请查看您是否为大象VR开启了拍照权限。</string>
+    <string name="security_warning_read_phone_state">获取手机信息权限被禁止，您无法正常播放来自风行的视频。如要继续，请开启获取手机信息权限后重启应用。</string>
+
+    <!-- TagGroup -->
+    <string name="add_tag">+添加标签</string>
+    <string name="tag_exists">已存在相同的标签</string>
+    <string name="tag_max_length">标签长度不能超过%1$d</string>
+    <string name="tag_max_size">最多可以创建%1$d个标签</string>
+
+    <!-- 分享 -->
+    <string name="share">分享</string>
+    <string name="video_pause_recommend">猜\n你\n喜\n欢</string>
+    <string name="share_desc_short_video">看视频，上沙发！</string>
+
+    <!-- 菜单 -->
+    <string name="report">举报</string>
+    <string name="feedback">反馈</string>
+    <string name="report_success">谢谢您的反馈~</string>
+    <string name="play_mode_2D">2D</string>
+
+    <!-- 举报、反馈相关 -->
+    <string name="report_content_label">详述 (15字以上)</string>
+    <string name="report_content_label_hint">(15字以上)</string>
+    <string name="i_want_report">我要举报</string>
+    <string name="i_want_connect_you">意见反馈</string>
+
+    <string name="report_reason_sex">淫秽色情</string>
+    <string name="report_reason_illegal">违法信息</string>
+    <string name="report_reason_advertise">营销广告</string>
+    <string name="report_reason_troll">不友好的喷子</string>
+
+    <string name="i_want_feedbacks">我要反馈</string>
+
+    <string name="report_content_hint">若您需要举报视频含有低俗、违规类内容，请提供违规视频的标题、违规理由、违规内容所在时间点等信息。</string>
+    <string name="feedback_content_hint">请描述您使用过程中遇到的问题或需要的其他功能，我们将尽全力为您解决。</string>
+    <string name="reporter_contact_info_hint">请输入电话/邮箱</string>
+    <string name="contact_info_label">联系方式：</string>
+    <string name="submit">提交</string>
+    <string name="feedback_content_too_short">问题详述不足15字</string>
+    <string name="feedback_contact_info_invalid">未填写正确联系方式</string>
+    <string name="contact_notice_title">客服直通车</string>
+    <string name="contact_notice_content">1.加入沙发视频官方QQ群：639680896 \n2.微信添加沙师妹微信号：sohusv</string>
+
+    <!-- 联系我们相关 -->
+    <string name="contact_us">联系我们</string>
+
+    <!-- 消息相关 -->
+    <string name="no_message_prompt">你会有消息的</string>
+    <string name="no_data">什么也没有找到，不如去隔壁逛逛</string>
+
+    <string name="message">消息</string>
+    <string name="no_system_message">暂时没有系统消息哦~</string>
+    <string name="no_mine_message">暂时没有关于你的消息哦~</string>
+
+    <string name="video_recommeded">恭喜您的视频被选入首页推荐！</string>
+    <string name="video_passed">您的视频已通过审核</string>
+    <string name="video_failed">您的视频未通过审核</string>
+    <string name="comment">&#160;评论说:&#160;</string>
+    <string name="praise_comment">&#160;赞了你的评论</string>
+    <string name="praise_video">&#160;赞了你的视频</string>
+    <string name="video_audit_status_deleted">审核不通过，请删除</string>
+    <string name="video_audit_status_unqualified">请修改视频信息后再次提交审核</string>
+    <string name="video_audit_status_censoring">审核中</string>
+
+    <!-- 剧集 -->
+    <string name="latest_episode">更新至%1$d集</string>
+    <string name="episode_total">全%1$d集</string>
+    <string name="episode_current">第%1$d集</string>
+    <string name="episode_current_1">第%1$d话</string>
+    <string name="episode_current_empty">无法播放第%1$d集</string>
+    <string name="choose_episode">选集</string>
+    <string name="episode_title_tag">「剧集」%s</string>
+    <string name="episode">剧集</string>
+    <string name="animation">动漫</string>
+    <string name="variety">综艺</string>
+    <string name="variety_list">综艺列表</string>
+    <string name="score">分</string>
+    <string name="get_n_videos">沙发为你推荐%1$d条新视频</string>
+    <string name="no_video">暂无更多视频了，前往其他频道吧</string>
+    <string name="feed_empty">什么也没有找到，不如去隔壁逛逛</string>
+
+    <string name="compilations">合集</string>
+
+    <!-- 综艺 -->
+    <string name="choose_past_variety">往期综艺</string>
+    <!-- 个人简介 -->
+    <string name="change_password">修改密码</string>
+
+    <!-- 播放历史 -->
+    <string name="history_progress_complete">已看完</string>
+    <string name="at_least_chose_one">至少选择一个才能删除！！</string>
+    <string name="history_progress">上次观看至%s</string>
+    <string name="history_empty">你还没有看过视频哟，快去首页瞧瞧</string>
+    <string name="history_clear">清空</string>
+
+    <string name="fetch_video_set_fail">获取合辑列表失败了/(ㄒoㄒ)/~~</string>
+
+    <!--视频格式选择-->
+    <string name="quality_video">- %s -</string>
+
+    <!--视频排序方式-->
+    <string name="most_new">最新</string>
+    <string name="most_hot">最热</string>
+    <string name="most_comment">最好评</string>
+
+    <!--外链播放页-->
+    <string name="wait_for_finish">请等待视频加载完成后点击播放按钮</string>
+    <string name="not_ad">该视频不是广告,无法跳过!!</string>
+    <string name="video_not_exist">视频源出现问题，请观看其他视频！！！！！</string>
+
+    <!--推荐页Feed流-->
+    <string name="label_dislike_reason">可选理由，精准屏蔽</string>
+    <string name="dislike_reason_important">不感兴趣</string>
+    <string name="default_dislike_reasons">看过了,内容太水</string>
+    <string name="delete_feed_stream_resp">将为你减少相关推荐</string>
+    <string name="feed_stream_unavailable">视频迷路中，再试试呗</string>
+    <string name="feed_stream_bad_net">网络开小差啦，请检查重试</string>
+    <string name="video_unavailable">啊！视频失踪了ಥ﹏ಥ</string>
+    <string name="feed_comment">评论</string>
+    <string name="feed_top_search_hint">点击搜索你想看的内容~</string>
+
+    <string name="continuous_play">连播</string>
+    <string name="do_not_show_small_video">不显示小视频</string>
+    <string name="history_count_hint">仅保留近100条历史记录</string>
+
+    <!-- 片库-->
+    <string name="library_title">相关影片</string>
+    <string name="library_empty">暂时没找到相关汁源，\n 不如进Q群639680896找找惊喜</string>
+    <string name="library_director">导演:&#160;&#160;</string>
+    <string name="library_cast">主演:&#160;&#160;</string>
+
+    <string name="history_list_failed">获取历史失败</string>
+
+    <!--播放页-->
+    <string name="short_describe">简介</string>
+    <string name="desc_score">评分:&#160;</string>
+    <string name="desc_cast">明星:&#160;</string>
+    <string name="desc_director">导演:&#160;</string>
+    <string name="desc_content">简介:&#160;</string>
+    <string name="play_list">播放列表</string>
+    <string name="show_more">查看更多</string>
+    <string name="more">更多</string>
+    <string name="source_site_url">源站地址:&#160;</string>
+    <string name="play_h5_hint">用原网页观看效果更佳</string>
+    <string name="definition">清晰度</string>
+    <string name="video_source">视频源</string>
+    <string name="choose_video_source">请选择视频源</string>
+    <string name="aiqiyi">爱奇艺</string>
+    <string name="letv">乐视</string>
+    <string name="repeat_play">重播</string>
+
+    <string name="c_movie">电影</string>
+    <string name="c_series">剧集</string>
+    <string name="c_variety">综艺</string>
+    <string name="c_animation">动漫</string>
+    <string name="c_vr">全景VR</string>
+    <string name="c_sport">体育</string>
+    <string name="c_live">直播</string>
+    <string name="c_short_video">短视频</string>
+
+    <!--图解-->
+    <string name="label_score">评分</string>
+    <string name="click_read">点击查看</string>
+    <string name="iconography">图解</string>
+    <string name="movie_name">相关片名:&#160;%s</string>
+    <string name="movie_cast">演员:&#160;%s</string>
+    <string name="praise">点赞</string>
+    <string name="praise_count">赞&#160;%s</string>
+    <string name="relative_videos">相关视频</string>
+    <string name="weak_network">请稍等哦~</string>
+
+    <!-- 1.1.0 改版-->
+    <string name="casts">演职人员</string>
+    <string name="story_desc">剧情简介</string>
+
+
+    <integer name="app_version_code">2</integer>
+
+    <string name="app_version">2.0.0</string>
+    <string name="proj_name">ShareSDK_TPL</string>
+    <string name="share_sdk">Share SDK</string>
+    <string name="login_with_msg">用手机号码登录</string>
+    <string name="login_with_weixin">用微信登录</string>
+    <string name="login_with_sina_weibo">用新浪微博登录</string>
+    <string name="login_with_qzone">用QQ空间登录</string>
+    <string name="login_with_other_plat">其他帐号登录</string>
+    <string name="userid_found">用户信息已存在，正在跳转登录操作…</string>
+    <string name="logining">使用%s帐号登录中…</string>
+    <string name="auth_cancel">授权操作已取消</string>
+    <string name="auth_error">授权操作遇到错误，请阅读Logcat输出; \n 如微信登录，需要微信客户端</string>
+    <string name="auth_complete">授权成功，正在跳转登录操作…</string>
+    <string name="if_register_needed">如果您需要注册功能…</string>
+    <string name="after_auth">一般来说第三方登录时，第三方平台已经为您完成用户身份校验，您可以放心让用户登录。\n\n但如果您需要判断用户是否为新用户，可以在授权操作完成后，将用户的信息通过字段“HashMap userInfo”携带给login方法。客户端通过“String userId”执行登录请求，如果服务端判定此userId为未注册用户，可以将userInfo发送给注册接口，获取用户在此平台上的昵称、头像等数据，然后执行注册</string>
+    <string name="tpl_ok">确定</string>
+    <string name="tpl_cancel">取消</string>
+
+    <string name="tpl_key_user_icon">头像</string>
+    <string name="tpl_key_user_name">昵称</string>
+    <string name="tpl_key_user_gender">性别</string>
+    <string name="tpl_key_user_note">备注</string>
+
+    <string name="tpl_value_user_name">昵称</string>
+    <string name="tpl_value_user_gender">性别</string>
+    <string name="tpl_value_user_note">请填写备注信息</string>
+
+    <string name="tpl_sign_user_info">用户信息</string>
+    <string name="tpl_sign_up">注册</string>
+    <string name="tpl_girl">女</string>
+    <string name="tpl_boy">男</string>
+
+    <string name="tpl_camera">拍照</string>
+    <string name="tpl_picture">从相册获取</string>
+
+    <string name="tpl_change_user_name_title">更改名字</string>
+    <string name="tpl_change_user_note_title">更改备注</string>
+    <string name="tpl_input_user_name_hint">好名字可以让你的朋友更容易记住你</string>
+    <string name="tpl_input_user_note_hint">自定义备注信息，给你带来更多吸引</string>
+
+    <string name="tpl_no_sdcard">sdcard 卡不存在</string>
+    <string name="tpl_msg_login_hint">请输入手机号码</string>
+    <string name="tpl_verify_code_hint">请输验证码</string>
+    <string name="tpl_get_verify_code">获取验证码</string>
+    <string name="tpl_send_verify_code">检验验证码</string>
+    <string name="signup_success">注册成功</string>
+    <string name="signup_failed">注册失败</string>
+
+    <!--兴趣选择界面-->
+    <string name="chose_your_gender">让我们了解你\n为你定制专属内容</string>
+    <string name="chose_label_gender">请选择你的性别</string>
+    <string name="chose_your_interest">选择你喜欢的话题</string>
+    <string name="chose_your_interest_desc">选择越多，推荐越准</string>
+    <string name="we_want_you">还是选择一个兴趣呗</string>
+
+    <!-- 1.1.2 改版-->
+    <string name="write_comment">快抢沙发，就等你啦…</string>
+    <string name="write_comment_with_reward">优质评论有奖励…</string>
+    <string name="input_comment_tips">说点儿好玩的，让大家顶你~</string>
+    <string name="send">发送</string>
+    <string name="reply">回复</string>
+    <string name="num_of_replies">%s条回复</string>
+    <string name="copied">已复制</string>
+    <string name="comment_author">(作者)</string>
+    <string name="comment_detail">评论详情</string>
+    <string name="copy_link">复制链接</string>
+    <string name="options">操作</string>
+    <string name="copy">复制</string>
+
+    <string name="delete_comment">确认删除</string>
+    <string name="are_you_sure_delete_comment">确认删除此评论?</string>
+    <string name="cancel_report">撤销，我手抖</string>
+    <string name="item_sort">频道排序</string>
+    <string name="change_position">长按拖动即可排序</string>
+    <string name="item_sort_finish">完成</string>
+    <string name="start_youju">选好了，上沙发 ></string>
+    <string name="no_comment_tips">还没有评论！那就抢一波沙发吧！</string>
+    <string name="comment_should_not_empty">评论不可为空</string>
+    <string name="reply_should_not_empty">回复不可为空</string>
+    <string name="comment_success">发布成功</string>
+    <string name="comment_delete_success">评论已删除</string>
+
+    <!--兴趣选择（feed）-->
+    <string name="view_interest_select_title">选择您的兴趣，推荐更精准哦~</string>
+    <string name="view_interest_select_confirm">选好了</string>
+
+    <string name="share_set">分享合辑</string>
+    <string name="share_success">分享成功</string>
+    <string name="share_failed">分享失败</string>
+    <!--邀请好友界面-->
+    <string name="click_copy">点击复制</string>
+    <string name="copy_success">已复制到系统剪贴板</string>
+    <string name="invite_friend">邀请好友</string>
+    <string name="wechat_friend">微信好友</string>
+    <string name="wechat_pengyouquan">朋友圈</string>
+    <string name="qq_friend">QQ好友</string>
+    <string name="face_to_face">面对面邀请</string>
+    <string name="face_to_face_child">面对面收徒</string>
+    <string name="face_to_face_notice">扫码注册领红包</string>
+    <string name="my_invite_code">我的邀请码：</string>
+    <string name="click_share_notice">点击分享您的专属链接</string>
+    <string name="children_empty">你还没有徒弟呢\n立即去收徒>></string>
+    <string name="share_title">沙发视频送你一个可提现的200元大红包，速来围观！</string>
+    <string name="share_descript">"100000人正在疯抢，不点别后悔"</string>
+    <string name="share_weibo_title">上沙发视频躺着赚钱，送你200元红包+%s+#沙发视频#。</string>
+    <string name="dialog_reward_rule_title">招徒弟奖励规则</string>
+    <string name="dialog_reward_rule_p1">每招一名徒弟，奖励3元现金\n分7次发放</string>
+    <string name="dialog_reward_rule_p2_title">发放条件</string>
+    <string name="dialog_reward_rule_p2">收徒成功后获得第一次奖励，之后当徒弟每进贡60金币时，获得一次奖励，每天限一次</string>
+    <string name="dialog_reward_rule_p3">七次奖励发放如下</string>
+    <string name="dialog_reward_rule_p4_1_1">第1次奖励</string>
+    <string name="dialog_reward_rule_p4_1_2">+0.3元</string>
+    <string name="dialog_reward_rule_p4_2_1">第2次~第4次奖励</string>
+    <string name="dialog_reward_rule_p4_2_2">+0.4元</string>
+    <string name="dialog_reward_rule_p4_3_1">第5次~第7次奖励</string>
+    <string name="dialog_reward_rule_p4_3_2">+0.5元</string>
+
+    <!--输入邀请码界面-->
+    <string name="input_code">输入邀请码</string>
+    <string name="accept_invite">接受邀请</string>
+    <string name="default_invite_code">88888888</string>
+    <string name="invite_tip">接受好友邀请，也可输入系统邀请码：88888888</string>
+
+    <!-- 1.2.0 -->
+    <string name="new_man_reward">新人奖励</string>
+    <string name="new_man_reward_button">立即领奖</string>
+    <string name="new_man_reward_tip">首次登录拿红包，最多可得200元！</string>
+    <string name="total_income">累计资产</string>
+    <string name="current_income">当前现金</string>
+    <string name="I_want_withdraw">我要提现</string>
+    <string name="yesterday_income">昨日收入</string>
+    <string name="my_gold_coins">我的金币</string>
+    <string name="show_my_income">晒一晒，得10金币</string>
+    <string name="my_income_tips_1">昨日汇率%s</string>
+    <string name="my_income_tips_2">，金币每天自动兑换为现金。\n参与度越高，汇率越高哦。\n当日获得现金=当日获得金币 X 当日汇率 / 1000</string>
+    <string name="cash">现金</string>
+    <string name="watch_more">点击查看更多</string>
+    <string name="coin">金币</string>
+    <string name="fellow">徒弟</string>
+    <string name="record_end_tips">系统仅保存近100条记录</string>
+    <string name="income_type_check_in">签到</string>
+    <string name="income_type_bind_wechat">微信绑定</string>
+    <string name="income_type_rob">整点抢</string>
+    <string name="income_type_invite">邀请收徒</string>
+    <string name="income_type_watch_videos">观看视频</string>
+    <string name="income_type_share_video">分享视频</string>
+    <string name="income_type_share_income">分享收入</string>
+    <string name="income_type_input_code">输入邀请码</string>
+    <string name="income_type_default">未知收入</string>
+    <string name="my_friend">我的徒弟</string>
+    <string name="friend_rank">徒弟贡献</string>
+    <string name="act_children_contribute_coin">贡献金币</string>
+    <string name="act_children_children_status">徒弟状态</string>
+
+    <string name="my_income">我的收入</string>
+    <string name="withdraw_record">提现记录</string>
+    <string name="already_bind_wechat">您已绑定微信！</string>
+    <string name="cash_not_enough">你的现金不够，快去看看视频吧</string>
+    <string name="withdraw_bind1"><Data><![CDATA[<font color="#ff9528">绑定微信</font><font color="#999999">才能提现哦</font>]]></Data></string>
+    <string name="withdraw_tip"><Data><![CDATA[<font color="#666666">当前现金共</font><font color="#ff9528">%1$s</font><font color="#666666">元，本次申请提现</font><font color="#ff9528">%2$s</font><font color="#666666">元，若本月累计提现800元以上，将按相关法律进行扣税。</font>]]></Data></string>
+    <string name="comment_message"><Data><![CDATA[<font color="#ff9528">%s</font><font color="#262626">评论了你：</font>]]></Data></string>
+    <string name="collect_message_new"><Data><![CDATA[<font color="#ff9528">%s</font><font color="#262626">收藏了你的视频：</font>]]></Data></string>
+    <string name="collect_message_old"><Data><![CDATA[<font color="#ff9528">%s</font><font color="#999999">收藏了你的视频：</font>]]></Data></string>
+    <string name="praise_message_new"><Data><![CDATA[<font color="#ff9528">%s</font><font color="#262626">赞了你的评论：</font>]]></Data></string>
+    <string name="praise_videos_new"><Data><![CDATA[<font color="#ff9528">%s</font><font color="#262626">赞了你的视频：</font>]]></Data></string>
+    <string name="praise_message_old"><Data><![CDATA[<font color="#ff9528">%s</font><font color="#999999">赞了你的评论：</font>]]></Data></string>
+    <string name="praise_videos_old"><Data><![CDATA[<font color="#ff9528">%s</font><font color="#999999">赞了你的视频：</font>]]></Data></string>
+    <string name="share_income_earn">我在沙发视频赚了</string>
+    <string name="withdraw_tip1">审核将在1-7个工作日内完成，审核完成后即自动充值到您的微信账号中。</string>
+    <string name="withdraw">提现</string>
+    <string name="confirm_withdraw">确认提现</string>
+    <string name="apply_withdraw">申请提现</string>
+    <string name="continue_get_money">继续赚钱</string>
+    <string name="withdraw_success">申请提现成功</string>
+    <string name="current_cash">当前现金</string>
+    <string name="withdraw_click_to_apply">点击微信红包申请提现</string>
+    <string name="withdraw_bind">绑定微信才能提现哦</string>
+    <string name="withdraw_record_channel">微信红包提现</string>
+    <string name="yuan">元</string>
+    <string name="golden_coin">金币</string>
+    <string name="withdraw_record_nothing">还没有提现记录哦，快去看看视频吧~</string>
+    <string name="income_cash_record_nothing">还没有现金收入记录哦</string>
+    <string name="income_coin_record_nothing">还没有金币收入记录哦</string>
+    <string name="bind_success">绑定成功</string>
+    <string name="bind_fail">绑定失败,你再试试呗</string>
+    <string name="bind_fail_weixin_notexist">微信未安装，请安装后重试</string>
+    <string name="default_cash">0.00</string>
+    <string name="default_number">0</string>
+    <string name="daily_task">日常任务</string>
+    <string name="login_tips">首次登录送现金红包，更多玩法快来体验。</string>
+    <string name="check_in_daily">每日签到</string>
+    <string name="check_in_days">已连续签到%d天</string>
+    <string name="check_in_continue_days_at_most">已连续签到9999+天</string>
+    <string name="check_in_days_at_most">999+</string>
+    <string name="check_in_today">签到领%d金币</string>
+    <string name="check_in_tomorrow">明天签到领%d金币</string>
+    <string name="can_get_coin">可领取</string>
+    <string name="already_get_coin">已领取</string>
+    <string name="days">%d天</string>
+    <string name="open_box">开启宝箱</string>
+    <string name="open_box_time">距离打开宝箱还有</string>
+    <string name="open_box_time_expired">上次宝箱已过期</string>
+    <string name="open_box_tips">08:00、10:00、12:00、18:00、20:00、21:00整点抢</string>
+    <string name="login_or_register">登录/注册</string>
+    <string name="login_to_get_cash">登录领现金</string>
+    <string name="login_tip"><Data><![CDATA[<font color="#515151">首次登录即送</font><font color="#ff293f">3~10元</font><font color="#515151">现金礼包</font>]]></Data></string>
+    <string name="mine_file_edit">编辑资料</string>
+    <string name="invite_describe">【沙发视频-搜狐出品】我在沙发视频上看各种好玩短视频，笑得不行了！看看视频，还有钱拿！新用户最高可领200元现金红包，填写我的邀请码“%s”可再多拿50金币。\n\n↓点击链接下载马上领红包↓\n\n</string>
+    <string name="small_video_share_title">\@%1$s 的小视频好棒，快来瞅瞅吧！</string>
+    <string name="alert_tip_video_reward">看视频有金币，多看多得</string>
+    <string name="add_coin">+%d金币</string>
+    <string name="author_count">%d个作者</string>
+    <string name="already_focus"><Data><![CDATA[<font color="#262626">已关注</font><font color="#FF9528">%d</font><font color="#262626">个作者</font>]]></Data></string>
+
+    <!-- 一元提现 -->
+    <string name="withdraw_one_yuan">1元提现</string>
+    <string name="withdraw_one_yuan_task_not_finish_title">您不符合一元提现条件</string>
+    <string name="withdraw_one_yuan_task_not_finish_msg">您还有未完成的新手任务~</string>
+    <string name="withdraw_one_yuan_task_not_finish_confirm">做任务</string>
+    <string name="withdraw_one_yuan_voice_code_title">请输入验证码</string>
+    <string name="withdraw_one_yuan_voice_code_msg1">您会收到语音验证码电话</string>
+    <string name="withdraw_one_yuan_voice_code_msg2">请输入您听到的验证码</string>
+    <string name="withdraw_one_yuan_voice_code_confirm">接听验证码电话</string>
+    <string name="withdraw_one_yuan_voice_code_badnet">当前网络状况不佳，请重新输入</string>
+    <string name="withdraw_one_yuan_tip_title">新用户专享</string>
+    <string name="withdraw_one_yuan_tip_msg">完成新手任务，一元秒提现！</string>
+    <string name="withdraw_one_yuan_tip_confirm_btn">去提现</string>
+    <string name="withdraw_one_yuan_success_title">一元提现已成功</string>
+    <string name="withdraw_one_yuan_success_msg">立刻收徒，还可再得%d元！</string>
+    <string name="withdraw_one_yuan_already_apply">您已发起过一元提现</string>
+    <string name="withdraw_one_yuan_not_bind_wechat">提现失败，请绑定微信</string>
+    <string name="withdraw_one_yuan_success_confirm_btn">去收徒</string>
+    <string name="withdraw_one_yuan_tasklist_not_finish">您还有待完成的新手任务哦~</string>
+
+    <string name="act_main_dialog_open_noty_title">开启精彩推送</string>
+    <string name="act_main_dialog_open_noty_msg">观看推送视频，每条奖励15金币</string>
+    <string name="act_main_dialog_open_noty_confirm">马上开启</string>
+    <string name="act_main_mine_frag_task_noty_open">已开启</string>
+    <string name="act_main_mine_frag_task_noty_close">去开启</string>
+
+    <string name="act_main_dialog_box_open_noty_title">开启宝箱提醒</string>
+    <string name="act_main_dialog_box_open_noty_msg">每天准时抢大奖，惊喜不错过</string>
+    <string name="act_main_dialog_box_open_noty_confirm">马上开启</string>
+    <!-- 小视频feed tab -->
+    <string name="frag_smallvideo_tab_more">查看更多</string>
+    <string name="frag_smallvideo_tab_loadmore_no_more">没有更多了哦</string>
+    <!-- 小视频播放页 -->
+    <string name="act_videoplay_follow">关注</string>
+    <string name="follow_success">关注成功</string>
+    <string name="cancel_followed">已取消关注</string>
+    <string name="act_videoplay_followed">已关注</string>
+    <string name="act_videoplay_no_wifi">当前为手机流量观看模式\n是否继续观看？</string>
+    <string name="act_videoplay_no_wifi_continue">继续播放</string>
+    <string name="act_videoplay_add_comment_hint">写评论&#8230;</string>
+    <string name="act_videoplay_video_illegal">此视频违规，无法观看</string>
+    <string name="act_videoplay_video_user_deleted">哦唷，此作品被作者赶出家门了</string>
+    <string name="act_videoplay_video_system_deleted">哦唷，此作品被系统赶出家门了</string>
+    <string name="act_videoplay_comment_too_long">限150字数，已超出字数限制</string>
+    <string name="act_videoplay_buffer_time_out">网络心不在焉，没播放成</string>
+    <string name="act_videoplay_follow_no_net">网络失踪，没关注上</string>
+    <string name="act_videoplay_follow_fail">哦唷，没关注上</string>
+    <string name="act_videoplay_comment_fail">网络心不在焉，没评论成</string>
+    <string name="act_videoplay_comment_succ">评论成功</string>
+    <string name="act_videoplay_comment_default">评论</string>
+    <string name="act_videoplay_praise_default">点赞</string>
+
+    <!-- 评论列表 -->
+    <string name="frag_commentlist_comment_title">条评论</string>
+    <string name="frag_commentlist_nodata">暂无评论，快抢沙发吧~</string>
+    <string name="frag_commentlist_delete">确认删除此评论？</string>
+    <string name="frag_commentlist_delete_no">我再想想</string>
+    <string name="frag_commentlist_delete_yes">删！</string>
+    <string name="frag_commentlist_delete_fail">网络心不在焉，没删除成</string>
+    <string name="frag_commentlist_delete_no_net">网络失踪，没删除成</string>
+    <string name="frag_commentlist_error">网络心不在焉，再试试吧</string>
+    <!-- 分享弹框 -->
+    <string name="share_weixin_circle">朋友圈</string>
+    <string name="share_weixin_friend">微信好友</string>
+    <string name="share_qq_friend">QQ好友</string>
+    <string name="share_qq_space">QQ空间</string>
+    <string name="share_weibo">微博</string>
+    <string name="share_copy_url">复制链接</string>
+    <string name="share_save_local">保存到相册</string>
+    <string name="share_saveing_local">正在保存到本地&#8230;</string>
+    <string name="share_save_succ">保存完成，快分享吧</string>
+    <string name="share_save_fail">保存失败</string>
+    <string name="share_save_fail_without_net">网络失踪，没下载成</string>/string>
+    <string name="share_download_fail">网络心不在焉，没下载成</string>
+    <string name="share_report">举报</string>
+    <string name="share_delete">删除</string>
+    <string name="share_delete_confirm">确认删除视频？</string>
+    <string name="share_delete_fail_without_net">网络失踪，没删除成</string>/string>
+    <string name="share_delete_fail">删除失败</string>
+    <string name="share_delete_success">视频删除成功</string>
+    <string name="share_copy_url_complete">复制好啦！</string>
+    <string name="alreay_watch_all">没有更多了...</string>
+
+    <string name="url_invite_method_online">https://h5.youju.sohu.com/partner_method</string>
+    <string name="url_invite_method_test">https://testh5.youju.sohu.com/partner_method</string>
+    <string name="title_invite_method">收徒秘籍</string>
+    <string name="no_more_video">没有更多了</string>
+    <!--keep_alive-->
+    <string name="alive_account_type">com.sohu.youju.account</string>
+    <string name="alive_account_contentAuthority">com.sohu.youju</string>
+    <string name="alive_action_push_start">com.sohu.youju.push.start</string>
+
+    <!-- 任务大厅 -->
+    <string name="task_hall">任务大厅</string>
+    <string name="task_hall_daily_task">每日任务</string>
+    <string name="task_hall_new_user_task">新手任务</string>
+    <string name="task_hall_new">新</string>
+    <string name="task_hall_hint">签到领金币</string>
+    <string name="task_hall_add_coin">+%d</string>
+    <string name="task_hall_coin_6">礼包</string>
+    <string name="task_hall_exception">沙师妹睡着啦</string>
+    <!-- 性别选择 -->
+    <string name="sex_select_title">请选择您的性别</string>
+    <string name="sex_select_content">告诉我您的性别，推荐更精准，内容更好看</string>
+    <string name="sex_select_notice">提示：请认真选择哟，不然内容可能不满足您的口味啦</string>
+    <string name="sex_select_male">帅哥</string>
+    <string name="sex_select_female">美女</string>
+    <!-- 收入明细 -->
+    <string name="mine_income_detail">收入明细</string>
+    <string name="mine_income_detail_hint">查看收益</string>
+    <!-- 常见问题 -->
+    <string name="mine_familiar_question">常见问题</string>
+    <string name="mine_familiar_question_hint">如何赚钱</string>
+    <!--消息系统-->
+    <string name="delete_this_message">删除该评论</string>
+    <string name="watch_this_video">查看该视频</string>
+    <string name="praise_this">赞</string>
+    <string name="message_tip">是不是也可以开车自己过去？然后现场再买…</string>
+    <string name="message_delete_tip">确定删除该条评论？</string>
+    <string name="success_delete">删除成功</string>
+    <string name="already_praise">已点赞</string>
+    <string name="already_un_praise">已取消赞</string>
+    <string name="can_not_null">回复不能为空</string>
+    <string name="success_comment">评论成功</string>
+    <string name="cancel_praise">取消赞</string>
+    <string name="already_report">举报已发送</string>
+    <string name="my_comment">我的评论：%s</string>
+    <string name="reply_comment_hint">回复%s:</string>
+    <string name="reply_comment_delete">该评论已删除</string>
+
+    <!-- 我的收入 -->
+    <string name="my_income_no_coin">还没有金币记录哦，快去做做任务吧~</string>
+    <string name="my_income_no_cash">还没有现金记录哦，快去做做任务吧~</string>
+
+    <!-- 通知栏工具 -->
+    <string name="open_wifi_setting">点此打开WiFi设置</string>
+
+    <string name="wifi_state_disabling">WiFi正在关闭...</string>
+    <string name="wifi_state_disabled">WiFi未开启</string>
+    <string name="wifi_state_enabling">WiFi正在打开...</string>
+    <string name="wifi_state_enabled">WiFi已连接</string>
+    <string name="wifi_state_error">WiFi连接异常</string>
+    <string name="wifi_state_no_connection">WiFi未连接</string>
+
+    <string name="hot_comment">热门评论</string>
+    <string name="new_comment">最新评论</string>
+
+    <string name="qq_join_btn">立即加群</string>
+    <string name="qq_join_title">加入沙发大家庭</string>
+    <string name="qq_join_content">官方福利QQ群：639680896</string>
+    <string name="qq_join_not_install">你还没有安装QQ</string>
+    <string name="qq_join_jump_fail">你安装的QQ版本太低，请先更新升级</string>
+
+    <string name="wechat_bind_mobile_bind">立即绑定</string>
+    <string name="wechat_bind_mobile_reward_tip">温馨提示：只有绑定手机号才能提现哦！</string>
+    <string name="wechat_bind_mobile_title">绑定手机号</string>
+    <string name="skip">跳过</string>
+
+    <string name="merge_account_title">选择主账号</string>
+    <string name="merge_account_sub_title">请选择主账号</string>
+    <string name="merge_account_tip">此账号已注册，如需绑定请进行账号合并，选择一个账号作为主账号。</string>
+    <string name="merge_account_tip_important"><Data><![CDATA[<img src="merge_account_tip_important_icon" /><font color="#fa6a47"> 注意：</font>此平台只保留主账号的金币、现金、徒弟，<font color="#fa6a47">另一账号的金币等信息将被清空，</font>请谨慎选择。]]></Data></string>
+    <string name="merge_account_tip_bottom">最终解释权归沙发视频所有</string>
+
+    <string name="merge_account_account_phone">手机号</string>
+    <string name="merge_account_account_wechat">微信号</string>
+    <string name="merge_account_use_re_login_tip">绑定成功，请重新登录</string>
+    <string name="wechat_user_bind_mobile_tip">点击绑定手机号，才可进行提现哦！</string>
+    <string name="wechat_user_bind_mobile_tip_withdraw">需要绑定手机号才可进行提现操作</string>
+    <string name="wechat_user_bind_mobile_success_withdraw">绑定成功，可进行提现</string>
+
+    <string name="wechat_login_error">微信账号异常，请重试</string>
+    <string name="extra_coin_morning_info" formatted="true"><Data><![CDATA[恭喜获得6-8点早起鸟签到额外<font color="#fa6a47">%1$d金币</font>奖励]]></Data></string>
+    <string name="extra_coin_morning_info_none">啊哦，你错过了6–8点签到额外奖励，明天加油吧~</string>
+    <string name="simple_open_box_dialog_title">恭喜获得宝箱奖励！</string>
+    <string name="simple_open_box_dialog_share_title">送你一个可提现大红包！</string>
+    <string name="simple_open_box_dialog_share_btn">分享到微信朋友圈赚%s金币</string>
+
+</resources>

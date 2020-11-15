@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.yq.imageviewer.activity.MainActivity"
+    android:padding="@dimen/dimen_20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Merge Title Edit"
+        android:textSize="@dimen/textsize_20sp"/>
+
+    <EditText
+        android:id="@+id/dlg_merge_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:textSize="@dimen/textsize_16sp"/>
+
+    <EditText
+        android:id="@+id/dlg_merge_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:textSize="@dimen/textsize_16sp"/>
+
+    <Button
+        android:id="@+id/dlg_merge_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner_c7"
+        android:textColor="#ffffff"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:textSize="@dimen/textsize_18sp"
+        android:text="Confirm"
+        style="?android:attr/borderlessButtonStyle" />
+</LinearLayout>

@@ -1,0 +1,1 @@
+com.example.aidl 这个包下的aidl都是用来和server module进行通信，用来展示不同app间的通信

@@ -1,0 +1,7 @@
+adb shell pm clear "com.tencent.android.qqdownloader"
+adb shell pm clear "com.sohu.youju"
+python -m uiautomator2 init
+python -m uiautomator2 init --reinstall
+
+10.2.170.20 ： 80
+adb shell am instrument -w -r -e debug false -e class com.github.uiautomator.stub.Stub com.github.uiautomator.test/android.support.test.runner.AndroidJUnitRunner

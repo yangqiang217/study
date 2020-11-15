@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="SwipeBackLayout">
+        <item name="edge_size">50dip</item>
+        <item name="edge_flag">left</item>
+        <item name="shadow_left">@mipmap/shadow_left</item>
+        <item name="shadow_right">@mipmap/shadow_right</item>
+        <item name="shadow_bottom">@mipmap/shadow_bottom</item>
+    </style>
+</resources>

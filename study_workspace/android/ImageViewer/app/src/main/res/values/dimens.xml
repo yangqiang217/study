@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_2dp">2dp</dimen>
+    <dimen name="dimen_3dp">3dp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_6dp">6dp</dimen>
+    <dimen name="dimen_7dp">7dp</dimen>
+    <dimen name="dimen_8dp">8dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_12dp">12dp</dimen>
+    <dimen name="dimen_13dp">13dp</dimen>
+    <dimen name="dimen_15dp">15dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_25dp">25dp</dimen>
+    <dimen name="dimen_30dp">30dp</dimen>
+    <dimen name="dimen_35dp">35dp</dimen>
+    <dimen name="dimen_38dp">38dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
+    <dimen name="dimen_45dp">45dp</dimen>
+    <dimen name="dimen_48dp">48dp</dimen>
+    <dimen name="dimen_50dp">50dp</dimen>
+    <dimen name="dimen_55dp">55dp</dimen>
+    <dimen name="dimen_60dp">60dp</dimen>
+    <dimen name="dimen_80dp">80dp</dimen>
+
+    <dimen name="textsize_10sp">10sp</dimen>
+    <dimen name="textsize_11sp">11sp</dimen>
+    <dimen name="textsize_12sp">12sp</dimen>
+    <dimen name="textsize_13sp">13sp</dimen>
+    <dimen name="textsize_14sp">14sp</dimen>
+    <dimen name="textsize_15sp">15sp</dimen>
+    <dimen name="textsize_16sp">16sp</dimen>
+    <dimen name="textsize_17sp">17sp</dimen>
+    <dimen name="textsize_18sp">18sp</dimen>
+    <dimen name="textsize_20sp">20sp</dimen>
+    <dimen name="textsize_24sp">24sp</dimen>
+    <dimen name="textsize_video_record_countdown">80sp</dimen>
+
+    <dimen name="edittext_textsize_default">15sp</dimen>
+
+    <dimen name="default_round_progress_round_width">4dp</dimen>
+
+    <!-- copy from api 25 -->
+    <dimen name="status_bar_height">24dp</dimen>
+    <dimen name="navigation_bar_height">48dp</dimen>
+
+    <!-- SwipeRefreshLayout的初始高度和下沉最大高度 -->
+    <dimen name="swipe_refresh_layout_init_height">40dp</dimen>
+    <dimen name="swipe_refresh_layout_max_height">110dp</dimen>
+
+    <!-- 关注、精选、同城 -->
+    <dimen name="tabbar_height">45dp</dimen>
+    <dimen name="video_list_head_height">70dp</dimen>
+    <dimen name="video_list_item_bottom_height">48dp</dimen>
+    <dimen name="margin_top_reupload_fragment">49dp</dimen>
+
+    <dimen name="corner_default">3dp</dimen>
+    <dimen name="stroke_default">0.5dp</dimen>
+    <dimen name="divider_default">0.5dp</dimen>
+    <dimen name="actionbar_height_default">50dp</dimen>
+    <dimen name="actionbar_textsize">17sp</dimen>
+    <dimen name="default_activity_padding">20dp</dimen>
+
+    <dimen name="act_main_tabbar_height">49dp</dimen>
+    <dimen name="act_main_tabbar_camera_width">52dp</dimen>
+    <dimen name="act_main_tabbar_camera_height">36dp</dimen>
+    <dimen name="act_main_tabbar_padding_top">10dp</dimen>
+    <dimen name="act_main_tabbar_padding_bottom">2dp</dimen>
+
+    <dimen name="dialog_login_corner">10dp</dimen>
+
+    <dimen name="my_count_22dp">22dp</dimen>
+    <dimen name="my_count_title_height">@dimen/actionbar_height_default</dimen>
+    <dimen name="my_video_tab_height">39dp</dimen>
+
+    <!-- video play -->
+    <dimen name="frag_videyplay_commentlist_height">390dp</dimen>
+    <dimen name="frag_videyplay_comment_input_height">55dp</dimen>
+    <dimen name="frag_videyplay_commentlist_no_data_margin">15.5dp</dimen>
+    <dimen name="frag_videyplay_share_line_height">103dp</dimen>
+    <dimen name="frag_videyplay_share_cancel_height">@dimen/act_main_tabbar_height</dimen>
+    <dimen name="frag_videyplay_btn_add_comment_height">50dp</dimen>
+
+    <!-- video record -->
+    <dimen name="act_video_record_skip_play_wh">80dp</dimen>
+    <dimen name="act_video_record_camera_layout_wh">105dp</dimen>
+    <dimen name="act_video_record_camera_layout_wh_small">71dp</dimen>
+    <dimen name="act_video_record_camera_wh">80dp</dimen>
+    <dimen name="record_effect_height">235dp</dimen>
+    <dimen name="record_effect_level_seek_bar_height">19dp</dimen>
+    <dimen name="act_video_record_actionbar_margin_top">11dp</dimen>
+    <dimen name="corner_radius_speed">18dp</dimen>
+    <dimen name="act_video_record_progress_height">8dp</dimen>
+    <dimen name="act_video_record_countdown_wh">150dp</dimen>
+    <dimen name="video_record_shelter_top_min_height_material">55dp</dimen>
+    <dimen name="video_record_shelter_top_min_height_direct">64dp</dimen>
+    <dimen name="video_record_shelter_bottom_height">197dp</dimen>
+    <dimen name="stroke_with_record_effect_item">2dp</dimen>
+    <dimen name="video_record_teleprompter_height">212dp</dimen><!-- 上面值加15 -->
+    <dimen name="video_record_teleprompter_height_recording">217dp</dimen><!-- 上面值加20 -->
+
+    <!-- video edit -->
+    <dimen name="act_video_edit_opt_item_wh">40dp</dimen>
+    <dimen name="act_video_edit_opt_item_corner">27dp</dimen>
+    <dimen name="act_video_edit_bottom_height">211dp</dimen>
+    <dimen name="act_video_edit_opt_tabbar_height">40dp</dimen>
+    <dimen name="act_video_edit_opt_seek_bar_corner_radius">25dp</dimen>
+    <dimen name="act_video_edit_opt_seek_bar_height">25dp</dimen>
+    <dimen name="act_video_edit_opt_seek_bar_progress_height">7dp</dimen>
+
+    <dimen name="dialog_net_req_progress_width">180dp</dimen>
+    <dimen name="dialog_net_req_progress_height">150dp</dimen>
+    <dimen name="dialog_net_req_progress_image_wh">80dp</dimen>
+
+    <!-- PersonInfoActivity -->
+    <dimen name="title_gray_dimen">15sp</dimen>
+    <dimen name="person_info_dimen">13sp</dimen>
+
+    <!-- SettingActivity -->
+    <dimen name="act_setting_item_height">75dp</dimen>
+
+    <!-- material -->
+    <dimen name="act_material_select_tab_image_wh">28dp</dimen>
+    <dimen name="dialog_player_width">199.5dp</dimen>
+    <dimen name="dialog_player_width_player_and_takeaction">160.5dp</dimen>
+    <dimen name="dialog_player_width_guide">185dp</dimen>
+    <dimen name="dialog_player_height">208.5dp</dimen>
+    <dimen name="dialog_player_height_player">120dp</dimen>
+    <dimen name="dialog_player_height_take_action">35dp</dimen>
+    <dimen name="dialog_player_height_guide">35dp</dimen>
+    <dimen name="dialog_player_margin_right_player">4dp</dimen>
+
+    <!-- 话题发现 -->
+    <dimen name="frag_find_banner_height">180dp</dimen>
+    <dimen name="frag_find_search_height">40dp</dimen>
+    <dimen name="frag_find_horizontal_imagelist_width">106.1dp</dimen><!-- 最后一项要用 -->
+    <dimen name="frag_find_horizontal_imagelist_height">141.5dp</dimen><!-- frag_find_horizontal_imagelist_width的4/3 -->
+    <dimen name="frag_find_horizontal_imagelist_radius">2.5dp</dimen><!-- 圆角度数 -->
+
+    <!-- 视频裁剪 -->
+    <dimen name="act_video_select_image_margin">30dp</dimen>
+    <!-- 画幅裁剪 -->
+    <dimen name="act_video_crop_tool_bar_height">44dp</dimen>
+    <!--专辑、话题详情页-->
+    <dimen name="frag_album_cover_width">110dp</dimen>
+    <dimen name="frag_album_cover_height">146dp</dimen>
+    <dimen name="frag_topic_cover_width">60dp</dimen>
+    <dimen name="status_and_action_bar_height">68dp</dimen>
+    <!--个人主页-->
+    <dimen name="user_info_self_city_left_padding">15dp</dimen>
+    <dimen name="user_info_self_setting_left_padding">12dp</dimen>
+    <dimen name="user_info_self_setting_right_padding">20dp</dimen>
+
+    <dimen name="user_info_other_back_left_padding">16dp</dimen>
+    <dimen name="user_info_other_back_right_padding">10dp</dimen>
+    <dimen name="user_info_other_city_right_padding">20dp</dimen>
+
+    <dimen name="user_info_image_radius">2.5dp</dimen><!-- 圆角度数 -->
+
+    <!-- music -->
+    <dimen name="music_title_padding">10dp</dimen>
+
+    <!-- feedback -->
+    <dimen name="pop_window_bottom_width">330dp</dimen>
+
+    <!-- 异步视频发布 -->
+    <dimen name="video_publishing_width">49dp</dimen>
+    <dimen name="video_publishing_height">49dp</dimen>
+    <dimen name="video_publish_succ_height">86dp</dimen>
+    <dimen name="video_publish_fail_height">86dp</dimen>
+    <dimen name="video_publish_succ_radius">15dp</dimen>
+    <dimen name="video_publish_succ_cover_width">49dp</dimen>
+    <dimen name="video_publish_succ_cover_height">49dp</dimen>
+    <dimen name="video_publish_succ_share_icon_width">35dp</dimen>
+    <dimen name="video_publish_succ_share_icon_default_margin">21dp</dimen>
+    <dimen name="video_publish_succ_share_container_left_margin">85dp</dimen>
+    <dimen name="video_publish_succ_share_container_right_margin">30dp</dimen>
+
+    <dimen name="dialog_we_chat_user_bind_height">250dp</dimen>
+
+    <!--美颜-->
+    <dimen name="frag_beautify_seek_bar_top_padding">40dp</dimen>
+
+    <!--视频分割控件-->
+    <dimen name="view_video_clip_gap">3.4dp</dimen>
+    <dimen name="view_video_clip_scroll_bar_height">50dp</dimen>
+    <dimen name="view_video_clip_middle_pillar_width">6.5dp</dimen>
+    <dimen name="view_video_clip_middle_pillar_height">56.5dp</dimen>
+
+    <dimen name="main_bottom_height">50dp</dimen>
+</resources>

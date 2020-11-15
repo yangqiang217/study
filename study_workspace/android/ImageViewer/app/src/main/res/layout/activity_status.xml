@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/default_back"
+    tools:context="com.yq.imageviewer.activity.StatusActivity">
+
+    <EditText
+        android:id="@+id/act_status_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:padding="@dimen/dimen_10dp"
+        android:hint="INPUT URL"
+        android:textSize="@dimen/textsize_14sp"
+        android:background="@color/white"/>
+
+    <com.yq.imageviewer.view.TitleAndDateView
+        android:id="@+id/act_status_titleanddate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_below="@id/act_status_et"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/act_status_btn_extract_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner_c7"
+        android:textColor="@color/white"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:text="extract"/>
+
+    <ScrollView
+        android:id="@+id/act_status_sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/act_status_btn_extract_input"
+        android:layout_below="@id/act_status_titleanddate">
+
+        <TextView
+            android:id="@+id/act_status_bulletin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textSize="14sp"
+            android:textColor="#ffffff"/>
+    </ScrollView>
+</RelativeLayout>
