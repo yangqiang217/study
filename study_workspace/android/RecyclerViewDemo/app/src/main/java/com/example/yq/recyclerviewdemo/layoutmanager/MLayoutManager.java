@@ -1,10 +1,11 @@
 package com.example.yq.recyclerviewdemo.layoutmanager;
 
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yq.recyclerviewdemo.utils.ViewUtils;
 

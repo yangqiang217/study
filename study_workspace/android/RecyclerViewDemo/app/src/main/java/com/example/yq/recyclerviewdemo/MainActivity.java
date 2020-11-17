@@ -1,38 +1,36 @@
 package com.example.yq.recyclerviewdemo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.yq.recyclerviewdemo.layoutmanager.MLayoutManager;
+import com.example.yq.recyclerviewdemo.utils.CacheInfoPrintPrintUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final int HALF_SCREEN = 1920 * 2 / 3;
-
-    private Button btn;
     private RecyclerView recyclerView;
     private List<Bean> mDatas;
     private HomeAdapter mAdapter;
-
-    private float lastY;
-    private int moved = 0;
-    private int currentPage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +41,44 @@ public class MainActivity extends AppCompatActivity {
 
         EventBus.getDefault().register(this);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new MLayoutManager());
-        recyclerView.addItemDecoration(new MyDecoration());
-        recyclerView.setAdapter(mAdapter = new HomeAdapter());
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.addItemDecoration(new MyDecoration());
 
-        btn = (Button) findViewById(R.id.btnRefresh);
-        btn.setOnClickListener(new View.OnClickListener() {
+        mAdapter = new HomeAdapter();
+        mAdapter.setOnClickListener(this);
+        recyclerView.setAdapter(mAdapter);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                CacheInfoPrintPrintUtil.showCacheInfo(recyclerView);
+            }
+        });
+
+        findViewById(R.id.btnRefresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                mAdapter.notifyDataSetChanged();
-                startActivityForResult(new Intent(MainActivity.this, SecondActivity.class), 123);
+//                startActivityForResult(new Intent(MainActivity.this, SecondActivity.class), 123);
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        while (true) {
+//                            CacheInfoPrintPrintUtil.showCacheInfo(recyclerView);
+//                            try {
+//                                TimeUnit.MILLISECONDS.sleep(500);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//                }).start();
+
             }
         });
     }
+
 
     @Override
     protected void onDestroy() {
@@ -90,10 +112,28 @@ public class MainActivity extends AppCompatActivity {
             mDatas.add(new Bean(i + "", i + "", i + ""));
         }
     }
-    static int count;
-    class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn1:
+                System.out.println("btn1");
+                mDatas.set(0, new Bean("aa", "bb", "cc"));
+                mAdapter.notifyItemChanged(0);
+                break;
+            case R.id.btn2:
+                System.out.println("btn2");
+                break;
+            case R.id.btn3:
+                System.out.println("btn3");
+                break;
+        }
+    }
 
+    class HomeAdapter extends RecyclerView.Adapter<MyViewHolder> {
+
+        private View.OnClickListener mOnClickListener;
+        private int count;
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -106,10 +146,9 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("onBindViewHolder, pos: " + position);
             holder.tv.setText(mDatas.get(position).s1);
 
-            MyOnclickListener listener = new MyOnclickListener();
-            holder.btn1.setOnClickListener(listener);
-            holder.btn2.setOnClickListener(listener);
-            holder.btn3.setOnClickListener(listener);
+            holder.btn1.setOnClickListener(mOnClickListener);
+            holder.btn2.setOnClickListener(mOnClickListener);
+            holder.btn3.setOnClickListener(mOnClickListener);
         }
 
         @Override
@@ -117,24 +156,28 @@ public class MainActivity extends AppCompatActivity {
             return mDatas.size();
         }
 
-        class MyViewHolder extends RecyclerView.ViewHolder {
-
-            Button btn1;
-            Button btn2;
-            Button btn3;
-            TextView tv;
-
-            public MyViewHolder(View itemView) {
-                super(itemView);
-                tv = (TextView) itemView.findViewById(R.id.id_num);
-                btn1 = (Button) itemView.findViewById(R.id.btn1);
-                btn2 = (Button) itemView.findViewById(R.id.btn2);
-                btn3= (Button) itemView.findViewById(R.id.btn3);
-            }
+        public void setOnClickListener(View.OnClickListener onClickListener) {
+            mOnClickListener = onClickListener;
         }
     }
 
-    private class Bean {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        Button btn1;
+        Button btn2;
+        Button btn3;
+        TextView tv;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            tv = itemView.findViewById(R.id.id_num);
+            btn1 = itemView.findViewById(R.id.btn1);
+            btn2 = itemView.findViewById(R.id.btn2);
+            btn3= itemView.findViewById(R.id.btn3);
+        }
+    }
+
+    private static class Bean {
         public Bean(String s1, String s2, String s3) {
             this.s1 = s1;
             this.s2 = s2;
@@ -144,25 +187,5 @@ public class MainActivity extends AppCompatActivity {
         String s1;
         String s2;
         String s3;
-    }
-
-    private class MyOnclickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.btn1:
-                    System.out.println("btn1");
-                    mDatas.set(0, new Bean("aa", "bb", "cc"));
-                    mAdapter.notifyItemChanged(0);
-                    break;
-                case R.id.btn2:
-                    System.out.println("btn2");
-                    break;
-                case R.id.btn3:
-                    System.out.println("btn3");
-                    break;
-            }
-        }
     }
 }
