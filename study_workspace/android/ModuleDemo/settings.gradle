@@ -1,2 +1,4 @@
+include ':m1'
+include ':common-lib'
 include ':app'
 rootProject.name = "ModuleDemo"
