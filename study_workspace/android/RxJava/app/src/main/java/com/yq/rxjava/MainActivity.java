@@ -18,8 +18,10 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func0;
+import rx.schedulers.Schedulers;
 import rx.subjects.AsyncSubject;
 import rx.subjects.BehaviorSubject;
 import rx.subjects.PublishSubject;
@@ -48,56 +50,33 @@ public class MainActivity extends Activity {
         findViewById(R.id.btnToSecond).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-                Future<String> future = executorService.schedule(new Callable<String>() {
-                    @Override
-                    public String call() throws Exception {
-                        L.print("call");
-                        return "shit";
-                    }
-                }, 5, TimeUnit.SECONDS);
-
-//                executorService.scheduleAtFixedRate(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        L.print("scheduleAtFixedRate");
-//                    }
-//                }, 3, 1, TimeUnit.SECONDS);
-
-                try {
-                    L.print("future get: " + future.get());
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 
 //                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 //                startActivity(intent);
 
-//                Observable.create(new Observable.OnSubscribe<String>() {
-//                    @Override
-//                    public void call(Subscriber<? super String> subscriber) {
-//                        subscriber.onNext("shit");
-//                    }
-//                })
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(new Subscriber<String>() {
-//                        @Override
-//                        public void onCompleted() {
-//                            System.out.println("onCompleted" + ", Thread: " + Thread.currentThread().getName());
-//                        }
-//
-//                        @Override
-//                        public void onError(Throwable e) {
-//                        }
-//
-//                        @Override
-//                        public void onNext(String s) {
-//                            System.out.println("onnext: " + s + ", Thread: " + Thread.currentThread().getName());
-//                        }
-//                    });
+                Observable.create(new Observable.OnSubscribe<String>() {
+                    @Override
+                    public void call(Subscriber<? super String> subscriber) {
+                        subscriber.onNext("shit");
+                    }
+                })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<String>() {
+                        @Override
+                        public void onCompleted() {
+                            System.out.println("onCompleted" + ", Thread: " + Thread.currentThread().getName());
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                        }
+
+                        @Override
+                        public void onNext(String s) {
+                            System.out.println("onnext: " + s + ", Thread: " + Thread.currentThread().getName());
+                        }
+                    });
             }
         });
 
