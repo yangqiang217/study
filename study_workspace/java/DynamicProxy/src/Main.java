@@ -19,5 +19,9 @@ public class Main {
         Commodity res = sell.sell();
         System.out.println("res: name: " + res.getName() + ", price: " + res.getPrice());
         sell.ad();
+
+        //abs test crash
+//        AbsSell absSell = (AbsSell) Proxy.newProxyInstance(AbsSell.class.getClassLoader(), new Class[]{AbsSell.class}, inter);
+//        absSell.absSell();
     }
 }

@@ -1,5 +1,4 @@
-import thread.Scheduler;
-import thread.Schedulers;
+import scheduler.Schedulers;
 
 /**
  * http://blog.csdn.net/tellh/article/details/71534704
@@ -10,20 +9,13 @@ public class Main {
 
         Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
-            public void call(Subscriber<? super Integer> subscriber) {
+            public void call(Subscriber<? super Integer> subscriber) {//subscriber是observeOn里面call里new出来的 todo
                 subscriber.onNext(111);
             }
         })
-        .map(new Func1<Integer, String>() {
-            @Override
-            public String call(Integer integer) {
-                printWithThread("map");
-                return integer + "";
-            }
-        })
-//        .subscribeOn(Schedulers.io())
+        .subscribeOn(Schedulers.io())
         .observeOn(Schedulers.io())
-        .subscribe(new Subscriber<String>() {
+        .subscribe(new Subscriber<Integer>() {
             @Override
             public void onComplete() {
 
@@ -35,7 +27,7 @@ public class Main {
             }
 
             @Override
-            public void onNext(String s) {
+            public void onNext(Integer s) {
                 printWithThread(s);
             }
         });
@@ -43,7 +35,7 @@ public class Main {
         printWithThread("after");
     }
 
-    private static void printWithThread(String content) {
+    private static void printWithThread(Object content) {
         System.out.println(content + ", thread: " + Thread.currentThread().getName());
     }
 }

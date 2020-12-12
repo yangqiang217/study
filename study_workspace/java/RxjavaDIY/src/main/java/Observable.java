@@ -1,11 +1,12 @@
-import thread.Scheduler;
+import scheduler.Scheduler;
 
 public class Observable<T> {
 
     final OnSubscribe<T> onSubscribe;
 
     public static <T> Observable<T> create(OnSubscribe<T> onSubscribe) {
-        return new Observable<T>(onSubscribe);
+        Observable<T> o = new Observable<T>(onSubscribe);
+        return o;
     }
 
     private Observable(OnSubscribe<T> onSubscribe) {
@@ -24,26 +25,30 @@ public class Observable<T> {
     }
 
     public Observable<T> subscribeOn(Scheduler scheduler) {
-        return create(new OnSubscribe<T>() {
+        Observable<T> o = create(new OnSubscribe<T>() {
             @Override
             public void call(Subscriber<? super T> subscriber) {
                 subscriber.onStart();
                 scheduler.createWorker().schedule(new Runnable() {
                     @Override
                     public void run() {
+                        //切换到了子线程。Observable.this是create返回的，所以这里的call就是create创建时候自己写的call
                         Observable.this.onSubscribe.call(subscriber);
                     }
                 });
             }
         });
+        return o;
     }
 
     public Observable<T> observeOn(Scheduler scheduler) {
-        return create(new OnSubscribe<T>() {
+        Observable<T> o = create(new OnSubscribe<T>() {
+
             @Override
-            public void call(Subscriber<? super T> subscriber) {
+            public void call(Subscriber<? super T> subscriber) {//subscriber就是外面subscribe的时候new出来的Subscriber todo
                 subscriber.onStart();
                 Scheduler.Worker worker = scheduler.createWorker();
+                //Observable.this是subscribeOn返回的Observable，因为是subscribeOn返回的Observable调的observeOn,所以这里call的是subscribeOn里面那个call
                 Observable.this.onSubscribe.call(new Subscriber<T>() {
                     @Override
                     public void onComplete() {
@@ -77,6 +82,7 @@ public class Observable<T> {
                 });
             }
         });
+        return o;
     }
 
     public void subscribe(Subscriber<? super T> subscriber) {

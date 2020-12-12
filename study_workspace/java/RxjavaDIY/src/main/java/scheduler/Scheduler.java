@@ -1,4 +1,4 @@
-package thread;
+package scheduler;
 
 import java.util.concurrent.Executor;
 

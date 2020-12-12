@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/diyrxjava.iml" filepath="$PROJECT_DIR$/.idea/modules/diyrxjava.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/diyrxjava_main.iml" filepath="$PROJECT_DIR$/.idea/modules/diyrxjava_main.iml" group="diyrxjava" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/diyrxjava_test.iml" filepath="$PROJECT_DIR$/.idea/modules/diyrxjava_test.iml" group="diyrxjava" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/diyrxjava.main.iml" filepath="$PROJECT_DIR$/.idea/modules/diyrxjava.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/diyrxjava.test.iml" filepath="$PROJECT_DIR$/.idea/modules/diyrxjava.test.iml" />
     </modules>
   </component>
 </project>

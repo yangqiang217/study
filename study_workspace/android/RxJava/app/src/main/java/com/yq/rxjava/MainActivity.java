@@ -1,7 +1,6 @@
 package com.yq.rxjava;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,16 +8,18 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func0;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 import rx.subjects.AsyncSubject;
 import rx.subjects.BehaviorSubject;
 import rx.subjects.PublishSubject;
@@ -47,40 +48,60 @@ public class MainActivity extends Activity {
         findViewById(R.id.btnToSecond).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(intent);
+                ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+                Future<String> future = executorService.schedule(new Callable<String>() {
+                    @Override
+                    public String call() throws Exception {
+                        L.print("call");
+                        return "shit";
+                    }
+                }, 5, TimeUnit.SECONDS);
+
+//                executorService.scheduleAtFixedRate(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        L.print("scheduleAtFixedRate");
+//                    }
+//                }, 3, 1, TimeUnit.SECONDS);
+
+                try {
+                    L.print("future get: " + future.get());
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+//                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+//                startActivity(intent);
+
+//                Observable.create(new Observable.OnSubscribe<String>() {
+//                    @Override
+//                    public void call(Subscriber<? super String> subscriber) {
+//                        subscriber.onNext("shit");
+//                    }
+//                })
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new Subscriber<String>() {
+//                        @Override
+//                        public void onCompleted() {
+//                            System.out.println("onCompleted" + ", Thread: " + Thread.currentThread().getName());
+//                        }
+//
+//                        @Override
+//                        public void onError(Throwable e) {
+//                        }
+//
+//                        @Override
+//                        public void onNext(String s) {
+//                            System.out.println("onnext: " + s + ", Thread: " + Thread.currentThread().getName());
+//                        }
+//                    });
             }
         });
 
-        List<String> strings = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            strings.add(String.valueOf(i));
-        }
-        strings.add(null);
-        Observable.from(strings)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        System.out.println(s.length());
-                    }
-                })
-                .subscribe(new Subscriber<String>() {
-                    @Override
-                    public void onCompleted() {
-                        System.out.println("onCompleted");
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        System.out.println("onnext: " + s + " onthread: " + Thread.currentThread().getName());
-                    }
-                });
 
 
         initObserver();

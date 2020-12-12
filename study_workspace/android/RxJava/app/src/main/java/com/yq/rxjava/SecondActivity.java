@@ -3,6 +3,7 @@ package com.yq.rxjava;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -13,11 +14,13 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Observer;
+import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func0;
 import rx.functions.Func1;
+import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 import rx.subjects.AsyncSubject;
 import rx.subjects.BehaviorSubject;
@@ -40,8 +43,16 @@ public class SecondActivity extends Activity {
 
         tv = (TextView) findViewById(R.id.tvSecondActivity);
 
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                merge();
+            }
+        });
+
+
 //        scheduler();
-        map();
+//        map();
     }
 
     /**
@@ -202,6 +213,93 @@ public class SecondActivity extends Activity {
                         Log("filter: " + integer);
                     }
                 });
+    }
+
+    /**
+     * 两个都来了才会走zip里面和后面的东西
+     */
+    private void zip() {
+        Observable<String> o1 = Observable.just("1")
+            .delay(1, TimeUnit.SECONDS);
+
+        Observable<String> o2 = Observable.just("2")
+            .delay(5, TimeUnit.SECONDS);
+
+        Observable.zip(o1, o2, new Func2<String, String, Integer>() {
+            @Override
+            public Integer call(String s, String s2) {
+                System.out.println("in zip call, s1: " + s + ", s2: " + s2);
+                return 1;
+            }
+        })
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Subscriber<Integer>() {
+                @Override
+                public void onCompleted() {}
+
+                @Override
+                public void onError(Throwable e) {}
+
+                @Override
+                public void onNext(Integer integer) {
+                    System.out.println("final: " + integer);
+                }
+            });
+    }
+
+    /**
+     * 第2个走完走第一个
+     */
+    private void concat() {
+        Observable<String> o1 = Observable.just("1")
+            .delay(1, TimeUnit.SECONDS);
+
+        Observable<String> o2 = Observable.just("2")
+            .delay(5, TimeUnit.SECONDS);
+
+        Observable.concat(o2, o1)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Subscriber<String>() {
+                @Override
+                public void onCompleted() {}
+
+                @Override
+                public void onError(Throwable e) {}
+
+                @Override
+                public void onNext(String s) {
+                    System.out.println("final: " + s);
+                }
+            });
+    }
+
+    /**
+     * 单纯的合并，1和2都按自己的时间走
+     */
+    private void merge() {
+        Observable<String> o1 = Observable.just("1")
+            .delay(1, TimeUnit.SECONDS);
+
+        Observable<String> o2 = Observable.just("2")
+            .delay(1, TimeUnit.SECONDS);
+
+        Observable.merge(o2, o1)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Subscriber<String>() {
+                @Override
+                public void onCompleted() {}
+
+                @Override
+                public void onError(Throwable e) {}
+
+                @Override
+                public void onNext(String s) {
+                    System.out.println("final: " + s);
+                }
+            });
     }
 
     //常用操作符-------------------------------------end
