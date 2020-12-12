@@ -21,6 +21,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func0;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import rx.subjects.AsyncSubject;
 import rx.subjects.BehaviorSubject;
@@ -61,6 +62,14 @@ public class MainActivity extends Activity {
                     }
                 })
                     .subscribeOn(Schedulers.io())
+                    .map(new Func1<String, String>() {
+                        @Override
+                        public String call(String s) {
+                            L.print("mappp");
+                            return s;
+                        }
+                    })
+                    .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Subscriber<String>() {
                         @Override
