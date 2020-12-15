@@ -25,19 +25,18 @@ public class WithOtherAPPActivity extends AppCompatActivity {
     private IBookManager bookManager;
     private static final int MESSAGE_NEW_BOOK_ARRIVED = 1;
 
-    private Handler mHandler = new Handler(){
+    private final MyHandler mHandler = new MyHandler();
+
+    private static class MyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
-                case MESSAGE_NEW_BOOK_ARRIVED:
-                    Log.e(TAG, "received new book:" + msg.obj);
-                    break;
-                default:
-                    super.handleMessage(msg);
+            if (msg.what == MESSAGE_NEW_BOOK_ARRIVED) {
+                Log.e(TAG, "received new book:" + msg.obj);
+            } else {
+                super.handleMessage(msg);
             }
-
         }
-    };
+    }
 
     private ServiceConnection mService = new ServiceConnection() {
         @Override
@@ -51,8 +50,13 @@ public class WithOtherAPPActivity extends AppCompatActivity {
                 Book newBook = new Book(3, "android进阶");
                 bookManager.addBook(newBook);
                 Log.e(TAG, "add book:" + newBook);
-                List<Book> newList =  bookManager.getBookList();
-                Log.e(TAG, "query book list:" + newList.toString());
+
+                List<Book> newList = bookManager.getBookList();
+                Log.e(TAG, "query book list: ");
+                for (Book book : newList) {
+                    Log.e(TAG, "------ " + book);
+                }
+
                 bookManager.registerListener(mNewBookArrivedListener);
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -66,9 +70,10 @@ public class WithOtherAPPActivity extends AppCompatActivity {
         }
     };
 
-    private IOnNewBookArrivedListener mNewBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
+    private final IOnNewBookArrivedListener mNewBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
         @Override
-        public void OnNewBookArrivedListener(Book book) throws RemoteException {
+        public void onNewBook(Book book) throws RemoteException {
+            //in binder thread
             mHandler.obtainMessage(MESSAGE_NEW_BOOK_ARRIVED, book).sendToTarget();
         }
     };
@@ -78,7 +83,6 @@ public class WithOtherAPPActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_demo);
 
-        LayoutInflater layoutInflater = LayoutInflater.from(this);
         bindService();
     }
 
@@ -92,7 +96,7 @@ public class WithOtherAPPActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if (bookManager != null && bookManager.asBinder().isBinderAlive()){
+        if (bookManager != null && bookManager.asBinder().isBinderAlive()) {
             Log.e(TAG, "unregister listener:" + mNewBookArrivedListener);
             try {
                 bookManager.unregisterListener(mNewBookArrivedListener);
