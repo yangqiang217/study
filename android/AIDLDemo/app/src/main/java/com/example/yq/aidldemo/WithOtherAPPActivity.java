@@ -11,6 +11,7 @@ import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 
 import com.example.aidl.Book;
 import com.example.aidl.IBookManager;
@@ -77,6 +78,7 @@ public class WithOtherAPPActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_demo);
 
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
         bindService();
     }
 

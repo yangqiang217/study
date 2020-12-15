@@ -8,12 +8,15 @@ import android.view.View;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        mExecutorService = Executors.newCachedThreadPool();
+        mExecutorService = Executors.newCachedThreadPool();
 //        mExecutorService = Executors.newFixedThreadPool(3);
-        mExecutorService = Executors.newSingleThreadExecutor();
+//        mExecutorService = Executors.newSingleThreadExecutor();
 //        mExecutorService = new ThreadPoolExecutor(1, 3, 5L, TimeUnit.SECONDS, mQueue);
 
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
@@ -67,15 +70,8 @@ public class MainActivity extends AppCompatActivity {
         mExecutorService.submit(new Runnable() {
             @Override
             public void run() {
-                L.d("start");
-                try {
-                    TimeUnit.SECONDS.sleep(3);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 String a = null;
                 System.out.println(a.toString());
-                L.d("finish");
             }
         });
         L.d("queue size: " + mQueue.size());

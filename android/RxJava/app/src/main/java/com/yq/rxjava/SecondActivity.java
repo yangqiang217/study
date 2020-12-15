@@ -46,7 +46,7 @@ public class SecondActivity extends Activity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                merge();
+                zip();
             }
         });
 
@@ -217,10 +217,18 @@ public class SecondActivity extends Activity {
 
     /**
      * 两个都来了才会走zip里面和后面的东西
+     * 有异常了就直接报错后面不走了
      */
     private void zip() {
         Observable<String> o1 = Observable.just("1")
-            .delay(1, TimeUnit.SECONDS);
+            .delay(2, TimeUnit.SECONDS)
+            .doOnNext(new Action1<String>() {
+                @Override
+                public void call(String s) {
+                    String a = null;
+                    System.out.println(a.toString());
+                }
+            });
 
         Observable<String> o2 = Observable.just("2")
             .delay(5, TimeUnit.SECONDS);
@@ -239,7 +247,9 @@ public class SecondActivity extends Activity {
                 public void onCompleted() {}
 
                 @Override
-                public void onError(Throwable e) {}
+                public void onError(Throwable e) {
+                    System.out.println("error: " + e.getMessage());
+                }
 
                 @Override
                 public void onNext(Integer integer) {
@@ -250,15 +260,24 @@ public class SecondActivity extends Activity {
 
     /**
      * 第2个走完走第一个
+     * 如果有异常就直接onerror后面不走了
      */
     private void concat() {
         Observable<String> o1 = Observable.just("1")
-            .delay(1, TimeUnit.SECONDS);
+            .delay(3, TimeUnit.SECONDS)
+            .map(new Func1<String, String>() {
+                @Override
+                public String call(String s) {
+                    String a = null;
+                    System.out.println(a.toString());
+                    return null;
+                }
+            });
 
         Observable<String> o2 = Observable.just("2")
-            .delay(5, TimeUnit.SECONDS);
+            .delay(1, TimeUnit.SECONDS);
 
-        Observable.concat(o2, o1)
+        Observable.concat(o1, o2)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Subscriber<String>() {
@@ -266,7 +285,9 @@ public class SecondActivity extends Activity {
                 public void onCompleted() {}
 
                 @Override
-                public void onError(Throwable e) {}
+                public void onError(Throwable e) {
+                    System.out.println("final error: " + e.getMessage());
+                }
 
                 @Override
                 public void onNext(String s) {
