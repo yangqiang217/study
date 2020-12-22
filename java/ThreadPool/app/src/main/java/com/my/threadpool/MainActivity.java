@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
@@ -30,26 +31,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        mQueue = new LinkedBlockingQueue<>();
+//        mQueue = new LinkedBlockingQueue<>(3);
+//        mQueue = new ArrayBlockingQueue<>(3);
         mQueue = new SynchronousQueue<>();
 
+//        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+//            @Override
+//            public void uncaughtException(Thread t, Throwable e) {
+//                L.d("uncaughtException1, e:" + e.getMessage());
+//            }
+//        });
         mThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                L.d("in thread start");
-                try {
-                    TimeUnit.SECONDS.sleep(2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                L.d("in thread end");
+
+                String a = null;
+                System.out.println(a.toString());
             }
         });
+//        mThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+//            @Override
+//            public void uncaughtException(Thread t, Throwable e) {
+//                L.d("uncaughtException, e:" + e.getMessage());
+//            }
+//        });
 
-        mExecutorService = Executors.newCachedThreadPool();
+//        mExecutorService = Executors.newCachedThreadPool();
 //        mExecutorService = Executors.newFixedThreadPool(3);
 //        mExecutorService = Executors.newSingleThreadExecutor();
-//        mExecutorService = new ThreadPoolExecutor(1, 3, 5L, TimeUnit.SECONDS, mQueue);
+        mExecutorService = new ThreadPoolExecutor(2, 5, 5L, TimeUnit.SECONDS, mQueue);
 
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,19 +71,29 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                start();
+                String a = null;
+                System.out.println(a.toString());
+                L.d("onClick");
             }
         });
     }
 
     private void add() {
-        mExecutorService.submit(new Runnable() {
+        mExecutorService.execute(new Runnable() {
             @Override
             public void run() {
-                String a = null;
-                System.out.println(a.toString());
+                while (true) {
+                    L.d("run...");
+                    try {
+                        TimeUnit.SECONDS.sleep(50);
+                    } catch (InterruptedException e) {
+                        L.d("InterruptedException");
+                        e.printStackTrace();
+                    }
+                }
             }
         });
+
         L.d("queue size: " + mQueue.size());
 
 //        mExecutorService.submit(new Callable<Object>() {

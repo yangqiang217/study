@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(v, "translationY", v.getHeight() / 2);//
+                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(v, "translationX", v.getHeight() / 2);//
                 objectAnimator.addListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {

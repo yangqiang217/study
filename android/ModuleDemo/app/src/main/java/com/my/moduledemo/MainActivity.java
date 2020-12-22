@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import com.my.common_lib.Utils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -13,5 +16,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Utils.printInfo();
+
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe
+    public void shit(Event event) {
+
     }
 }
