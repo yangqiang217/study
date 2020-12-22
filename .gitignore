@@ -26,5 +26,5 @@ captures/
 **/app/release/app-release.apk
 **/app/release/output.json
 **/captures/
-**/out/
+**/out
 **/*.apk
