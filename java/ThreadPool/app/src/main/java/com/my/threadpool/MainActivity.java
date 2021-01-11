@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        mQueue = new LinkedBlockingQueue<>(3);
+        mQueue = new LinkedBlockingQueue<>(3);
 //        mQueue = new ArrayBlockingQueue<>(3);
-        mQueue = new SynchronousQueue<>();
+//        mQueue = new SynchronousQueue<>();
 
 //        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 //            @Override
@@ -41,14 +41,6 @@ public class MainActivity extends AppCompatActivity {
 //                L.d("uncaughtException1, e:" + e.getMessage());
 //            }
 //        });
-        mThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                String a = null;
-                System.out.println(a.toString());
-            }
-        });
 //        mThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 //            @Override
 //            public void uncaughtException(Thread t, Throwable e) {
@@ -79,20 +71,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void add() {
-        mExecutorService.execute(new Runnable() {
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    L.d("run...");
+//                while (true) {
+                    L.d("run " + this.hashCode());
                     try {
-                        TimeUnit.SECONDS.sleep(50);
+                        TimeUnit.SECONDS.sleep(10);
                     } catch (InterruptedException e) {
                         L.d("InterruptedException");
                         e.printStackTrace();
                     }
-                }
+//                }
             }
-        });
+        };
+        L.d("runnable hash: " + runnable.hashCode());
+        mExecutorService.execute(runnable);
 
         L.d("queue size: " + mQueue.size());
 

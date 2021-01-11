@@ -69,12 +69,12 @@ public class MainActivity extends Activity {
                             return s;
                         }
                     })
-                    .subscribeOn(Schedulers.computation())
-                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Subscriber<String>() {
                         @Override
                         public void onCompleted() {
-                            System.out.println("onCompleted" + ", Thread: " + Thread.currentThread().getName());
+                            L.print("completed");
                         }
 
                         @Override
@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
 
                         @Override
                         public void onNext(String s) {
-                            System.out.println("onnext: " + s + ", Thread: " + Thread.currentThread().getName());
+                            L.print("onnext, s: " + s);
                         }
                     });
             }
