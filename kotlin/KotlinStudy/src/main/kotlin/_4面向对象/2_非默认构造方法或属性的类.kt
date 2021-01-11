@@ -55,3 +55,13 @@ class Button2 : View {
 class Button3(ctx: String) : View(ctx) {
 
 }
+
+/**
+ * 接口可以包含抽象属性声明
+ */
+interface User3 {
+    val nickName: String
+}
+class PrivateUser : User3 {
+
+}
