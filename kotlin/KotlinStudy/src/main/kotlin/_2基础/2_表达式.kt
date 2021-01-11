@@ -1,5 +1,6 @@
 import java.lang.Exception
 import java.lang.IllegalArgumentException
+import java.lang.NullPointerException
 import java.util.*
 
 /**
@@ -7,9 +8,10 @@ import java.util.*
  * kot中没有原始类型，只有包装类型，编译器在编译代码的时候会自动优化性能，把对应的包装类型拆箱为原始类型
  */
 fun main(args: Array<String>) {
-    for (i in 100 downTo 1 step 2) {
-        println(i)
-    }
+//    for (i in 100 downTo 1 step 2) {
+//        println(i)
+//    }
+    exception()
 }
 
 fun value() {
@@ -131,4 +133,24 @@ fun fail(msg: String): Nothing {
 fun operator(x: Int) {
     //Elvis 主要用来null检查，类似于java的true?1:0
     val y = x ?: 0
+}
+
+fun exception() {
+    try {
+
+    } catch (e: Exception) {
+
+    } finally {
+
+    }
+
+//    throw NullPointerException("null")
+
+    //作为表达式，num的值就是最后一个表达式的值
+    val num = try {
+        Integer.parseInt("shit")
+    } catch (e: Exception) {
+        1
+    }
+    println(num)
 }

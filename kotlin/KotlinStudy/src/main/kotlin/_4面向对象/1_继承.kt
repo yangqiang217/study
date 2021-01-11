@@ -31,11 +31,12 @@ class RichButton : Clickable {
     fun disable() {}
     //子类能重写
     open fun animate() {}
+
     //重写的open函数默认是open
-    /*final 重写的open加final禁止重写*/override fun click() {
+    /*final 重写的还是open加final禁止重写*/
+    override fun click() {
         TODO("Not yet implemented")
     }
-
 }
 abstract class Animated {
     //默认open的
@@ -44,6 +45,14 @@ abstract class Animated {
     open fun stopAnimating(){}
 
     fun animateTwice(){}
+}
+
+/**
+ * 如果不是open就不能被继承
+ */
+open class NotOpen {
+}
+class NotOpenSon : NotOpen() {
 }
 
 /**
@@ -71,3 +80,19 @@ class TextView{
         fun getOuter(): TextView = this@TextView
     }
 }
+
+/**
+ * 密封类，对可能创建的子类做出限制，所有直接子类必须嵌套在父类中
+ * 默认open
+ * 作用：when的时候就不需要else分支了
+ */
+sealed class Expr {
+    class Num(val value: Int) : Expr()
+    class Sum(val left: Expr, val right: Expr) : Expr()
+}
+fun eval(e: Expr) : Int =
+    //when涵盖了所有可能情况(必须涵盖，否则有返回值的when会报错)，不需要默认else分支
+    when (e) {
+        is Expr.Num -> e.value
+        is Expr.Sum -> eval(e.right) + eval(e.left)
+    }
