@@ -14,7 +14,7 @@ public class MainViewModel extends ViewModel {
     //    private OnTimeChangeListener onTimeChangeListener;
 
     //用liveData替换listener
-    private MutableLiveData<Integer> liveData;
+    private MutableLiveData<Integer> liveData = new MutableLiveData<>();
 
     public MainViewModel() {
     }
