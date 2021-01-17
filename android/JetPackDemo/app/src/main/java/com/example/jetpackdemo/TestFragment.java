@@ -30,8 +30,9 @@ public class TestFragment extends Fragment {
 //        TestViewModel testViewModel = new TestViewModelFactory(new TestRepository()).create(TestViewModel.class);
         //不是同一个
         MainViewModel testViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        //和Activity的一样
         MainViewModel testViewModel2 = new ViewModelProvider(getActivity()).get(MainViewModel.class);
-        Log.d("yqtest", "onCreateView: " + testViewModel.hashCode() + ", " + testViewModel2.hashCode());
+//        Log.d("yqtest", "onCreateView: " + testViewModel.hashCode() + ", " + testViewModel2.hashCode());
 
         fragmentTestBinding.tvFragment.setOnClickListener(new View.OnClickListener() {
             @Override

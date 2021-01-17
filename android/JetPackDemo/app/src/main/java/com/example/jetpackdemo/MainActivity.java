@@ -5,8 +5,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.jetpackdemo.databinding.ActivityMainBinding;
+import com.example.jetpackdemo.list.MainAdapter;
+import com.example.jetpackdemo.list.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViewModel() {
         mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        Log.d("yqtest", "onCreate: " + mMainViewModel.hashCode());
+//        Log.d("yqtest", "onCreate: " + mMainViewModel.hashCode());
 
 //        mMainViewModel.setOnTimeChangeListener(new TestViewModel.OnTimeChangeListener() {
 //            @Override
@@ -82,19 +84,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initList() {
-        List<String> list = new ArrayList<>();
         mMainAdapter = new MainAdapter();
         mActivityMainBinding.rv.setAdapter(mMainAdapter);
         mActivityMainBinding.rv.setLayoutManager(new LinearLayoutManager(this));
 
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        list.add("5");
-        list.add("6");
-
-        mMainAdapter.setData(list);
-        mMainAdapter.notifyDataSetChanged();
+        mMainViewModel.getMoviePagedList().observe(this, new Observer<PagedList<Movie>>() {
+            @Override
+            public void onChanged(PagedList<Movie> movies) {
+                Log.d("yqtest", "onChanged: " + movies);
+                mMainAdapter.submitList(movies);
+            }
+        });
     }
 }
