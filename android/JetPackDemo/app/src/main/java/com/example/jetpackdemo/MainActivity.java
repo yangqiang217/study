@@ -14,18 +14,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.jetpackdemo.databinding.ActivityMainBinding;
-import com.example.jetpackdemo.list.MainAdapter;
-import com.example.jetpackdemo.list.Movie;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.jetpackdemo.paging.MoviePagingAdapter;
+import com.example.jetpackdemo.bean.Movie;
+import com.example.jetpackdemo.paging.MovieViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mActivityMainBinding;
     private MainViewModel mMainViewModel;
+    private MovieViewModel mMovieViewModel;
 
-    private MainAdapter mMainAdapter;
+    private MoviePagingAdapter mMoviePagingAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +37,16 @@ public class MainActivity extends AppCompatActivity {
         initClick();
         initFragment();
         initList();
+
+        CustomViewGroup2 customViewGroup2 = new CustomViewGroup2(
+            this,
+            mActivityMainBinding.custom2Container
+        );
     }
 
     private void initViewModel() {
         mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mMovieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 //        Log.d("yqtest", "onCreate: " + mMainViewModel.hashCode());
 
 //        mMainViewModel.setOnTimeChangeListener(new TestViewModel.OnTimeChangeListener() {
@@ -84,15 +89,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initList() {
-        mMainAdapter = new MainAdapter();
-        mActivityMainBinding.rv.setAdapter(mMainAdapter);
+        mMoviePagingAdapter = new MoviePagingAdapter();
+        mActivityMainBinding.rv.setAdapter(mMoviePagingAdapter);
         mActivityMainBinding.rv.setLayoutManager(new LinearLayoutManager(this));
 
-        mMainViewModel.getMoviePagedList().observe(this, new Observer<PagedList<Movie>>() {
+        mMovieViewModel.getMoviePagedList().observe(this, new Observer<PagedList<Movie>>() {
             @Override
             public void onChanged(PagedList<Movie> movies) {
                 Log.d("yqtest", "onChanged: " + movies);
-                mMainAdapter.submitList(movies);
+                //当数据发生变化时，该变化通过LiveData传递过来，再通过PagedLIstAdapter.submitList()方法刷新数据。
+                mMoviePagingAdapter.submitList(movies);
             }
         });
     }

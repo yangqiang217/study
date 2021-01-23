@@ -26,7 +26,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:background="#BBBBBB"/>
 
+    <com.example.jetpackdemo.CustomViewGroup1
+        android:id="@+id/customview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <FrameLayout
+        android:id="@+id/custom2_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
 </LinearLayout>
