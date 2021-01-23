@@ -44,7 +44,9 @@ public class PagedDataSource extends PageKeyedDataSource<Integer, Movie> {
 
     @Override
     public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) {
-
+        Log.d("yqtest", "loadBefore, params.key: " + params.key
+            + ", params.requestedLoadSize: " + params.requestedLoadSize
+            + ", " + Thread.currentThread().getName());
     }
 
     /**

@@ -31,8 +31,8 @@ public class MovieDataSourceFactory extends DataSource.Factory<Integer, Movie> {
     public DataSource<Integer, Movie> create() {
         Log.d("yqtest", "MovieDataSourceFactory create");
 
-//        return createPagedDataSource();
-        return createPositionalKeyDataSource();
+        return createPagedDataSource();
+//        return createPositionalKeyDataSource();
 //        return createItemKeyDataSource();
     }
 
