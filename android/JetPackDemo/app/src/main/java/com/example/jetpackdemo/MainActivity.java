@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         mActivityMainBinding = ActivityMainBinding.inflate(LayoutInflater.from(this));
+        super.onCreate(savedInstanceState);
         setContentView(mActivityMainBinding.getRoot());
 
 
