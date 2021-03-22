@@ -1,6 +1,7 @@
 package com.my.kotlinstudy
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.my.kotlinstudy.viewmodel.MainViewModel
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         btn1.setOnClickListener {
             viewModel.run().observe(this, {
+                Log.d("yqtest", "in observe thread: ${Thread.currentThread().name}")//main
                 btn1.text = it.toString()
             })
         }
