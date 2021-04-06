@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView recyclerView;
     private List<Bean> mDatas;
     private HomeAdapter mAdapter;
+    private LinearLayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EventBus.getDefault().register(this);
 
         recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
 //        recyclerView.addItemDecoration(new MyDecoration());
 
         mAdapter = new HomeAdapter();
@@ -52,29 +54,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                CacheInfoPrintPrintUtil.showCacheInfo(recyclerView);
+//                CacheInfoPrintPrintUtil.showCacheInfo(recyclerView);
             }
         });
 
         findViewById(R.id.btnRefresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mAdapter.notifyDataSetChanged();
-//                startActivityForResult(new Intent(MainActivity.this, SecondActivity.class), 123);
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        while (true) {
-//                            CacheInfoPrintPrintUtil.showCacheInfo(recyclerView);
-//                            try {
-//                                TimeUnit.MILLISECONDS.sleep(500);
-//                            } catch (InterruptedException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    }
-//                }).start();
+                List<Bean> newData = new ArrayList<>();
+                for (int i = 0; i < 20; i++) {
+                    newData.add(new Bean(i + "new", i + "new", i + "new"));
+                }
+                mDatas.addAll(0, newData);
+                mAdapter.notifyItemRangeInserted(1, newData.size());
 
+                if (mLayoutManager.findFirstVisibleItemPosition() == 0) {
+                    int target = mAdapter.getTotalPosition(newData.size());
+                    Log.d("TAG", "in onMessageLoaded, first visible is header, messageSize: " + newData.size()
+                            + " , scroll to " + target
+                            + ", dataCount: " + mDatas.size());
+                    // 最顶部可见的View已经是FetchMoreView了，那么add数据&局部刷新后，要进行定位到上次的最顶部消息。
+                    recyclerView.scrollToPosition(target - 1);
+                }
             }
         });
     }
@@ -130,30 +131,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    class HomeAdapter extends RecyclerView.Adapter<MyViewHolder> {
+    class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private View.OnClickListener mOnClickListener;
         private int count;
 
         @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             System.out.println("onCreateViewHolder called: " + (++count));
+            if (viewType == 0) {
+                return new HeaderHolder(LayoutInflater.from(MainActivity.this).inflate(R.layout.header, parent, false));
+            }
             return new MyViewHolder(LayoutInflater.from(MainActivity.this).inflate(R.layout.item, parent, false));
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             System.out.println("onBindViewHolder, pos: " + position);
-            holder.tv.setText(mDatas.get(position).s1);
+            if (position != 0) {
+                MyViewHolder h = (MyViewHolder) holder;
+                h.tv.setText(mDatas.get(position).s1);
 
-            holder.btn1.setOnClickListener(mOnClickListener);
-            holder.btn2.setOnClickListener(mOnClickListener);
-            holder.btn3.setOnClickListener(mOnClickListener);
+                h.btn1.setOnClickListener(mOnClickListener);
+                h.btn2.setOnClickListener(mOnClickListener);
+                h.btn3.setOnClickListener(mOnClickListener);
+            }
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            if (position == 0) {
+                return 0;
+            }
+            return 1;
+        }
+
+        public int getTotalPosition(int dataPosition) {
+            return dataPosition + getHeaderCount();
+        }
+
+        public int getHeaderCount() {
+            return 1;
         }
 
         @Override
         public int getItemCount() {
-            return mDatas.size();
+            return getHeaderCount() + mDatas.size();
         }
 
         public void setOnClickListener(View.OnClickListener onClickListener) {
@@ -174,6 +197,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btn1 = itemView.findViewById(R.id.btn1);
             btn2 = itemView.findViewById(R.id.btn2);
             btn3= itemView.findViewById(R.id.btn3);
+        }
+    }
+
+    static class HeaderHolder extends RecyclerView.ViewHolder {
+
+        TextView tv;
+
+        public HeaderHolder(View itemView) {
+            super(itemView);
+            tv = itemView.findViewById(R.id.tv_header);
         }
     }
 

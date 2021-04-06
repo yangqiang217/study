@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_show).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                show();
+                show();
             }
         });
         findViewById(R.id.root).setOnLongClickListener(new View.OnLongClickListener() {
@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         PopupWindow popupWindow = new PopupWindow(this);
         popupWindow.setContentView(view);
         popupWindow.setOutsideTouchable(true);
+        popupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
 //        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
 
 //        popupWindow.showAsDropDown(mTvAnchor, 0, 0, Gravity.LEFT);//window和anchor左边对齐
