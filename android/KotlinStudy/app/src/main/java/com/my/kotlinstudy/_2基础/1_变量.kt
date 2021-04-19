@@ -11,4 +11,11 @@ fun main() {
     //var的值类型不能变
     var ans3 = 2
 //    ans3 = "a" error
+
+    val b: Boolean? = null
+    if (b == true) {//true或null，== true不能省
+
+    } else {
+        println("null")
+    }
 }

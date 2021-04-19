@@ -11,6 +11,17 @@ fun main() {
     u4.address = "add"
     println(u4.address)
 }
+
+open class U(name: String) {
+
+}
+
+/**
+ * 需要U()或constructor()
+ */
+class U2(_name: String) : U(_name) {
+}
+
 /**
  * 直接写在类后面()里的东西就是主构造方法
  * 如果主构造没有注解或者可见性修饰符，关键字constructor可以省略

@@ -24,6 +24,13 @@ fun main() {
 }
 
 /**
+ * 参数默认val，无法被赋值
+ */
+fun para(para: String) {
+//    para = 1// error
+}
+
+/**
  * 顶层变量，const val = public static final
  */
 const val LINE = "\n"

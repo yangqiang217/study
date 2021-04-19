@@ -65,6 +65,13 @@ fun _also() {
     }
     println("v1: $v1")
     println("v2: $v2")
+
+    //交换两数：
+    var a = 1
+    var b = 2
+    a = b.also {
+        b = a
+    }
 }
 
 /**

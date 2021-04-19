@@ -1,5 +1,7 @@
 package com.my.kotlinstudy._4面向对象
 
+import kotlin.reflect.KProperty
+
 fun main() {
 //    val client2 = Client2("name", 1)
 //    println(client2)
@@ -8,8 +10,12 @@ fun main() {
 //    val b = BaseImpl(10)
 //    Derived(b).print2()
 
-    val byLazy = ByLazy()
-    byLazy.print()
+//    val byLazy = ByLazy()
+//    byLazy.print()
+
+    val e = Example()
+    e.p = "ppp"
+    println(e.p)
 }
 
 class Client(val name: String, val postalCode: Int) {
@@ -105,5 +111,22 @@ class ByLazy {
     fun print() {
 //        println(name)
 //        println(name)
+    }
+}
+
+/**
+ * 属性委托
+ */
+class Example {
+    var p: String by Delegate()
+}
+class Delegate {
+    private var _p: String = ""
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
+        return _p
+    }
+
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+        _p = value
     }
 }

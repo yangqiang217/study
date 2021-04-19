@@ -152,7 +152,20 @@ fun exception() {
     val num = try {
         Integer.parseInt("shit")
     } catch (e: Exception) {
+        e.printStackTrace()
         1
     }
     println(num)
+}
+
+/**
+ * 相等性
+ */
+fun equal() {
+    //1.结构相等, 结构相等由 ==（以及其否定形式 !=）操作判断。按照惯例，像 a == b 这样的表达式会翻译成: a?.equals(b) ?: (b === null)
+    val a = 1
+    val b = 12
+    println(a == b)
+    //2.引用相等，引用相等由 ===（以及其否定形式 !==）操作判断。a === b 当且仅当 a 与 b 指向同一个对象时求值为 true。
+    // 对于运行时表示为原生类型的值 （例如 Int），=== 相等检测等价于 == 检测。
 }
