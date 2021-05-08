@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String input= Environment.getExternalStorageDirectory().getAbsolutePath()+"/video.mp4";
                 String output= Environment.getExternalStorageDirectory().getAbsolutePath()+"/video.yuv";
+                Log.d("TAG", "onClick: input: " + input);
                 video_decode(input,output);
             }
         });
