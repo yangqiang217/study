@@ -1,0 +1,6 @@
+<!--pages/jump/target.wxml-->
+<!--跳转后的下个页面点这个按钮会回到这个页面，类似于左上角返回按钮， delta=n属性表示直接返回n层-->
+<navigator open-type="navigateBack">navigator back</navigator>
+<!-- <navigator open-type="navigateBack" delta="2">back</navigator> -->
+
+<button bindtap="handleBackByCode">代码返回</button>

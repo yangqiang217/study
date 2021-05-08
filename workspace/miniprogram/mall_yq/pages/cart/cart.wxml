@@ -1,0 +1,46 @@
+<!--pages/cart/cart.wxml-->
+<block wx:if="{{true}}">
+  <image class="no-goods-icon" src="/images/nav/cart-off.png" />
+  <view class="title-box">空空如也</view>
+  <view class="to-index-btn" bind:tap="toIndexPage">去逛逛</view>
+</block>
+
+<block wx:if="{{false}}">
+  <view class="trip">左滑可删除不需要的商品哦～</view>
+  <view class="goodsList">
+    <view class="a-goods" wx:for="{{items}}" wx:key="key">
+      <view class="a-goods-conts {{item.active?'active':''}}" bind:touchstart="touchS" bind:touchmove="touchM" bind:touchend="touchE"
+          data-index="{{index}}" style="{{item.left}}">
+        <view class="goods-info">
+          <view class="img-box">
+            <image class="img" src="{{item.pic}}" mode="aspectFill" />
+          </view>
+          <view class="text-box">
+            <view class="goods-title">{{item.name}}</view>
+            <view class="goods-label" wx:if="{{item.sku}}">
+              <block wx:for="{{item.sku}}" wx:for-item="option" wx:key="index">
+                {{option.optionName}}:{{option.optionValueName}}
+              </block>
+            </view>
+            <view class="goods-price">￥{{item.price}}</view>
+            <view class="buy-num">
+              <view class="jian-btn {{item.number==1?'disabled':''}}" catch:tap="jianBtnTap" data-index="{{index}}">-</view>
+              <input type="number" value="{{item.number}}" data-key="{{item.key}}" bind:input="changeCarNumber" />
+              <view class="jia-btn {{item.number==curTouchGoodStore?'disabled':''}}" catch:tap="jiaBtnTap" data-index="{{index}}">+</view>
+            </view>
+          </view>
+        </view>
+        <view class="delete-btn" data-key="{{item.key}}" catch:tap="{{delItem}}">删除</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="jiesuan-box">
+    <view class="left-price">
+      <view class="total" hidden="{{noSelect}}">合计：¥ {{price}} + {{score}} 积分</view>
+    </view>
+    <view class="to-pay-btn">
+      <navigator url="/pages/to-pay-order/index">去结算</navigator>
+    </view>
+  </view>
+</block>

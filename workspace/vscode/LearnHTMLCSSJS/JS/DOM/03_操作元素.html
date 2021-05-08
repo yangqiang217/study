@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>操作元素</title>
+
+    <style>
+        .stycls {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+        .styclschanged {
+            background-color: black;
+            width: 200px;
+            height: 100px;
+        }
+        .showgone {
+            background-color: orange;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<button>btn</button>
+<div id="intext">innertext</div>
+<div id="inhtml">innerhtml</div>
+
+<input type="text" value="input sth">
+
+
+<div class="stycls"></div>
+<div class="showgone"></div>
+<script>
+    // 1.改变元素内容
+    // 1.1 element.innerText:从起始到终止的内容，会去除html标签和空格、换行
+    // 1.2 element.innerHTML:从起始到终止的全部内容，包括html标签、空格、换行
+    const btn = document.querySelector("button");
+    // const intext = document.querySelector("#intext");
+    // const inhtml = document.querySelector("#inhtml");
+    // btn.onclick = function () {
+    //     console.log(intext.innerText);//也是可读的
+    //     intext.innerText = "changed";
+    //     inhtml.innerHTML = "<strong>changed<strong>";//用的最多
+    // }
+
+
+    /* 2.常用元素的属性操作
+     innerText, innerHTML
+     src, href
+     id, alt, title */
+    // img.src = "new url"
+
+
+    /* 3.表单元素的属性操作
+    可操作的表单属性：type, value, checked, selected, disabled
+     */
+    // const btn = document.querySelector("button");
+    // const input = document.querySelector("input");
+    // btn.onclick = function () {
+    //     // input.innerHTML = "xxx";不起作用，这个属性是普通盒子比如div的
+    //     input.value = "clicked";
+    //     btn.disabled = true;//或this.disabled = true,this指向调用者
+    // }
+
+
+    /* 4.样式属性操作
+    可以修改元素大小、颜色、位置等
+    element.style:行内样式操作
+    element.className:类名样式操作，
+    注:js修改style样式是行内样式，权重比较高
+     */
+    // const div = document.querySelector(".stycls");
+    // const showgone = document.querySelector(".showgone");
+    // btn.onclick = function () {
+    //     // style用法：
+    //     // div.style.backgroundColor = "blue";
+    //     // div.style.width = "200px";
+    //     // showgone.style.display = "none";//or block
+    //     // style.backgroundPosition：精灵图用法
+    //
+    //     // className用法：
+    //     // div.className = "styclschanged";//用赋值新的类名，原来的就作废了
+    //     div.className = "stycls styclschanged";
+    // }
+
+
+    /* 5.元素属性
+    5.1 获取：
+     div.id或
+     div.getAttribute("id");
+     区别：.XX获取自带属性，后者主要用来获取自定义属性
+    5.2 设置：
+     div.className = "xxx"
+     div.setAttribute("class", "value");
+     区别同获取
+    5.3 移除：
+     div.removeAttribute("name");
+
+    5.4 关于自定义属性：
+     目的：为了保存并使用数据，比如tab的index
+     有时候不容易区分属性是自带的还是自定义的，h5规定自定义属性以data-开头:
+        data-index, 用的时候：element.dataset.index或者element.dataset["index] (ie11才开始支持)
+        data-list-name, 用的时候：element.dataset.listName或者element.dataset["listName]
+
+     */
+
+
+</script>
+</body>
+</html>

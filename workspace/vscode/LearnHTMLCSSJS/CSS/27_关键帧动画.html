@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .box:hover {
+            /*name, duration, timing-fuction, delay, repeat(infinite表示无限), direction(normal/reverse),
+            fillmode(最后保留哪个值:none, forwards(最后一帧), backwards(第一帧)), play-state(在js中使用，用于暂停)*/
+            animation: trsl 1s linear;
+        }
+
+        @keyframes trsl {
+            from {
+                transform: translate(0, 0) scale(1, 1);
+            }
+            25% {
+                transform: translate(200px, 0) scale(2, 2);
+            }
+            50% {
+                transform: translate(200px, 200px) scale(.5, .5);
+            }
+            75% {
+                transform: translate(0, 200px) scale(3, 3);
+            }
+            to {
+                transform: translate(0, 0) scale(1, 1);
+            }
+        }
+
+        @keyframes sc {
+            0% {
+                transform: scale(1, 1);
+            }
+            25% {
+                transform: scale(2, 2);
+            }
+            50% {
+                transform: scale(.5, .5);
+            }
+            75% {
+                transform: scale(3, 3);
+            }
+            100% {
+                transform: scale(1, 1);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

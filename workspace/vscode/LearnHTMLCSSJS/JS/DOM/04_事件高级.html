@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件高级</title>
+
+    <style>
+        .father {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+
+<button>btn</button>
+
+<!--事件传递-->
+<div class="father">
+    <div class="son"></div>
+</div>
+
+<!--事件委托-->
+<ul class="ulfather">
+    <li>li 1</li>
+    <li>li 2</li>
+    <li>li 3</li>
+    <li>li 4</li>
+    <li>li 5</li>
+</ul>
+<script>
+    /*
+    1.注册事件
+    传统注册：
+        on开头，比如btn.onclick = function(){}
+        特点：注册事件的唯一性：同一元素同一事件只能设置一个处理函数，后面设置的覆盖前面设置的
+    方法监听注册：
+        eventTarget.addEventListener(type, listener[, useCapture])(IE9开始支持，可使用attachEvent()代替，但非标准，只有ie9以前的ie识别，不推荐使用)
+            type: 事件类型，比如click、mouseover，不加on
+            listener：处理函数
+            useCapture：可选，布尔，默认false
+        特点：同一元素同一事件可注册多个监听，按注册顺序执行
+     */
+    // const btn = document.querySelector("button");
+    // btn.addEventListener("click", () => {
+    //     console.log("addEventListener1");
+    // })
+    // btn.addEventListener("click", () => {
+    //     console.log("addEventListener2");
+    // })
+
+    /*
+    2.删除事件
+    传统删除：eventTarget.onclick = null;
+    方法监听注册：
+        eventTarget.removeEventListener(type, listener[, useCapture]);(IE9开始支持，可使用detachEvent()代替，但非标准，只有ie9以前的ie识别，不推荐使用)
+            此处函数需要和add是同一个，所以需要写到外面
+     */
+
+
+    /*
+    3.DOM事件流
+        1) JS代码只能执行捕获或者冒泡其中的一个阶段
+        2) onclick和attachEvent只能得到冒泡阶段
+        3) addEventListener第三个参数true表示事件捕获阶段调用事件处理程序，false表示冒泡阶段调用
+        4) 实际开发中很少用事件捕获，更关注冒泡
+        5) 有些事件是没有冒泡的，比如onblur, onfocus, onmouseenter, onmouseleave
+
+     */
+    // const son = document.querySelector(".son");
+    // const father = document.querySelector(".father");
+    // // 和android不同，这里father和son的click都会被调用，只是顺序取决于第三个参数
+    // son.addEventListener("click", () => {
+    //     console.log("son clicked");
+    // }, false);
+    // father.addEventListener("click", () => {
+    //     console.log("father clicked");
+    // }, false);
+
+
+    /*
+    4.事件对象
+    即function中的event参数(event名称可改)
+    ie678在方法中直接用window.event获取（参数就没用了）
+
+    event常用属性和方法：
+        target(标准)：触发事件的对象（注意不一定是绑定，因为父子）
+        srcElement(非标准，ie678用)：同target
+        type：事件类型，比如click，没有on
+        cancelBubble(非标准，ie678用)：阻止冒泡
+        return false(非标准，ie678用)：阻止默认事件，比如不让链接跳转，只限于传统注册方式
+        preventDefault()(标准)：同returnValue
+        stopPropagation()(标准)：阻止冒泡，用于防止父的onclick也被调用！！！！！！！！！！
+     */
+    // btn.onclick = function (event) {}
+    // btn.addEventListener("click", (event) => {
+    //     // this.xxx, 和target不同，this返回的是绑定事件的对象（还有个currentTarget属性和this一样，但有兼容性问题，所以this用的多）
+    // })
+
+    // stopPropagation防止事件冒泡：
+    // const son = document.querySelector(".son");
+    // const father = document.querySelector(".father");
+    // son.addEventListener("click", (event) => {
+    //     console.log("son clicked");
+    //     event.stopPropagation();//有了这句就不会调用父的onclick了
+    // });
+    // father.addEventListener("click", () => {
+    //     console.log("father clicked");
+    // });
+
+    /*
+    ！！！！！！！！！！
+    5.事件委托：不要给每个子节点单独设置事件监听，而是设置在父上，再利用事件冒泡监听子的事件调用。比如ul下面多个li，不要给li设置监听，而是ul
+    作用：只操作了一次dom，提高了程序性能
+     */
+    // const ul = document.querySelector(".ulfather");
+    // ul.onclick = function (event) {
+    //     event.target.style.backgroundColor = "red";
+    // }
+
+    /*
+    6.其它常用鼠标事件：
+        1) 禁用右键菜单：
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+            })
+        2) 禁止选中文字
+            document.addEventListener("selectstart", (event) => {
+                event.preventDefault();
+            })
+     */
+
+
+    /*
+    7.鼠标事件对象
+        clientX：鼠标相对于浏览器窗口可视区的x坐标
+        clientY：鼠标相对于浏览器窗口可视区的y坐标
+        pageX：鼠标相对于文档页面的x坐标（IE9+支持）
+        pageY：鼠标相对于文档页面的y坐标（IE9+支持）
+        screenX：鼠标相对于电脑屏幕的x坐标
+        screenY：鼠标相对于电脑屏幕的y坐标
+     */
+
+    /*
+    8.常用键盘事件
+        onkeyup：键盘按键被松开，keyCode不区分字母大小写，都是大写
+        onkeydown：按下，keyCode不区分字母大小写，都是大写
+        onkeypress：被按下，但是不识别功能键，比如ctrl、shift、箭头等。keyCode区分字母大小写
+        执行顺序：down-press-up
+
+    键盘事件对象：
+        keyCode：相应键的ASCII码。keyup和keydown事件不区分字母大小写
+     */
+    // document.onkeyup = function (e) {}
+    // document.addEventListener("keyup", (event) => {})
+</script>
+</body>
+</html>

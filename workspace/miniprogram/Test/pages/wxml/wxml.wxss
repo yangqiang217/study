@@ -1,0 +1,8 @@
+/* pages/wxml/wxml.wxss */
+
+.normalColor {
+    color: white;
+}
+.changedColor {
+    color: blue;
+}

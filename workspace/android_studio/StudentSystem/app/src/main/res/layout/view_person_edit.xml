@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="30dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="头像"
+                android:textColor="@color/hint_color"
+                android:textSize="12sp"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:id="@+id/iv_person_edit_avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/default_avatar"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_person_edit_id"
+            style="@style/edittext_title"
+            android:text="学号"
+            android:layout_marginTop="20dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_id"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/hint_color" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="密码"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_psd"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/hint_color"
+            android:inputType="textPassword" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="确认密码"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_psd_confirm"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/hint_color"
+            android:inputType="textPassword" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="姓名"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_name"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/hint_color"/>
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="出生日期"
+            android:layout_marginTop="15dp"/>
+        <TextView
+            android:id="@+id/tv_person_edit_birthday"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:textColorHint="@color/hint_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性别"
+                android:textColor="@color/hint_color"
+                android:textSize="12sp"
+                android:layout_centerVertical="true"/>
+
+            <RadioGroup
+                android:id="@+id/rg_person_edit_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_person_edit_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/main_color"
+                    android:checked="true"
+                    android:text="男" />
+
+                <RadioButton
+                    android:id="@+id/rb_person_edit_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/main_color"
+                    android:text="女" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="电话"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_phone"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:inputType="phone"
+            android:textColorHint="@color/hint_color" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="邮箱"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_email"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/hint_color" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="籍贯"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_hometown"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/hint_color" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="学院"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_college"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/hint_color" />
+
+        <TextView
+            android:id="@+id/tv_person_edit_major"
+            style="@style/edittext_title"
+            android:text="专业"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_major"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/hint_color" />
+
+        <TextView
+            android:id="@+id/tv_person_edit_class"
+            style="@style/edittext_title"
+            android:text="班级"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_person_edit_class"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/hint_color" />
+    </LinearLayout>
+</ScrollView>

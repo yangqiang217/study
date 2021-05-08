@@ -1,0 +1,23 @@
+/* pages/wxss/wxss.wxss */
+@import './styleimport/box.wxss';/*注意封号*/
+/* @import './styleimport/xxx.wxss'; */
+
+.stylepage {
+    font-size: 10px !important;/*各种样式有优先级，这儿的优先级可能不是最高的，加important表示权重最大*/
+    color: blue;
+}
+
+.rpx {
+    background-color: green;
+    width: 200rpx;
+    height: 80rpx;
+    font-size: 40rpx;
+}
+
+/* .box1 {
+    color: red;
+}
+
+.box2 {
+    color: green;
+} */

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /*直接和间接后代*/
+        div span {
+            /*span1和span2都符合*/
+        }
+
+        div p span {
+            /*span3也符合，div和p也可以是爷孙关系*/
+            color: blue;
+        }
+
+        /*直接span子元素*/
+        div > span {
+
+        }
+
+        .example1bottom > span {
+
+        }
+
+        .example1bottom > .spn {
+
+        }
+
+
+        /*div后面紧挨着的一个p*/
+        div + p {}
+        /*div后面所有的p*/
+        div ~ p {}
+
+
+        /*交集*/
+        /*同时符合是div且class有one*/
+        div.one {}
+        /*且*/
+        div.one[title="xx"]{}
+
+        /*并集*/
+        /*只要符合一个*/
+        div, .two, [title="xx"]{}
+    </style>
+</head>
+<body>
+<div>
+    <span>span1</span>
+    <p class="example1bottom">
+        <span class="spn">span2</span>
+    </p>
+
+    <span>
+        <p>
+            <span>span3</span>
+        </p>
+    </span>
+</div>
+
+<div class="one">one</div>
+<div class="two">two</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "pages":[
+    "pages/feed/feed",
+    "pages/my/my",
+    "pages/detail/detail"
+  ],
+  "tabBar": {
+    "selectedColor": "#ff5777",
+    "list": [
+        {
+            "pagePath": "pages/feed/feed",
+            "text": "Feed",
+            "iconPath": "/assets/images/tabbar/home.png",
+            "selectedIconPath": "/assets/images/tabbar/home_active.png"
+        },
+        {
+            "pagePath": "pages/my/my",
+            "text": "My",
+            "iconPath": "/assets/images/tabbar/profile.png",
+            "selectedIconPath": "/assets/images/tabbar/profile_active.png"
+        }
+    ]
+  },
+  "window":{
+    "navigationBarBackgroundColor": "#ff5777",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,25 @@
+/* components/mytab/mytab.wxss */
+.mytab {
+    display: flex;
+    height: 88rpx;
+    line-height: 88rpx;
+
+    border-style: solid;
+    border-color: greenyellow;
+    border-radius: 15rpx;
+}
+
+.tab-item {
+    flex: 1;
+    text-align: center;
+}
+
+.actived {
+    color: red;
+    
+}
+
+.actived text {
+    padding: 15rpx 15rpx;
+    border-bottom: 6rpx solid red;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transition</title>
+
+    <style>
+        .box {
+            background-color: blue;
+        }
+        .inner {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            transition: all 100ms linear;
+        }
+
+        .inner:hover {
+            /*width: 120px;*/
+            /*height: 120px;*/
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="inner">hhh</div>
+</div>
+</body>
+</html>

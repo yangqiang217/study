@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /*常用的伪元素：（可以:或者::，为了和伪类区分建议::）*/
+        /*:first-line或 ::first-line，很少用*/
+        /*::first-letter，很少用*/
+        /*::before，经常用*/
+        /*::after，经常用*/
+
+        p {
+            width: 400px;
+            background-color: red;
+        }
+
+        /*首字母*/
+        /*p::first-letter {*/
+        /*    font-size: 50px;*/
+        /*}*/
+        /*首行*/
+        /*p::first-line {*/
+        /*    font-size: 50px;*/
+        /*}*/
+
+        /*行内元素，不能设置宽高，除非inline block*/
+        /*content可以是""但是不能省略*/
+        /*::before*/
+        span::before {
+            content: "1";
+            margin-right: 20px;
+            background-color: red;
+
+            display: inline-block;
+            width: 200px;
+            height: 100px;
+        }
+        /*after*/
+        span::after {
+            content: url("https://www.baidu.com/img/bd_logo1.png");
+        }
+    </style>
+</head>
+<body>
+<p>
+    司法局欧文公安局佛奥委会公安局是否课件啊我如果后安慰奖佛你嘎哈哦设计费司法局欧文公安局佛奥委会公安局是否课件啊我如果后安慰奖佛你嘎哈哦设计费司法局欧文公安局佛奥委会公安局是否课件啊我如果后安慰奖佛你嘎哈哦设计费
+</p>
+
+<span>
+    i am span
+</span>
+</body>
+</html>

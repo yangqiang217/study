@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    /*
+    1.触屏事件
+    常用事件：
+        touchstart：触摸到一个DOM元素时触发
+        touchmove
+        touchend
+    触摸事件对象常用属性：
+        touches：正在触摸屏幕的所有手指列表，end事件没有
+        targetTouches(常用)：正在触摸当前DOM元素的手指的列表，end事件没有
+        changedTouches：手指状态发生改变的列表，从无到有，从有到无变化
+     */
+    // const d = document.querySelector(".box");
+    // d.addEventListener("touchstart", (event) => {
+    //     console.dir(event.targetTouches[0]);
+    // })
+
+    /*
+    移动端的click会延迟300ms解决方案（因为在等缩放事件）
+    1.禁用缩放：
+        <meta name="viewport" content="user-scalable=no">
+    2.自己封装touch事件
+        见https://www.bilibili.com/video/BV1k4411w7sV?p=155的03:50
+    3.fastclick插件
+    */
+</script>
+</body>
+</html>

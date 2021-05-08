@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+</head>
+<body>
+<button id="btn">btn</button>
+
+<div id="btncontainer">
+    <button>btn1</button>
+    <button>btn2</button>
+    <button>btn3</button>
+    <button>btn4</button>
+    <button>btn5</button>
+</div>
+<script>
+    /*常用事件：
+    onclick
+    onmouseover
+    onmouseenter：鼠标移动到元素上
+        和mouseover的区别：
+            mouseover鼠标经过自身会触发，经过子也触发；
+            mouseenter只经过自身触发，因为mouseenter子不会冒泡
+    onmouseout
+    onfocus
+    onblur: 失去鼠标焦点
+    onmousemove
+    onmouseup
+    onmousedown
+    onscroll
+    */
+
+    const btn = document.getElementById("btn");
+    btn.onclick = function () {
+        console.log("btn clicked");
+    }
+
+
+    // 给5个按钮设置点击事件
+    const btncontainer = document.querySelector("#btncontainer");
+    const btns = btncontainer.getElementsByTagName("button");
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].onclick = function () {
+            btns[i].style.backgroundColor = "red";
+        }
+    }
+</script>
+</body>
+</html>

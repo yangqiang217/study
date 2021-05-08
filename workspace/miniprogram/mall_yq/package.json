@@ -1,0 +1,18 @@
+{
+  "name": "mall_yq",
+  "version": "1.0.0",
+  "description": "mall yq",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mall",
+    "yq"
+  ],
+  "author": "yq",
+  "license": "ISC",
+  "dependencies": {
+    "apifm-wxapi": "^3.8.0"
+  }
+}

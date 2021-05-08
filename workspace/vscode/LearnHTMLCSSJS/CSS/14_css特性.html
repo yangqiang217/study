@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css特性</title>
+
+    <style>
+        /*1.继承：一个元素如果没有设置某属性，就会跟随父元素的值，color，font-size等，width/height不会*/
+        .example1bottom {
+            color: red;
+        }
+        /*继承注意：继承的是计算值，不是指定值，比如爷是20px，父指定了1em，子继承的就是20px而不是1em*/
+
+        /*2.层叠，允许多个相同名字的css属性层叠在同一元素上*/
+        /*基本层叠：后面覆盖前面的，前提是使用相同的选择器*/
+        .box2 {
+            color: red;
+        }
+        .box3 {
+            background-color: blue;
+            /*后面的颜色覆盖掉前面的*/
+            color: purple;
+        }
+        .box4 {
+            width: 300px;
+        }
+
+        /*选择器不同时，按权重决定：
+        !important:10000
+        内联:1000
+        id:100
+        class:10
+        元素:1
+        通配:0
+        */
+        div {
+
+        }
+        #main {
+            color: red;
+        }
+        .box5 {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p>i am p</p>
+</div>
+
+<div class="box2 box3 box4">i am base div</div>
+<div class="box5" id="main">i am div</div>
+</body>
+</html>

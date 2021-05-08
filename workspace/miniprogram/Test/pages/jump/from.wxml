@@ -1,0 +1,14 @@
+<button>{{title}}</button>
+<!--navigator页面跳转--> 
+<!--navigate目标页面不能在tabBar中--> 
+<!--除了url外还有个open-type，取值：
+redirect: 关闭当前页面并跳转到目标页面，不能跳转tabBar页面，不能返回
+switchTab: 跳转到在tabBar中定义过的tabBar页面并关闭所有其它页面
+reLaunch: 关闭所有页面并打开某个页面，可以跳转tabBar页面--> 
+<navigator url='/pages/jump/target'>跳转到target</navigator>
+
+<!--数据传递-->
+<navigator url='/pages/jump/target?name=yq&age=18'>跳转到target带参数</navigator>
+
+<!--通过代码跳转-->
+<button style="margin-top:50px" bindtap="handleJumpByCode">代码跳转</button>

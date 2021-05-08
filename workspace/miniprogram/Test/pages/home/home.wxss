@@ -1,0 +1,73 @@
+/* pages/home/home.wxss */
+.title {
+    color: red;
+    font-size: 20px;
+}
+
+.plus {
+    width: 50px;
+    height: 50px;
+    color: white;
+    margin-left: 20px;
+    background-color: #ffb421;
+}
+
+.image {
+    width: 40px;
+    height: 40px;
+}
+
+.input {
+    border: 1px solid #ffb421;
+    margin: 3px 30px;
+}
+
+.xscrollview{
+    background-color: #990000;
+    white-space: nowrap;
+}
+.xscrollitem {
+    height: 20px;
+    background-color: #777777;
+    margin: 10px;
+    display: inline-block;/*让元素别独占一行*/
+}
+
+.yscrollview{
+    background-color: #009900;
+    height: 100px;
+    margin-top: 5px;
+}
+.yscrollitem {
+    height: 20px;
+    background-color: #777777;
+    margin: 10px;
+}
+
+.flexcontainer {
+    display: flex;/*flex布局*/
+}
+
+.flexitem {
+    flex: 1;
+    text-align: center;
+}
+
+.eventpass1 {
+    height: 100rpx;
+    background-color: red;
+}
+.eventpass2 {
+    width: 600rpx;
+    height: 80rpx;
+    background-color: green;
+}
+.eventpass3 {
+    width: 400rpx;
+    height: 60rpx;
+    background-color: blue;
+}
+
+.settocpn {
+    color: blue;
+}

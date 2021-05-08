@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/tv_item_course_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"
+        tools:text="课程名"/>
+
+    <TextView
+        android:id="@+id/tv_item_course_credit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:textSize="14sp"
+        tools:text="3.5学分"/>
+
+    <TextView
+        android:id="@+id/tv_item_course_totaltime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_course_name"
+        android:layout_alignLeft="@id/tv_item_course_name"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        tools:text="18课时"/>
+
+    <TextView
+        android:id="@+id/tv_item_course_obligatory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_alignTop="@id/tv_item_course_totaltime"
+        android:layout_alignParentRight="true"
+        android:textSize="14sp"
+        tools:text="必修"/>
+
+    <CheckBox
+        android:id="@+id/cb_item_course_ischoose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:buttonTint="@color/main_color"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_line"
+        android:layout_below="@id/tv_item_course_totaltime"
+        android:layout_marginTop="10dp"/>
+</RelativeLayout>

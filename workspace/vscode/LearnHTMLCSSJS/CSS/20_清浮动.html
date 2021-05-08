@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>清浮动</title>
+
+    <style>
+        /*clear常用取值：
+        left：要求元素顶部低于之前生成的所有左浮动元素的底部。比如在浮动的父元素下面加个div，要求此div在浮动元素下面，为了不让此div跑上面，给此div加clear属性
+        right：要求元素顶部低于之前生成的所有右浮动元素的底部。
+        both：left+right，所有浮动元素的底部
+        注：clear清除浮动的方法（box2）不推荐，因为：
+        1.增加无意义的空标签
+        2.违反结构与样式分离的原则
+
+
+        */
+
+        .container {
+            background-color: red;
+        }
+
+        .item {
+            float: left;
+            width: 240px;
+            height: 100px;
+            margin-left: 20px;
+            background-color: blue;
+        }
+
+        /*.box2 {*/
+        /*    clear: both;*/
+        /*}*/
+
+        /*伪元素默认是行内级*/
+        .clear-fix::after {
+            content: "";
+            clear: both;
+            display: block;
+
+            height: 0;/*兼容旧浏览器*/
+            visibility: hidden;/*兼容旧浏览器*/
+        }
+        .clear-fix {
+            *zoom: 1;/*兼容IE6、7*/
+        }
+    </style>
+
+</head>
+<body>
+<div class="container clear-fix">
+    <div class="wrap">
+        <div class="item itema"></div>
+        <div class="item itema"></div>
+    </div>
+</div>
+<!--<div class="box2"></div>-->
+<p>i am p</p>
+
+</body>
+</html>

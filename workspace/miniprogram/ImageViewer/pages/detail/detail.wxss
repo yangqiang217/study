@@ -1,0 +1,5 @@
+/* pages/detail/detail.wxss */
+.detail-img {
+    vertical-align: bottom;
+    margin-bottom: 2rpx;
+}

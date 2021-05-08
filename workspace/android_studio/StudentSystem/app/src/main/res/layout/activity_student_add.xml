@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/layout_stu_add_nav"
+        layout="@layout/layout_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"/>
+
+    <TextView
+        android:id="@+id/tv_stu_add_confirm"
+        style="@style/long_button"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:text="确认添加"/>
+
+    <com.studentsystem.view.PersonEditView
+        android:id="@+id/v_stu_add_personedit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_stu_add_nav"
+        android:layout_above="@id/tv_stu_add_confirm"/>
+</RelativeLayout>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bcg image</title>
+    <style>
+        .container {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+
+            /*可设置多张，默认显示第一张，第一张不可用显示第二章*/
+            /*如果元素没有宽高，背景图不会撑起元素*/
+            background-image: url("https://www.baidu.com/img/bd_logo1.png"), url("https://www.baidu.com/img/bd_logo1.png");
+            /*默认repeat*/
+            background-repeat: no-repeat;
+
+            /*等比例拉伸覆盖全部，图片可能超出*/
+            /*background-size: cover;*/
+            /*等比例拉伸图片显示全*/
+            /*background-size: contain;*/
+            /*宽度的百分比*/
+            /*background-size: 50%;*/
+            /*宽+高的百分比*/
+            /*background-size: 50% 33%;*/
+
+            /*如果只设置了一个，另外一个方向默认center*/
+            /*background-position: left top;*/
+
+            /*sprite：将各种小图片合并到一张图片上，利用css的背景定位来显示对应的图片
+            好处：减少http请求数量、减少图片总大小
+            就是搞一张大图按照坐标和background-position只显示其中一部分，其它部分都不在视觉范围内
+            */
+
+            /*不常用
+            如果内容超出导致元素需要滚动，background-attachment规定背景方式的滚动行为*/
+            /*背景图片跟随浏览器一起滚动（default）内容滚动背景图不动*/
+            /*background-attachment: scroll;*/
+            /*背景图跟随浏览器及元素内容一起滚动，内容滚动背景图也滚动*/
+            /*background-attachment: local;*/
+            /*背景图片相对于浏览器窗口固定，浏览器滚动背景图不动，直到元素全都滚上去了就被遮盖*/
+            /*background-attachment: fixed;*/
+
+            /*background缩写属性
+            image position/size repeat attachment color
+            size可以省略，如果写，必须在position后面
+            其它元素都可以省略，且顺序任意
+            */
+
+        }
+    </style>
+</head>
+<body>
+<!--用于设置元素背景图片-->
+<!--会盖在（不是覆盖）background-color的上面-->
+<div class="box"></div>
+</body>
+</html>

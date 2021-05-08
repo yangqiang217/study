@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盒子</title>
+    <style>
+        span {
+            /*1.内容相关属性*/
+            width: 100px;
+            height: 100px;
+            /*浏览器缩放的时候不至于太小*/
+            min-width: 500px;
+            min-height: 100px;
+            /*太多换行*/
+            max-width: 500px;
+            max-height: 100px;
+
+            /*2.padding相关属性*/
+            padding-top: 1px;
+            padding-right: 2px;
+            padding-bottom: 3px;
+            padding-left: 4px;
+            /*
+            top, right, bottom, left
+            如果3个，表示缺少left，此时left和right一样
+            如果2个，表示缺少bottom和left，此时left和right一样，bottom和top一样
+            如果1个，表示四边一样
+            */
+            padding: 1px 2px 3px 4px;
+
+
+            /*3.margin相关属性*/
+            margin-top: 1px;/*注：如果是百分比，那么值是width的百分比而不是高度的*/
+            margin-right: 1px;
+            margin-bottom: 1px;
+            margin-left: 1px;
+            /*简写规则和padding一样
+            两个值经常用于居中: margin: 0px auto*/
+            margin: 1px 2px 3px 4px;
+
+            /*margin传递，只有上下传递左右不会传递*/
+            /*margin-top传递：
+            如果块级元素的顶部线和父元素的顶部线重叠，那么此块级元素的margin-top值会传递给父元素，即相当于给父设置了margin-top，（见例1）*/
+            /*margin-bottom传递：（较少见）
+            如果块级元素的底部线和父元素的底部线重叠，!且父元素的高度是auto（高度默认就是auto）!，那么此块级元素的margin-bottom值会传递给父元素*/
+            /*解决方式：
+            1.设置padding使边线不重叠(不好)
+            2.给父设置border使边线不重叠(不好)
+            3.触发BFC(block format context结界)(好)
+                3.1 浮动
+                3.2 设置元素overflow为非visible(hidden, auto, scroll)
+            4.不设置margin，设置父的padding(建议用)
+            */
+
+            /*上下margin折叠：
+            垂直方向相邻的2个margin可能会合并为1个margin，此现象称为collapse(折叠)，如果值不相同，按大的算。这种折叠效果其实有用，
+            比如多段都有设置上下margin就会有美观
+            水平不会
+            解决：
+            BFC不管用
+            就只给一个设置
+            */
+
+
+            /*4.border相关属性，border会增加大小*/
+            /*宽度*/
+            border-top-width: 1px;/*等*/
+            border-width: 1px;
+
+            /*颜色*/
+            border-top-color: red;/*等*/
+            border-color: red;
+
+            /*样式*/
+            border-top-style: solid;/*等*/
+            border-style: solid;
+
+            /*组合，不区分顺序*/
+            border: 1px solid red;
+            border-top: 2px solid red;/*等*/
+
+            /*可用边框相关属性实现三角形箭头，见例3*/
+
+
+            /*5.圆角，见例4。圆形，见例5*/
+
+
+            /*6.outline属性，和border不同，outline虽然也会向外扩展，但不会增加大小，周围元素会被覆盖*/
+            /*相关属性：outline-width, outline-style, outline-color等都和border一样，style取值也一样*/
+            /*应用场景: 去除a元素、input元素的focus轮廓效果(即按tab的时候)：outline:none*/
+
+
+            /*7.box-shadow*/
+            /*每个阴影用<shadow>表示*/
+            /*多个阴影用逗号隔开*/
+            /*
+            格式：inset? && length{2,4} && color：&&表示顺序任意
+            inset：扩散方式，内、外，一般不写
+            第1个length：水平方向偏移
+            第2个length：垂直方向偏移
+            第3个length：模糊半径
+            第4个length：向外延伸扩散（即比原来大）
+            color：如果没有，则和原来一样
+            练习见例6
+            */
+
+
+            /*8.text-shadow*/
+            /*参数取值和box-shadow一样，但没有inset*/
+            /*同样适用于::first-letter, ::first-line*/
+
+
+            /*9.box-sizing：规定设置的width是否包含padding和border*/
+            /*设置宽高时只是指定内容的宽高，不包括padding和border，最后大小是这几个的和*/
+            box-sizing: content-box;
+            /*设置宽高时只是指定内容+内边距+边框的宽高，包括padding和border，最后大小是width*/
+            box-sizing: border-box;
+        }
+
+        /*例1*/
+        .example1top {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+        .example1bottom {
+            width: 400px;
+            height: 200px;
+            background-color: orange;
+        }
+        .container {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+
+            /*左右不会传递*/
+            /*margin-left: 20px;*/
+            margin-top: 20px;
+        }
+
+        /*例2*/
+        .example2top {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+
+            margin-bottom: 20px;
+        }
+        .example2bottom {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+
+            margin-top: 20px;
+        }
+
+        /*例3，箭头*/
+        .example3 {
+            border-top: 50px solid #ff0000;
+            border-left: 50px solid transparent;
+            /*宽高都是0表示只要边框*/
+            width: 0;
+            height: 0;
+            background-color: transparent;
+            /*transform: rotate(-45deg);*/
+        }
+
+        /*例4，圆角*/
+        .example4 {
+            width: 200px;
+            height: 100px;
+            background-color: red;
+
+            border-radius: 30px;
+        }
+        /*例5，圆形*/
+        .example5 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            border: 5px solid blue;
+            /*当前元素的border-padding-width的百分比*/
+            border-radius: 50%;
+        }
+
+        /*例6，阴影*/
+        .example6 {
+            width: 200px;
+            height: 300px;
+
+            background-color: #eeeeee;
+            border: 1px solid orange;
+
+            /*方法1：不太好，会重叠*/
+            /*box-shadow: 5px 5px 10px,*/
+            /*            -5px -5px 10px;*/
+
+            /*方法2：*/
+            box-shadow: 0 10px 10px 10px rgba(0, 0, 0, .2);
+        }
+
+        /*例7，box-sizing*/
+        .example7 {
+            font-size: 25px;
+            font-weight: 700;
+
+            text-shadow: 5px 5px red;
+        }
+    </style>
+</head>
+<body>
+<div>例1--------------</div>
+<div class="example1top"></div>
+<div class="example1bottom">
+    <div class="inner"></div>
+</div>
+
+<div>例2--------------</div>
+<div class="example2top"></div>
+<div class="example2bottom"></div>
+
+<div>例3--------------</div>
+<div class="example3"></div>
+
+<div>例4--------------</div>
+<div class="example4"></div>
+
+<div>例5--------------</div>
+<div class="example5"></div>
+
+<div>例6--------------</div>
+<div class="example6"></div>
+
+<div>例7--------------</div>
+<div class="example7">的射流风机阿拉善</div>
+
+</body>
+</html>

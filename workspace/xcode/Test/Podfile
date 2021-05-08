@@ -1,0 +1,5 @@
+platform :ios, '8.0'
+
+target "Test" do
+  pod 'SDWebImage', '~> 5.2.5'
+end

@@ -1,0 +1,6 @@
+<!--pages/feed/feed.wxml-->
+<water-fall-view id="water-fall" bind:coverclick="onCoverClick" />
+
+<view class="search">
+    <input type="text" value="{{searchKey}}" bindinput="onInput" bindconfirm="onInputConfirm"></input>
+</view>

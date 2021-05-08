@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+
+    <style>
+        fieldset {
+            width: 400px;
+        }
+
+        input, textarea {
+            outline: none;
+        }
+        input:focus, textarea:focus {
+            border-color: #4791ff;
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        textarea {
+            /*禁止拖动缩放*/
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+<!--form，表单-->
+<!--input，行内替换元素，和img一样，不会独占一行，因为展示的和写的完全不一样-->
+<!--textarea：多行-->
+<!--select、option：下拉-->
+<!--button-->
+<!--label：表单标题-->
+<!--fieldset：表单元素组-->
+<!--legend：fieldset标题-->
+
+<!--需要提交的内容name是必须的，value看情况-->
+<!--enctype:发送表单数据之前对数据进行编码，文件上传必须是enctype="multipart/form-data"，且方法必须是post，不写默认是application/x-www-form-urlencoded，text比较少-->
+<form action="http://www.baidu.com" method="post" target="_self" enctype="multipart/form-data">
+    <fieldset>
+        <legend>必填</legend>
+        <div>
+<!--            作用：点击文字也可以focus到输入框-->
+            <label for="phone">
+                手机：
+                <input id="phone" name="phone" type="text" maxlength="11" autofocus>
+            </label>
+        </div>
+
+        <div>
+            <label for="password">
+                密码：
+                <input id="password" name="password" type="password" placeholder="input password">
+            </label>
+        </div>
+
+        <div>
+            <label for="code">
+                验证码：
+                <input id="code" name="code" type="text" placeholder="输入验证码">
+            </label>
+            <!--    button method1 稍微多一点-->
+            <input type="button" value="获取验证码">
+            <!--    button method2, button的默认属性是submit-->
+            <!--    <button>获取验证码</button>-->
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>选填</legend>
+        <div>
+            <span>照片：</span>
+            <input type="file">
+        </div>
+
+        <div>
+            <span>性别：</span>
+            <!--        用name做互斥单选-->
+            <label for="male">
+                <input id="male" type="radio" name="sex" value="0" checked>
+                男
+            </label>
+            <label for="female">
+                <input id="female" type="radio" name="sex" value="1">
+                女
+            </label>
+        </div>
+
+        <div>
+            <span>爱好：</span>
+            <label for="rap">
+                <input id="rap" type="checkbox" name="hobby" value="0">
+                rap
+            </label>
+            <label for="dance">
+                <input id="dance" type="checkbox" name="hobby" value="1">
+                跳舞
+            </label>
+            <label for="basketball">
+                <input id="basketball" type="checkbox" name="hobby" value="2">
+                篮球
+            </label>
+        </div>
+
+        <div>
+            <span>学历：</span>
+            <select name="edu">
+                <option value="0">小学</option>
+                <option value="1">中学</option>
+                <option value="2" selected>大学</option>
+            </select>
+        </div>
+
+        <div>
+            <span>简介：</span>
+            <textarea cols="30" rows="6"></textarea>
+        </div>
+    </fieldset>
+
+    <div>
+        <!--    reset时value可以不写-->
+        <!--    reset起作用的前提：1.type必须是reset；2.所有内容必须在一个表单form中-->
+        <input type="reset">
+        <input type="submit" value="确认">
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,4 @@
+<!--展示include的使用-->
+<view>
+    <view>head</view>
+</view>

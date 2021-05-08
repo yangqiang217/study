@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        .p1 {
+            letter-spacing: 4px;
+        }
+        .p2 {
+            word-spacing: 4px;
+        }
+
+        .p3 {
+            /*首字母大写*/
+            text-transform: capitalize;
+        }
+
+        .p4 {
+            /*1em=此元素内的一个大小即20px*/
+            text-indent: 2em;
+            font-size: 20px;
+        }
+
+        .p5 {
+            height: 100px;
+            /*类似于word中的分散对齐，常用于多行*/
+            text-align: justify;
+        }
+
+        .div1 {
+            font-size: 20px;
+        }
+        .p6 {
+            /*此处em是相对于父元素，即div1里面的20为基准的*/
+            font-size: 2em;
+            /*同：*/
+            /*font-size: 200%;*/
+        }
+
+        .div2 {
+            /*操作系统可能没有，依次往后找*/
+            /*英文字体只适用于英文，中文字体只适用于英文，建议将英文字体写前面*/
+            font-family: "Adobe Arabic", "Source Code Pro", Monaco, serif;
+        }
+
+        .div3 {
+            /*100/200/300/400(normal)...900*/
+            font-weight: bold;
+        }
+
+        .div4 {
+            font-style: italic;/*不支持斜体的字体不斜*/
+            font-style: oblique;/*不管支持不支持斜体都会倾斜*/
+        }
+
+        .div5 {
+            /*小写边大写，除首字母外变小*/
+            font-variant: small-caps;
+        }
+
+        .div6 {
+            background-color: red;
+            line-height: 3em;
+        }
+
+        .div7 {
+            /*style variant weight size/line-height family*/
+            /*style、variant、weight可随意换顺序或者省略*/
+            /*line-height可以省略，若不省略，必须在font-size后面*/
+            /*font-size和font-family不可以调换顺序不可省略*/
+            font: italic small-caps bold 50px "宋体";
+        }
+    </style>
+</head>
+<body>
+<a href="#">百度一下</a>
+<!--默认下划线-->
+<u>u element</u>
+
+<p>word space</p>
+<p class="p1">letter space</p>
+<p class="p2">word space</p>
+
+<!--transform-->
+<p class="p3">TextTransform</p>
+
+<!--text indent-->
+<p class="p4">8日12点19分，G1005次列车抵达广州南站，332名武汉旅客抵达广州。这是1月23日武汉暂时关闭离汉通道以来，首趟武汉始发到广东的列车。
+    雨后初晴的广州，春色正浓。广州南站1站台上，志愿者们早早就已在等候。“穗汉同心，欢迎回家”“欢迎武汉返穗人员平安回家”的亲切标语中，显露的热情似乎比春色更浓。
+    广播声里，车门缓缓打开，在广州从事电商工作的程昆一步跨上站台。
+    “知道4月8号武汉解封，我第一时间就买了车票，回来的感觉真好。”程昆激动地说。
+    在武汉的两个多月，程昆一直待在家里没出过门。在此期间，企业相关负责人给程昆打了三次电话，了解健康状况，并告诉程昆不要着急，公司会给他保留职位和工作。但程昆还是希望能早一点回到工作岗位。
+</p>
+
+
+<!--text align-->
+<div class="p5">text align</div>
+</body>
+</html>
+
+<!--fontsize-->
+<div class="div1">
+    <span>in span</span>
+    <p class="p6">p in font size</p>
+</div>
+
+
+<!--fontfamily-->
+<div class="div2">字体</div>
+
+<!--fontweight 字体加粗-->
+<div>weight</div>
+<div class="div3">weight</div>
+
+<!--font style 字体斜体-->
+<div class="div4">i am font style</div>
+<!--用i做斜体的少，一般用i做小图标-->
+<i>i am i</i>
+<em>i am em</em>
+
+
+<!--font varient-->
+<div class="div5">i am font varient</div>
+
+<!--line height-->
+<div class="div6">i am line height</div>
+
+<!--font 缩写属性-->
+<div class="div7">i am font</div>

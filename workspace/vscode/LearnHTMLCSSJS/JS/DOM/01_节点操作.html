@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取元素</title>
+</head>
+<body>
+<div id="time">2019</div>
+
+<ul id="ull">
+    <li>li 1</li>
+    <li>li 2</li>
+    <li>li 3</li>
+    <li>li 4</li>
+    <li>li 5</li>
+</ul>
+
+<div class="classname">classnamediv</div>
+<script>
+    // 1.id获取
+    // 返回Element对象
+    // const time = document.getElementById("time");
+    // 打印元素对象，方便查看属性和方法
+    // console.dir(time);
+
+
+    // 2.标签名获取
+    // 返回伪数组，没有返回size是0的伪数组
+    // const li = document.getElementsByTagName("li")
+    // console.log(li[0]);
+
+    // 根据父元素获取子的elementbytagname
+    // document.getElementById("ull").getElementsByTagName("li")
+
+
+    // 3.根据类获取（h5新增）
+    // 3.1 返回集合
+    // const classname = document.getElementsByClassName("classname");
+    // console.dir(classname);
+    // 3.2 返回第一个元素对象，参数需要加符号，id用#或者直接标签名
+    // const both = document.querySelector(".classname");//
+    // console.dir(both);
+    // 3.3 返回集合，参数规则同3.2
+    // const all = document.querySelectorAll(".classname");
+
+    // 4.获取特殊元素
+    // 4.1 获取body
+    // document.body
+    // 4.2 获取html
+    // document.documentElement
+
+    //!!!!!!!!!!上述方式比较繁琐!!!!!!!!!!!
+    /*
+    5.高级节点操作
+    一般节点至少拥有nodeType, nodeName, nodeValue三个属性
+    元素节点 nodeType为1
+    属性节点 nodeType为2
+    文本节点 nodeType为3（包含文字、空格、换行）
+    实际开发中，节点操作主要操作元素节点
+
+    5.1 父级节点：node.parentNode
+    5.2 子级节点：
+        1) node.childNodes（标准，得到集合），包含元素、文本节点，即换行，所以经常会通过筛选：
+            var ul = document.querySelector("ul");
+            for (let i = 0; i < ul.childNodes.length; i++) {
+                if (ul.childNodes[i].nodeType === 1) {
+                    // ...
+                }
+            }
+          比较麻烦，所以一般不推荐使用childNodes
+        2) node.children（非标准，但可用，常用），得到只有元素节点，不用过滤
+        3) firstChild, lastChild：但返回所有节点，包括换行，所以一般拿到的都是文本节点-换行
+        4) firstElementChild, lastElementChild, 返回元素节点（IE9以上支持）
+            3和4都有缺点，所以一般用2，然后用下标
+    5.3 兄弟节点
+        1) node.nextSibling, node.previousSibling: 也包含换行内的所有节点
+        2) node.nextElementSibling, node.previousSibling（IE9以上支持）
+            1和2都有缺陷，一般封装方法：
+            function getNextElementSibling(element) {
+                let el = element;
+                while (el = el.nextSibling) {
+                    if (el.nodeType === 1) {
+                        return el;
+                    }
+                }
+                return null;
+            }
+    5.4 创建和添加节点
+        const li = document.createElement("li");
+
+        li.innerHTML = "content";
+        ul.appendChild(li);
+        ul.insertBefore(li, ul.children[n])
+    5.5 删除节点
+        const removedNode = node.removeChild(child);
+    5.6 复制节点
+        const newNode = node.cloneNode()/node.cloneNode(false)//浅拷贝，只复制节点，不复制里面子节点
+        const newNode = node.cloneNode(true)//深拷贝
+        复制完添加，参考5.4
+    5.7 三种动态创建元素的区别：
+        document.write(): 直接将内容写入页面的内容流，但如果是文档流执行完毕后调用write，页面会全部重绘
+        element.innerHTML和document.createElement()：
+            innerHTML是将内容写入DOM节点，不会导致页面去不重绘，且创建多个元素效率更高（前提是不是拼接字符串的形式而是数组拼接形式）：
+            const array = [];
+            for (let i = 0; i < 1000; i++) {
+                array.push("<div>...</div>")
+            }
+            document.body.innerHTML = array.join("");
+            create效率稍微低一些但是结构更清晰。
+    */
+
+
+</script>
+</body>
+</html>

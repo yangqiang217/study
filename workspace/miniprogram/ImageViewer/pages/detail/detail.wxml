@@ -1,0 +1,6 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail-container">
+    <block wx:for="{{imgList}}" wx:key="index">
+        <image class="detail-img" src="{{item.imgThumbnailUrl}}" style="width:{{item.itemWidth}}px;height:{{item.itemHeight}}px" bind:tap="onDetailClick" data-clickeditem="{{item}}" />
+    </block>
+</view>

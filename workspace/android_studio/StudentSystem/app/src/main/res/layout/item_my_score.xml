@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/tv_item_myscore_coursename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        tools:text="课程名"/>
+
+    <TextView
+        android:id="@+id/tv_item_myscore_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        tools:text="67分"/>
+
+    <TextView
+        android:id="@+id/tv_item_myscore_creditgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_item_myscore_score"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="8dp"
+        tools:text="获得学分：2"/>
+
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<!--components/my-waterfall-view/my-waterfall-view.wxml-->
+<import src="./templates/template.wxml"></import>
+
+<view class="waterfall-container">
+    <!-- left column -->
+    <view class="waterfall-left" style="flex-grow:{{fullColumn?1:0}}">
+        <block wx:for="{{leftList}}" wx:key="index">
+            <template is="cover-item" data="{{item}}" />
+        </block>
+    </view>
+    <!-- middle column -->
+    <view class="waterfall-middle" style="flex-grow:{{fullColumn?1:0}}">
+        <block wx:for="{{middleList}}" wx:key="index">
+            <template is="cover-item" data="{{item}}" />
+        </block>
+    </view>
+    <!-- right column -->
+    <view class="waterfall-right" style="flex-grow:{{fullColumn?1:0}}">
+        <block wx:for="{{rightList}}" wx:key="index">
+            <template is="cover-item" data="{{item}}" />
+        </block>
+    </view>
+</view>

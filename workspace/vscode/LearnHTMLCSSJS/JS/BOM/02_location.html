@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>location</title>
+</head>
+<body>
+<button>btn</button>
+<script>
+    /*
+    location对象的属性
+        href(重要)
+        host
+        port
+        pathname：返回路径
+        search(重要)：返回请求参数
+        hash：返回片段 #后面内容
+
+    location对象的方法
+        assign()：和href一样，可以跳转页面（重定向）
+        replace()：替换当前页面，因为不记录历史，所以不能后腿页面
+        reload()：重新加载，相当于刷新按钮或者f5，如果参数为true，则强制刷新(ctrl+f5)
+    */
+    console.log(location.href);
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", () => {
+        //实现浏览器跳转
+        location.href = "http://www.baidu.com";
+        // 或
+        location.assign("http://www.baidu.com");
+    })
+</script>
+</body>
+</html>

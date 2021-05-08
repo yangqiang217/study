@@ -1,0 +1,71 @@
+<!--pages/wxml/wxml.wxml-->
+<view>----------绑定属性-----------</view>
+<view>{{firstName + " " + lastName}}</view>
+<view>{{firstName}} {{lastName}}</view>
+<view>{{age > 18 ? 'alult' : 'juvenile'}}</view>
+<view>{{timeNow}}</view>
+
+<view>----------绑定样式-----------</view>
+<button size="mini" bindtap="onChangeColor" class="{{changeColor ? 'changedColor' : 'normal'}}">切换颜色</button>
+
+<view>----------条件判断------------</view>
+<view wx:if="{{isShow}}">哈哈哈</view>
+<!--只显示其中的一个-->
+<view wx:if="{{age > 60}}">old</view>
+<view wx:elif="{{age > 18}}">young</view>
+<view wx:else>child</view>
+<!--hidden和wxif控制的隐藏的区别: hidden控制的只是在css里display：none，view树里有（没有占位），wxif是view树里没有，根本没创建。hidden属性对自定义组件是无效的-->
+<view hidden>controlled by hidden</view>
+<view wx:if="{{false}}">controlled by wxif</view>
+
+<view>----------列表 wxfor------------</view>
+<view wx:for="{{['abc', 'cba', 'adb']}}">{{item}} {{index}}</view>
+<!-- <view wx:for="who">{{item}} {{index}}</view> -->
+<!-- <view wx:for="{{3}}">{{item}} {{index}}</view> -->
+
+<view>----------block------------</view>
+<!--比如为了控制下面三个view同时隐藏显示，包一层view也可以，但是性能不友好，block只接受if类的控制属性，不接受class等-->
+<!-- <button wx:if="{{isShow}}">btn</button>
+<view wx:if="{{isShow}}">view</view>
+<text wx:if="{{isShow}}">text</text> -->
+<!--可以用以下写法-->
+<block wx:if="{{isShow}}">
+    <button>btn</button>
+    <view>view</view>
+    <text>text</text>
+</block>
+
+<view>-----替换item和index名称----</view>
+<!-- <block wx:for="{{twoDArray}}">
+    <block wx:for="{{item}}">//这两个地方的item有歧义
+        <view>{{item}}</view>
+    </block>
+</block> -->
+<block wx:for="{{twoDArray}}" wx:for-item="outeritem">
+    <block wx:for="{{outeritem}}" wx:for-item="inneritem" wx:for-index="innerindex">
+        <view>{{inneritem}} {{innerindex}}</view>
+    </block>
+</block>
+
+<view>-----key的作用----</view>
+<!--如果某一层有很多列表item的节点，要往中间插入一个时如果没有key，那么就是和数组插入一样插入点后面所以元素都要变，如果有key就和链表一样只是插入-->
+<!--key必须是每个item不一样的，如果下面的数组都是a，那么key就没什么用了-->
+<!--这里的key后来改成不用{{}}了，用了会报警告：wx:key="{{item}}" does not look like a valid key name (did you mean wx:key="item" ?)-->
+<view wx:for="{{['a', 'b', 'c']}}" wx:key="item">{{item}}</view>
+
+<view>-----template----</view>
+<!--主要用于组件的复用，单纯的只写个template里面的view是不会被渲染的，现在有自定义组件了所以这个用的少了-->
+<!--声明-->
+<!-- <template name="tpl">
+    <button size="mini">{{btnTextTpl}}</button>
+    <view>{{vTpl}}</view>
+</template> -->
+<!--导入模板（假如template.xml里面也有import XXX，那么此处不能用XXX的东西）-->
+<import src="/wxml/template.wxml"/>
+<!--使用-->
+<template is="tpl" data="{{btnTextTpl: 'btn tpl', vTpl: 'v tpl'}}"/>
+<template is="tpl" data="{{btnTextTpl: 'btn tpl2', vTpl: 'v tpl2'}}"/>
+
+<view>-----include----</view>
+<!--include不能导入template，和import不同，假如header.xml里include了XXX，此处是可以显示XXX的-->
+<include src="/wxml/header.wxml"/>

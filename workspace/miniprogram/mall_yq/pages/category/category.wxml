@@ -1,0 +1,43 @@
+<!-- pages/category/category.wxml -->
+<view class="container">
+  <view class="search">
+    <input type="text" placeholder="输入搜索关键词" value="{{name}}" bindinput="bindinput" bindconfirm="bindconfirm"></input>
+    <image src="/images/icon/search.svg"></image>
+  </view>
+  <view class="content-container">
+    <scroll-view class="category-container" scroll-with-animation scroll-y>
+      <view class="category {{categorySelected.id==category.id?'active':''}}"
+            wx:for="{{categories}}" wx:for-item="category" wx:key="id" data-id="{{category.id}}"
+            bind:tap="onCategoryClick">
+        <view class="name {{categorySelected.id==category.id?'active':''}}">{{category.name}}</view>
+      </view>
+    </scroll-view>
+    
+    <scroll-view class="goods-container" scroll-y="{{true}}"
+        scroll-top="{{scrolltop}}" wx:if="{{onLoadStatus}}">
+      <view class="no-data" wx:if="{{!currentGoods}}">
+        <view class="line"></view>
+        <view class="txt">暂无商品</view>
+        <view class="line"></view>
+      </view>
+
+      <view class="goods" wx:for="{{currentGoods}}" wx:key="id">
+        <image class="pic" mode="aspectFill" src="{{item.pic}}" data-id="{{item.id}}" bind:tap="toDetailsTap" />
+        <view class="name ellipsis" data-id="{{item.id}}" bind:tap="toDetailsTap">{{item.name}}</view>
+        <view class="soldInfo">
+          <view class="good-price-box">
+            <text class="price">￥{{item.minPrice}}</text>
+          </view>
+        </view>
+        <view class="soldInfo">
+          <view class="good-sales-box">
+            <text class="number">已售{{item.numberSells}}件</text>
+            <text>评价 +{{item.gotScore}}积分</text>
+          </view>
+        </view>
+        <image class="car" src="/images/icon/car.svg" data-id="{{item.id}}" bind:tap="addShopCar" />
+      </view>
+    </scroll-view>
+  </view>
+</view>
+

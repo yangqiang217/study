@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>水平居中</title>
+
+    <style>
+        .container {
+            height: 600px;
+            background-color: red;
+
+            /*1.普通文本*/
+            /*text-align: center;*/
+            /*2.行内元素*/
+            /*text-align: center;*/
+            /*3.行内替换元素*/
+            /*text-align: center;*/
+            /*4.行内块级元素inline-block*/
+            /*text-align: center;*/
+            /*5.块级元素*/
+            /*text-align: center;作用仅仅是因为继承让子元素的内容居中，子元素本身没居中*/
+        }
+
+        strong {
+            background-color: purple;
+        }
+
+        .ib {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+
+        .block {
+            background-color: blue;
+            width: 500px;
+            height: 200px;
+
+            /*原因：
+            1.margin的默认值是0
+            2.auto的时候浏览器会将剩余空间都分配给你，比如margin-left:auto/margin-right:0的时候就都会分给left，控件将右居中
+            3.所以都是auto的时候就会平分
+            4.上下margin设置auto无法实现上下居中，和左右不同，上下auto表示值是0，上下居中一般就顶部margin
+            */
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+<!--    1.普通文本-->
+<!--    div-->
+<!--    2.行内元素-->
+<!--    <strong>strong</strong>-->
+<!--    3.行内替换元素-->
+<!--    <img src="https://www.baidu.com/img/bd_logo1.png">-->
+<!--    4.行内块级元素:inline-block -->
+<!--    <span class="ib"></span>-->
+<!--    5.块级元素 -->
+    <div class="block">hhh</div>
+</div>
+</body>
+</html>

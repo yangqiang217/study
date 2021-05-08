@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flex</title>
+
+    <style>
+        /*设置display属性为flex或者inline-flex可以成为flex container
+        display可取值：
+        flex：flex container以block-level形式存在
+        inline-flex：flex container以inline-level形式存在
+        */
+
+        /*
+        flex container上的属性：
+        1.flex-flow：flex-direction || flex-wrap的简写，可以省略，顺序任意
+        2.flex-direction：main axis方向
+            flex items默认沿着main axis从main start往main end排布，不再区分块级和行内级
+            取值：row(default)；row-reverse；column；column-reverse
+        3.flex-wrap：container是单行还是多行
+            取值：
+            1) no-wrap(default)：单行
+            2) wrap：多行
+            3) wrap-reverse：多行(对比wrap，cross start与cross end相反)
+        4.justify-content：flex item在main axis上的对齐方式
+            取值：
+            1) flex-start(default)：与main start对齐
+            2) flex-end：与main end对齐
+            3) center：居中
+            4) space-between：flex items间距相等，item与main start、main end两端对齐
+            5) space-evenly：flex items间距相等，item与main start、main end之间距离相等，距离等于flex item间距
+            6) space-around：flex items间距相等，item与main start、main end之间距离是flex item间距的一半
+            注：多行平分的时候可能最后一行元素不能和上面对齐，一般给最后一行补齐空元素
+        5.align-items：flex items在cross axis上的对齐方式
+            取值：1)和2)用的不多
+            1) normal：在flex布局中效果和stretch一样
+            2) stretch：当items在cross axis方向的size为auto时，会自动拉伸填充container
+            3) flex-start：与cross start对齐
+            4) flex-end：与cross end对齐
+            5) center：居中
+            6) baseline：首行文本的基线对齐
+        6.align-content：多行items在cross axis上的对齐方式，用法与justify-content类似
+            取值：
+            1) stretch(default)：与align-item的stretch类似
+            2) flex-start：与cross start对齐
+            3) flex-end：与cross end对齐
+            4) center：居中
+            5) space-between：flex items间距相等，item与cross start、cross end两端对齐
+            6) space-evenly：flex items间距相等，item与cross start、cross end之间距离相等，距离等于flex item间距
+            7) space-around：flex items间距相等，item与cross start、cross end之间距离是flex item间距的一半
+
+        flex item上的属性（用的不多）
+        1.flex：是flex-grow || flex-shrink || flex-basis的简写，可以指定1、2、3个值
+            1个值：无单位数会被当做flex-grow，有效的宽度会被当做flex-basis，none、auto或initial
+            2个值：第一个必须是无单位数，会被当做flex-grow，第二个必须是以下之一：无单位，被当做flex-shrink；有效宽度，被当做flex-basis
+            3个值：第一个必须是无单位，被当做flex-grow；第二个必须是无单位，被当做flex-shrink；第三个必须是有效宽度，被当做flex-basis
+        2.flex-grow：flex items如何扩展，比如一行500的宽度3个元素每个100还剩200，那此3个元素继续拓宽瓜分剩余宽度
+            取值：任意非负数字(小数、整数、0(default))，当container在main axis方向上有剩余size时，flex-grow才生效
+            如果所有item的grow综合sum超过1，每个item扩展为：剩余size * flex-grow / sum，即每个item的grow占总grow的百分比
+            如果grow综合不超过1，每个item扩展size为：剩余size * flex-grow，即小数数值就是百分比
+            item扩展后的最终size不能超过max-width/max-height
+        3.flex-basis：设置items在main axis上的base size
+            取值：auto(default)、具体的宽度数值
+            决定items最终base size的因素，从优先级高到低：
+                max-width/max-height/min-width/min-height
+                flex-basis
+                width/height
+                内容本身size
+        4.flex-shrink：多行的时候没换行可能item被压缩，此值规定压缩规则，当items在main axis方向超过了container的size，此属性才有效
+            取值：任意非负数字(小数、整数、0)，默认1
+            如果所有shrink总和超过1，每个收缩size为：items超出container的size * 收缩比例 / 所有items收缩比例之和
+            如果所有shrink和不超过1，
+                每个收缩size为：items超出container的size * sum * 收缩比例 / 所有items收缩比例之和；
+                收缩比例=flex-shrink * flex item的base size(即flex item放入container之前的size)
+            items收缩后的最终size不能小于min-width/min-height
+        5.order：flex items的排布顺序，默认0，可以去任意整数，越小越前面
+        6.align-self：items可以通过此属性覆盖flex container设置的align-items
+            取值：
+            auto(default)：遵从flex container的align-items设置
+            stretch, flex-start, flex-end, center, baseline效果和align-items一致
+        */
+
+        .box {
+            width: 550px;
+            height: 400px;
+            background-color: orange;
+
+            display: flex;
+            /* flex-wrap: wrap; */
+            /* flex-direction: column; */
+            /* justify-content: space-around; */
+            /* align-items: center; */
+            /*flex-wrap: wrap-reverse;*/
+            flex-flow: row wrap;
+            /* align-content: center; */
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+        }
+        .item1 {
+            /* flex-grow: 1; */
+            background-color: red;
+        }
+        .item2 {
+            background-color: green;
+            
+        }
+        .item3 {
+            background-color: blue;
+            align-self: flex-end;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="item item1">item1</div>
+    <div class="item item2">item2</div>
+    <div class="item item3">item3</div>
+<!--    <div class="item item3">item4</div>-->
+<!--    <div class="item item3">item5</div>-->
+<!--    <div class="item item3">item6</div>-->
+<!--    <div class="item item3">item7</div>-->
+</div>
+<strong>strong</strong>
+</body>
+</html>

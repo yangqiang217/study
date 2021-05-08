@@ -1,0 +1,5 @@
+<!--pages/my/my.wxml-->
+<view class="base-url-container">
+    <input type="text" value="{{baseUrl}}" bind:input="onBaseUrlInput"></input>
+    <text bind:tap="onBaseUrlConfirm">确定</text>
+</view>

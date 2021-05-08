@@ -1,0 +1,70 @@
+<!--脱离标准流元素（position: fixed/absolute、float）的特点：
+1.可以设置宽高
+2.宽高默认由内容决定
+3.不再给父元素汇报宽高数据（比如div里只有个脱离的，会认为此div里面没东西，宽高为0）
+
+脱标元素和display的关系：基本都是变成block
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>position</title>
+    <style>
+        div {
+            background-color: red;
+        }
+
+        a {
+            /*位移不会影响周围元素位置，relative应用：对原来位置进行微调*/
+            /*position: relative;*/
+            /*right: -50px;*/
+
+            /*会脱离标准流，后面元素会上前补齐，设置位置相对视口，不会随着滚动而滚动*/
+            /*position: fixed;*/
+            /*left: 100px;*/
+            /*top: 200px;*/
+
+            /*会脱离标准流，定位参照对象是最邻近的非static元素，最上参考视口，
+            一般都是参考父元素，但父元素一般又不用static且不脱标，所以父一般都用相对，此称"子绝父相"*/
+            /* position: absolute;
+            left: 100px; */
+
+
+            /*对于绝对定位元素（absolute、fixed）:
+            定位参照对象宽度=left + right + marginleft + marginright + 绝对定位元素实际占用宽度
+            定位参照对象高度=top + bottom + margintop + marginbottom + 绝对定位元素实际占用高度
+            应用：
+            1.absolute的铺满relative的父元素的全屏：
+            left:0; right:0; top:0; bottom:0
+            2.让内容居中
+            left:0; right:0; margin:0 auto;
+            */
+
+
+            /*层叠关系：
+            一：父子：
+                子在父上面
+            二：非父子：
+                1.都是static的，一般不存在层叠
+                2.一个是定位，一个是static：定位元素会在static元素上面
+                3.都是定位：后面盖前面，或者使用z-index控制，z-index可以取整数，默认auto，有人和它比他就是0
+                    z-index比较原则：
+                    a.如果是兄弟：z越大越上面，z相等按元素顺序
+                    b.如果不是兄弟
+                        各自从元素自己以及祖先中找出最邻近的2个定位元素进行比较
+                        而且这2个定位元素必须有设置z-index
+            */
+        }
+    </style>
+</head>
+<body>
+<span>span</span>
+<strong>strong</strong>
+<div>div</div>
+
+<a href="#">a</a>
+
+<i>i am i</i>
+</body>
+</html>

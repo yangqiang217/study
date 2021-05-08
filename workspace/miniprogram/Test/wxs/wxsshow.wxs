@@ -1,0 +1,16 @@
+var msg = "hello";
+function sum(num1, num2) {
+    return num1 + num2;
+}
+
+function priceFormat(price, number) {
+    var number = number || 2;
+    return price.toFixed(number);
+}
+
+//上面定义的东西默认是私有的，外面用需要导出
+module.exports = {
+    msg: msg,
+    sum: sum, 
+    priceFormat: priceFormat
+}

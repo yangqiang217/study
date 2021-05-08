@@ -1,0 +1,17 @@
+/* components/mycpn/mycpn.wxss */
+.mycpn {
+    border-style: solid;
+    border-color: darkorange;
+    border-radius: 15rpx;
+}
+
+.title {
+    font-size: 40rpx;
+    font-weight: 700;
+}
+
+.content {
+    font-size: 30rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+}

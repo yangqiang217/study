@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display</title>
+
+    <style>
+        /*div {*/
+        /*    !*块级变行内*!*/
+        /*    display: inline;*/
+        /*    !*行内变块级*!*/
+        /*    display: block;*/
+        /*    !*隐藏元素，不占空间*!*/
+        /*    display: none;*/
+        /*    !*!!!让其同时具备行内、块级的特征：可以一行显示，可以设置宽高*/
+        /*    如果没有设置宽高，则由内容决定宽高*/
+        /*    可以理解为：对外是行内元素，对内是块级元素*/
+        /*    用途：*/
+        /*    1.让行内非替换元素比如a、span等能随时设置宽高*/
+        /*    2.让块级元素(div, p等)能和其它元素在同一行显示*!*/
+        /*    display: inline-block;*/
+        /*    !*相当于<table>一个block-level的表格*!*/
+        /*    display: table;*/
+        /*    !*<table>一个inline-level表格*!*/
+        /*    display: inline-table;*/
+        /*    !*<tr>*!*/
+        /*    display: table-row;*/
+        /*    !*<tbody>*!*/
+        /*    display: table-row-group;*/
+        /*    !*<thead>*!*/
+        /*    display: table-header-group;*/
+        /*    !*<tfoot>*!*/
+        /*    display: table-footer-group;*/
+        /*    !*<td><th>一个单元格*!*/
+        /*    display: table-cell;*/
+        /*    !*<caption>*!*/
+        /*    display: table-caption;*/
+        /*    !*<li>*!*/
+        /*    display: list-item;*/
+        /*}*/
+
+        /*样式重置*/
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .mail {
+            width: 100px;
+            border: 2px solid #999;
+            text-align: center;
+        }
+
+        .mail:hover .email-list {
+            display: block
+        }
+
+        .header {
+            background-color: #999;
+            color: #fff;
+        }
+
+        .email-list {
+            display: none;
+        }
+
+        .email-list li:hover {
+            background-color: skyblue;
+        }
+
+        /*a左右的空地也能点*/
+        .email-list li a {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="mail">
+    <div class="header">邮箱</div>
+    <ul class="email-list">
+        <li><a href="#">QQ</a></li>
+        <li><a href="#">163</a></li>
+        <li><a href="#">126</a></li>
+    </ul>
+</div>
+</body>
+</html>

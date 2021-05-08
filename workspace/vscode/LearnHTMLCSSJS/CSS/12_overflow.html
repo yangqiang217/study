@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>overflow</title>
+    <style>
+        .example1bottom {
+            background-color: red;
+            /*图片溢出*/
+            width: 800px;
+            height: 500px;
+
+            /*超出裁剪*/
+            /*overflow: hidden;*/
+            /*超出滚动，滚动条占据宽高，如果没超出，也会显示滚动条*/
+            /*overflow: scroll;*/
+            /*超出滚动，没超出就不显示滚动条（常用）*/
+            overflow: auto;
+
+            /*分别设置*/
+            /*overflow-x: auto;*/
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="https://www.baidu.com/img/bd_logo1.png">
+</div>
+</body>
+</html>

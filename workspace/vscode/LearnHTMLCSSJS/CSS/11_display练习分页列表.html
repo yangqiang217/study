@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display 分页</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0000cc;
+        }
+
+        .page ul li {
+            display: inline-block;
+        }
+
+        .page ul li a {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            border: 1px solid #e1e2e3;
+
+            margin-right: 5px;
+
+            text-align: center;
+            line-height: 34px;
+            font-size: 14px;
+        }
+
+        .page ul li a:hover {
+            border: 1px solid #38f;
+            background-color: #f2f8ff;
+        }
+
+        .page .prev a, .page .next a {
+            width: 88px;
+        }
+
+        /*这里如果只用.active就会被.page ul li a里设置的覆盖掉，原因是人家权重综合高，而加上.page不被覆盖是因为加上这里权重就高了*/
+        .page .active {
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+
+            border: none;
+            font-weight: 700;
+            color: #000;
+
+            /*cursor: initial;不好*/
+        }
+
+        .page .active:hover {
+            border: none;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <ul>
+        <li class="prev"><a href="#">&lt;上一页</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a class="active" href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li><a href="#">7</a></li>
+        <li><a href="#">8</a></li>
+        <li><a href="#">9</a></li>
+        <li><a href="#">10</a></li>
+        <li class="next"><a href="#">下一页&gt;</a></li>
+    </ul>
+</div>
+</body>
+</html>

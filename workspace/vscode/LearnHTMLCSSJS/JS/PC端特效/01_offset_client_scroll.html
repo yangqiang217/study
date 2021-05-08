@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>offset</title>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            overflow: auto;
+        }
+        .box2 {
+            height: 500px;
+            background-color: orange;
+        }
+        .box3 {
+            height: 500px;
+            background-color: black;
+        }
+        .box4 {
+            height: 500px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="box">相关属性可以动态得到元素的位置(偏移)相关属性可以动态得到元素的位置(偏移)相关属性可以动态得到元素的位置(偏移)相关属性可以动态得到元素的位置(偏移)</div>
+<div class="box2"></div>
+<span class="sp">i am span</span>
+<div class="box3"></div>
+<div class="box4"></div>
+
+<script>
+    //offset经常用于获取元素位置
+    //client经常用于获取元素大小
+    //scroll经常用于获取滚动距离
+
+
+    /*
+    offset
+    相关属性可以动态得到元素的位置(偏移)、大小等
+    1.获得元素距离带有定位父元素的位置
+    2.获得元素自身大小（宽高）
+    注：返回数值都不带单位
+
+    offset常用属性：
+        element.offsetParent：返回该元素带有定位的父级元素，如果父级都没定位则返回body
+            element.parentNode是返回父元素，而offsetParent是返回有定位的
+        element.offsetTop：元素相对带有定位父元素上方的偏移
+        element.offsetLeft：元素相对带有定位父元素左边框的偏移
+        element.offsetWidth：自身包括padding、边框、内容区的宽度，不带单位
+        element.offsetHeight：自身包括padding、边框、内容区的高度，不带单位
+    offset和style区别：
+        offset                                    style
+    可以得到任意样式                            只能得到行内样式
+    获得的数值没有单位                           获得带单位的字符串
+    offsetWidth包含padding+border+width       style.width不包含padding和border
+    offsetWidth等属性是只读属性，不能赋值        style.width可读写
+    想要获取元素大小位置用offset更合适            想要更改，用style更合适
+    */
+
+
+    /*
+    client
+    获取元素可视区的相关信息。可以动态得到该元素的边框、元素大小等。
+    常用属性：
+        element.clientTop：元素上边框的大小
+        element.clientLeft：元素左边框的大小
+        element.clientWidth：自身包括padding、内容区的宽度，不包括边框，返回值不带单位
+        element.clientHeight：自身包括padding、内容区的高度，不包括边框，返回值不带单位
+     */
+
+
+    /*
+    scroll
+    动态得到该元素的大小、滚动距离等。首先元素本身是可滚动的大父元素
+    常用属性：
+        element.scrollTop：被卷去的上侧距离，不带单位
+            整个页面被scroll用window.pageYOffset(ie9+)
+        element.scrollLeft：被卷去的左侧距离，不带单位
+        element.scrollWidth：自身包括padding的实际宽度，不含边框，不带单位
+        element.scrollHeight：自身包括padding的实际高度，不含边框，不带单位
+            和client的区别：比如字很多超出div的高度，scroll返回带超出的高度，client返回div的高度
+
+     */
+    // const d = document.querySelector(".box");
+    // const sp = document.querySelector(".sp");
+    // d.addEventListener("scroll", () => {
+    //     console.log("d scroll: " + d.scrollTop);
+    // });
+    // sp.addEventListener("scroll", () => {
+    //     console.log("sp scroll" + sp.scrollTop);
+    // });
+</script>
+</body>
+</html>

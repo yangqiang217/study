@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>本地存储</title>
+</head>
+<body>
+<input type="text">
+<button class="set">set</button>
+<button class="get">get</button>
+<button class="remove">remove</button>
+<button class="clear">clear</button>
+
+<script>
+    const input = document.querySelector("input");
+    const set = document.querySelector(".set");
+    const get = document.querySelector(".get");
+    const remove = document.querySelector(".remove");
+    const clear = document.querySelector(".clear");
+
+    /*
+    sessionStorage(容量约5m)
+    生命周期：关闭浏览器窗口
+    同一窗口(页面)下数据共享
+    以键值对存储
+    在浏览器看的话去Application-SessionStorage
+    */
+    // set.addEventListener("click", () => {
+    //     const val = input.value;
+    //     sessionStorage.setItem("name", val);
+    // });
+    // get.addEventListener("click", () => {
+    //     console.log(sessionStorage.getItem("name"));
+    // });
+    // remove.addEventListener("click", () => {
+    //     sessionStorage.removeItem("name");
+    // });
+    // clear.addEventListener("click", () => {
+    //     sessionStorage.clear();
+    // });
+
+    /*
+    localStorage(容量约20m)
+    生命周期：永久，除非用户删除
+    多窗口不同页面可使用
+    键值对存储
+    */
+    set.addEventListener("click", () => {
+        const val = input.value;
+        localStorage.setItem("name", val);
+    });
+    get.addEventListener("click", () => {
+        console.log(localStorage.getItem("name"));
+    });
+    remove.addEventListener("click", () => {
+        localStorage.removeItem("name");
+    });
+    clear.addEventListener("click", () => {
+        localStorage.clear();
+    });
+</script>
+
+</body>
+</html>

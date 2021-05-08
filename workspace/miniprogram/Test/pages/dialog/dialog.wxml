@@ -1,0 +1,13 @@
+<!--pages/dialog/dialog.wxml-->
+
+<!--Toast-->
+<button size="mini" bindtap="handleShowToast">show toast</button>
+
+<!--Modal-->
+<button size="mini" bindtap="handleShowModal">show modal</button>
+
+<!--Loading-->
+<button size="mini" bindtap="handleShowLoading">show loading</button>
+
+<!--action sheet-->
+<button size="mini" bindtap="handleShowActionSheet">show action sheet</button>

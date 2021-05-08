@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*凡是有title属性的*/
+        [title] {
+            background-color: red;
+        }
+
+        /*凡是有title且title属性里有"xx"的*/
+        [title*="xx"] {
+
+        }
+        /*以"xx"开头*/
+        [title^="xx"] {}
+        /*以"xx"结尾*/
+        [title$="xx"] {}
+        /*包含"xx"，xx与其它单词必须用空格隔开*/
+        [title~="xx"] {}
+
+        /*title恰好是xx或者以xx开头且后面跟着'-'*/
+        [title|="xx"] {}
+        /*一般用在lang属性上*/
+        [lang|="en"] {}
+    </style>
+</head>
+<body>
+<div title="div-title">i am div</div>
+<span title="span-title">i am span</span>
+</body>
+</html>

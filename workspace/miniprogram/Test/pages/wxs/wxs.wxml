@@ -1,0 +1,24 @@
+<!--pages/wxs/wxs.wxml-->
+<!--需求场景：组件中需要直接调用代码的函数，这样是不行的（之前事件绑定可以，不属于这块），比如得到后台的时间戳需要转换成时间格式-->
+<!-- <view>{{22.33333.toFixed(2)}}</view> -->
+
+<!--一般不写在这，写在外面-->
+<!-- <wxs module="wxsmodule">
+    var msg = "hello";
+    var sum = function(num1, num2) {
+        return num1 + num2;
+    }
+
+    //上面定义的东西默认是私有的，外面用需要导出
+    module.exports = {
+        msg: msg,
+        sum: sum
+    }
+</wxs> -->
+<!--导入外面wxs，这里路径和别处不同，只能用相对路径，不能/wxs/wxsshow.wxs-->
+<wxs src="../../wxs/wxsshow.wxs" module="wxsmodule"/>
+
+<view>{{wxsmodule.msg}}</view>
+<view>{{wxsmodule.sum(1, 2)}}</view>
+
+<view>{{wxsmodule.priceFormat(price, 3)}}</view>

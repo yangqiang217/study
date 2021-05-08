@@ -1,0 +1,12 @@
+<!--components/myslot/myslot.wxml-->
+<view>I am head before slot</view>
+<!--多个插槽：必须给slot起名字；且必须在组件的Component里添加options:multipleSlots-->
+<!--注意：插槽的插入位置效果不要看调试工具的Wxml，里面本来要插入的组件是在后面，可能没有解析-->
+<view class="slot1">
+    <slot name="slot1"/>
+</view>
+<view class="slot2">
+    <slot name="slot2"/>
+</view>
+
+<view>I am foot after slot</view>

@@ -1,0 +1,8 @@
+/* components/myslot/myslot.wxss */
+.slot1 {
+    background-color: blue;
+}
+
+.slot2 {
+    background-color: red;
+}

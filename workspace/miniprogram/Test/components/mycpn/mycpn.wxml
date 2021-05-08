@@ -1,0 +1,8 @@
+<!--components/mycpn/mycpn.wxml-->
+<!--组件中不要用id、标签、属性选择器-->
+<!--自定义组件在使用时系统是套了一层shadow-dom在外面-->
+<view class="mycpn">
+    <view class="title classsetbycaller">{{title}}</view>
+    <button class="content" bind:tap="handleBtnCpnClick">{{content}}</button>
+    <view>被外面改变计数：{{counterChangedByCaller}}</view>
+</view>

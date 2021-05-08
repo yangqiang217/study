@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>window事件</title>
+</head>
+<body>
+
+<script>
+    /*
+    1.窗口加载事件
+        1) 所有都加载完毕，包括js、css、图片等
+            window.onload = function(){}
+            或者：
+            window.addEventListener("load", function(){});
+        2) 仅DOM加载完成，不包括css、图片、flash：
+            document.addEventListener("DOMContentLoaded", function(){});//ie9+
+    */
+
+
+    /*
+    2.调整窗口大小事件
+        window.onresize = function(){}
+        或：
+        window.addEventListener("resize", function(){});
+    经常利用此事件完成响应式布局，比如小于多少就隐藏一些元素。window.innerWidth当前window宽度
+     */
+
+    /*
+    3.定时器
+        1) const name = [window.]setTimeout(function(){} or functionName or "functionName()"(nor recommend), [delay ms]);
+        停止：clearTimeout(name)
+        2) const name = [window.]setInterval(function(){} or functionName or "functionName()"(nor recommend), [interval ms]);
+        停止：clearInterval(name)
+     */
+</script>
+</body>
+</html>

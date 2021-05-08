@@ -1,0 +1,7 @@
+.box1 {
+    color: red;
+}
+
+.box2 {
+    color: green;
+}

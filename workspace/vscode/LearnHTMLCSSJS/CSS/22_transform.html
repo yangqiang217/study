@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transform</title>
+
+    <style>
+        .box {
+            background-color: blue;
+        }
+        .inner {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            /*一个参数表示x*/
+            /*transform: translate(100px, 200px);*/
+            /*百分比参照元素本身*/
+            /*transform: translate(50%);*/
+
+            /*一个参数表示both*/
+            /*transform: scale(0.5);*/
+
+            /*transform: rotate(30deg);*/
+
+            /*
+            一个值：x上
+            两个值：x、y上
+            值类型：deg：角度
+            */
+            /*transform: skew(30deg);*/
+
+            /*变形原点
+            一个值：x轴的原点
+            两个值：x、y的原点
+            值必须是length或者percentage或left, center, right, top, bottom关键字中的一个
+                length：从左上角开始计算
+                百分比：元素本身的
+            */
+            transform-origin: left top;
+        }
+
+        .inner:hover {
+            /*transform: scale(0.5);*/
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="inner">hhh</div>
+</div>
+</body>
+</html>

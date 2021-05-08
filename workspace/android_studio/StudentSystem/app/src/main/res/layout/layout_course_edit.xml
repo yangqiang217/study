@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="课程id"
+            android:layout_marginTop="20dp"/>
+        <EditText
+            android:id="@+id/et_course_edit_id"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="课程名"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_course_edit_name"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="总学时"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_course_edit_time"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:inputType="number" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="总学分"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_course_edit_credit"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            style="@style/edittext_title"
+            android:text="授课教师"
+            android:layout_marginTop="15dp"/>
+        <EditText
+            android:id="@+id/et_course_edit_teacher"
+            style="@style/common_edittext"
+            android:layout_marginTop="5dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="必选修"
+                android:textColor="@color/hint_color"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"/>
+
+            <RadioGroup
+                android:id="@+id/rg_course_edit_obligatory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_course_edit_obligatory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/main_color"
+                    android:checked="true"
+                    android:text="必修" />
+
+                <RadioButton
+                    android:id="@+id/rb_course_edit_elective"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/main_color"
+                    android:text="选修" />
+            </RadioGroup>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+
+    <style>
+        table {
+            border: 1px solid #333;
+            /*重点：不然单元格和整个表格各是各的边框*/
+            /*border-collapse: collapse;*/
+            /*单元格间距，如果设置了border-collapse: collapse，间距是不起作用的。第一个上下，第二个水平，如果只有一个表示两个一样的值*/
+            border-spacing: 10px 20px;
+
+            /*居中*/
+            margin: auto;
+        }
+        /*!*首行加粗*!*/
+        /*table > tr:nth-child(1) {*/
+        /*    font-weight: 700;*/
+        /*}*/
+        td, th {
+            border: 1px solid #333;
+            padding: 20px;
+        }
+
+        caption {
+            font-weight: 700;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<!--table块级元素，独占一行-->
+<!--tr：行-->
+<!--td：单元格-->
+<table>
+<!--    表格外部标题，会根据表格的居中caption自动居中不用设置-->
+    <caption>caption</caption>
+    <thead>
+        <tr>
+<!--            默认自动加粗-->
+            <th>head 1</th>
+            <th>head 2</th>
+            <th>head 3</th>
+        </tr>
+    </thead>
+<!--    建议如果首行是标题，正式内容外面包一个tbody-->
+    <tbody>
+        <tr>
+            <td>line2 1</td>
+            <td>line2 2</td>
+            <td>line2 3</td>
+        </tr>
+        <tr>
+            <td>line3 1</td>
+            <td>line3 2</td>
+            <td>line3 3</td>
+        </tr>
+    </tbody>
+
+<!--    tfoot很少用了-->
+</table>
+
+
+<div style="text-align: center">单元格合并:</div>
+<table>
+    <tr>
+        <td colspan="2">line1 1</td>
+<!--        <td>line1 2</td>-->
+        <td>line1 3</td>
+    </tr>
+    <tr>
+        <td>line2 1</td>
+        <td rowspan="2">line2 2</td>
+        <td>line2 3</td>
+    </tr>
+    <tr>
+        <td>line3 1</td>
+<!--        <td>line3 2</td>-->
+        <td>line3 3</td>
+    </tr>
+</table>
+
+</body>
+</html>

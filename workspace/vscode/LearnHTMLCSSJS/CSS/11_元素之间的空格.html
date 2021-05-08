@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>空格</title>
+    <style>
+        span {
+            background-color: #00ff00;
+        }
+        strong {
+            background-color: #0000ff;
+        }
+        div {
+            display: inline-block;
+            background-color: #ff0000;
+        }
+
+        span, strong, div, img {
+            /*最终解决方案，用float*/
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<!--行内元素都有空格: span, strong, img...代码中的换行会产生浏览器中的空格-->
+<span>span</span>
+<strong>strong</strong>
+<img src="https://www.baidu.com/img/bd_logo1.png">
+<div>div</div>
+</body>
+</html>

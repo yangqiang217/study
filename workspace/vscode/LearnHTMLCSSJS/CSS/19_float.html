@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>float</title>
+    <style>
+        /*float, 一开始是用来做图文环绕的
+        规则:
+        1.会脱离标准流
+        2.会朝着左或右移动，直到自己的边界紧贴着包含块（一般是父元素）或其它浮动元素的边界为止
+        3.元素显示层级:static<浮动<定位
+        4.浮动元素目标位置不能与行内级内容(行内级元素、inline-block、
+        块级元素的文字内容(比如div里直接显示的文字))层叠，行内级内容会被浮动元素推出
+        5.行内元素、inline-block元素浮动后，其顶部将与所在行的顶部对齐
+        6.如果元素是向左/右浮动，浮动元素的左/右边界不能超出包含块的左/右边界
+        7.浮动元素之间不能层叠
+        8.如果水平方向剩余空间不够现实浮动元素，浮动元素将向下移动，直到有充足空间
+        9.浮动元素的顶部不能超过包含块的顶部，也不能超过之前任意浮动元素的顶部
+        和position abs/fix的区别：浮动还是会占着位置，别的元素不会和它重叠，而position的那俩会和别的元素重叠
+
+        应用：
+        1.解决行内级元素、inline-block元素的水平间隙问题（这个间隙和body的字体大小有关）
+
+        div有float就不用inline-block了
+
+
+
+        浮动的问题：
+        1.脱离标准流，不会向父元素汇报高度，会导致父元素不会计算子元素高度。解决是清除浮动
+        */
+
+        .container {
+            height: 200px;
+            background-color: red;
+        }
+
+        .container {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            display: inline-block;
+        }
+
+        strong {
+            float: left;
+        }
+
+        a {
+            background-color: blue;
+            color: white;
+
+            /* float: right; */
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="inner"></div>
+    <span>span</span>
+    <strong>strong</strong>
+    <a href="#">i am a</a>
+</div>
+
+</body>
+</html>

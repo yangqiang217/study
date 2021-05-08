@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+      "water-fall-view": "../../components/my-waterfall-view/my-waterfall-view"
+  }
+}

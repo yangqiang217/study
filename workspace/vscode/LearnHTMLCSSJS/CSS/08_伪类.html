@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /*1.目标伪类，用的少：点jump to #的时候title1会变红*/
+        :target {
+            color: red;
+        }
+
+
+        /*2.元素状态伪类，用的少*/
+        /*需求：btn在disable的时候文字是红色*/
+        /*方式一*/
+        /*button[disabled] {*/
+        /*    color: red;*/
+        /*}*/
+        /*方式二，伪类*/
+        :disabled {
+            color: red;
+        }
+
+
+        /*
+        3.动态伪类，用的多
+        举例：
+        a:link 未访问
+        a:visited 已访问
+        :hover 鼠标挪上去
+        :active 激活，鼠标在连接上按住没松开
+        :focus 获得焦点（在网页里按tab）
+
+        注意：
+        顺序：
+        hover必须在link和visited后面
+        active必须在hover后面
+        <a>建议顺序：link-visited-focus-hover-active
+
+        除了a元素，hover和active也能用在别的元素上
+        */
+        a:link {
+            color: red;
+        }
+        a:visited {
+            color: green;
+        }
+        a:hover {
+            color: blue;
+        }
+
+        strong:hover {
+            color: red;
+        }
+        .btn2:hover {
+            color: pink;
+        }
+
+        .input:focus {
+            background-color: green;
+        }
+
+        /*去掉<a>的聚焦状态*/
+        /*method1：只是去掉tab聚焦到a上时的边框，还是能focus*/
+        a:focus {
+            outline: none;
+        }
+        /*method2：<a tabindex="-1">*/
+
+
+
+        /*
+        4.结构伪类
+        注意：可能有浏览器版本兼容问题，可上caniuse查
+        4.1 :nth-child(1)(下标从1开始) 正数第几个
+        */
+        /*只要是第3个就变，包括body的*/
+        /*:nth-child(3) {*/
+        /*    color: purple;*/
+        /*}*/
+        /*只有p元素&&第三个*/
+        /*p:nth-child(3) {*/
+        /*    color: purple;*/
+        /*}*/
+        /*所有p，包括p里面的，n会自动取值，还可以取2n就是所有偶数*/
+        /*p:nth-child(n) {*/
+        /*    color: purple;*/
+        /*}*/
+        /*p:nth-child(2n) { 2n可以用even替换
+            color: purple;
+        }*/
+        /*p:nth-child(2n+1) { 2n可以用odd替换
+            color: purple;
+        }*/
+        /*p:nth-child(-n+3) { 前三个
+            color: purple;
+        }*/
+
+        /*4.2 nth-last-child(3) 倒数第三个*/
+
+        /*4.3 nth-of-type(), 和nth-child不同的是，child只要是第3个就变，可能前面是俩div，而type是只算p，如果第3个不是p就不起作用*/
+        /*p:nth-of-type(3) {*/
+        /*    color: red;*/
+        /*}*/
+        /*4.4 nth-last-of-type就是4.3的倒数*/
+
+        /*4.5 :first-child = :nth-child(1)*/
+        /*4.6 :last-child = :nth-last-child(1)*/
+        /*4.7 :first-of-type = :nth-of-type(1)*/
+        /*4.8 :last-of-type = :nth-last-of-type(1)*/
+        /*4.9 :only-child 如果是父元素中唯一的子元素*/
+        /*4.10 :root html, html {} = :root {}*/
+        /*4.11 :empty 如果是元素里面为空*/
+
+
+        /*5 否定伪类 :not(X) X是简单选择器(元素、通用、属性、类、id、除not外的伪类选择器)*/
+        /*不支持组合，比如:  :not(div.one)*/
+        /*:not(div){} 除了div之外的*/
+        /*body :not(.btn2)*/
+    </style>
+</head>
+<body>
+<div>-2.目标伪类-</div>
+<a href="#title1">jump to #</a>
+<h2 id="title1">i am h2</h2>
+
+<div>-2.状态伪类-</div>
+<button class="btn" disabled>i am button</button>
+
+<div>-3.动态伪类-</div>
+<a href="#">dynamic class</a>
+<strong>i am strong</strong>
+<button class="btn2">i am btn2</button>
+<input class="input">
+
+<div>-4.结构伪类-</div>
+<div>
+    <div>construct div</div>
+    <p>construct p1</p>
+    <p>construct p2</p>
+    <p>construct p3</p>
+    <p>construct p4</p>
+    <p>construct p5</p>
+
+</div>
+</body>
+</html>

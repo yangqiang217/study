@@ -1,0 +1,39 @@
+{
+    "pages": [
+        "pages/jump/from",
+        "pages/home/home",
+        "pages/my/my",
+        "pages/wxs/wxs",
+        "pages/wxml/wxml",
+        "pages/wxss/wxss",
+        "pages/dialog/dialog",
+        "pages/jump/target"
+        
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#ffb421",
+        "navigationBarTextStyle": "white",
+        "navigationBarTitleText": "Test",
+        "backgroundColor": "#00ff00",
+        "backgroundTextStyle": "dark",
+        "enablePullDownRefresh": false
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "home",
+                "iconPath": "assets/tabbar/tabbar_icon_home.png",
+                "selectedIconPath": "assets/tabbar/tabbar_icon_home_hl.png"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "my",
+                "iconPath": "assets/tabbar/tabbar_icon_mine.png",
+                "selectedIconPath": "assets/tabbar/tabbar_icon_mine_hl.png"
+            }
+        ],
+        "selectedColor": "#ffb421"
+    },
+    "sitemapLocation": "sitemap20.json"
+}

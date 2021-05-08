@@ -1,0 +1,72 @@
+/**index.wxss**/
+page {
+  height: 100%;
+}
+.container {
+  height: 100%;
+  background-color: #2ba666;
+}
+.title {
+  width: 503rpx;
+  height: 130rpx;
+  margin-top: 70rpx;
+}
+.white-space {
+  width: 641rpx;
+  height: auto;
+  border-radius: 4%;
+  background-color: white;
+  margin-top: 40rpx;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.qingshouxia {
+  width: 641rpx;
+  height: 66rpx;
+}
+.phone {
+  color: rgb(70, 70, 75);
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 25rpx;
+}
+.updatetime {
+  color: rgb(162, 162, 169);
+  font-size: 15px;
+  margin-top: 20rpx;
+}
+.arrow {
+  width: 290rpx;
+  height: 290rpx;
+  margin-top: 40rpx;
+}
+.grayline {
+  width: 90%;
+  height: 1rpx;
+  background-color: rgb(228, 228, 228);
+  margin-top: 70rpx;
+}
+.locgray {
+  color: rgb(148, 148, 157);
+  font-size: 16px;
+  font-weight: normal;
+}
+.loc {
+  color: rgb(70, 70, 75);
+  font-size: 16px;
+  margin: 30rpx 20rpx 30rpx 30rpx;
+  font-weight: bold;
+}
+.notice {
+  width: 630rpx;
+  height: 230rpx;
+  margin-top: 20rpx;
+}
+.bottom {
+  width: 100%;
+  height: 115rpx;
+  position: fixed;
+  bottom: 0px;
+}

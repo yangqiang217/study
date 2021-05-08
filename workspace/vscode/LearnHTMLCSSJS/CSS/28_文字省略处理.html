@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省略</title>
+
+    <style>
+        /*
+        white-space 用于设置空白处理和换行规则
+            normal：合并所有连续空白，允许单词超屏时自动换行
+            nowrap：合并所有连续空白，不允许自动换行
+
+        text-overflow 设置文字溢出
+            clip：溢出内容直接裁剪
+            ellipsis：溢出结尾省略号
+            text-overflow生效的前提是overflow不是visible
+        */
+
+
+        p {
+            background-color: red;
+            color: white;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+
+            /*单行且带省略号*/
+            /*white-space: nowrap;*/
+            /*text-overflow: ellipsis;*/
+            /*overflow: hidden;*/
+
+            /*多行且带省略号(不要设置高度)*/
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<p>i am a p i am a p i am a p i am a p </p>
+</body>
+</html>

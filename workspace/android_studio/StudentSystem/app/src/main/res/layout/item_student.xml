@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/tv_item_stu_assign_score"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:background="@drawable/long_button_background"
+        android:text="发布成绩"
+        android:textColor="@color/white"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/tv_item_stu_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="姓名" />
+
+    <TextView
+        android:id="@+id/tv_item_stu_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="120dp"
+        android:textSize="14sp"
+        tools:text="男" />
+
+    <TextView
+        android:id="@+id/tv_item_stu_college"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_stu_name"
+        android:layout_alignLeft="@id/tv_item_stu_name"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        tools:text="学院" />
+
+    <TextView
+        android:id="@+id/tv_item_stu_major"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_item_stu_college"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="120dp"
+        tools:text="专业" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_border"
+        android:layout_below="@id/tv_item_stu_college"
+        android:layout_marginTop="10dp"/>
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>a</title>
+
+<!--    <base href="http://www.baidu.com" target="_blank">-->
+</head>
+<body>
+<!--
+target: _self
+        _blank 新标签
+        //和iframe一起使用才有用
+        _parent
+        _top
+-->
+<a href="/img/bd_logo1.png">baidu</a>
+<a href="/s?wd=vue">search vue</a>
+
+<!--锚点链接-->
+<a href="#title1">jump to #</a>
+<h2 id="title1">i am h2</h2>
+
+<!--伪链接，点击链接并不希望打开新的url而是干点别的-->
+<a href="#" onclick="return false;">fake link1</a>
+<a href="javascript:">fake link2</a>
+
+<!--a链接和img-->
+<div>
+    <a href="http://www.baidu.com">
+        <img src="https://www.baidu.com/img/bd_logo1.png">
+    </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!--1.设置样式的三种方式-->
+<!--1.1 内联样式-->
+<view style="color:red; font-size:20px">内联样式</view>
+
+<!--1.2 页内样式-->
+<view class="stylepage">页内样式</view>
+
+<!--1.3 全局样式-->
+<view class="styleglobal">全局样式</view>
+
+
+<!--2. 三种样式作用于同一组件，1>2>3 -->
+
+
+<!--3. rpx:在iphone6上，一个1px=2rpx -->
+<view class="rpx">rpx适配</view>
+
+
+<!--4. 样式导入 -->
+<button size="mini" class="box1">样式导入1</button>
+<button size="mini" class="box2">样式导入2</button>

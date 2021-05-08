@@ -1,0 +1,83 @@
+<!--pages/home/home.wxml-->
+<text selectable class="title">hello {{name}}</text>
+
+<!-- 是否解码 -->
+<text decode>5 &gt; 3</text>
+
+<!-- 循环 -->
+<view wx:for='{{list}}'>{{item.img_path}}-{{item.title}}</view>
+
+<!-- 事件监听 -->
+<view>counter: {{counter}}</view>
+<button size="mini" bindtap="onPlusClick" hover-class="plus">plus</button>
+
+<!-- 事件参数传递，列表点击需要将item和index传给onEventPassClick，需要用到data- -->
+<view class="flexcontainer">
+    <block wx:for="{{cities}}" wx:key="{{index}}">
+        <view class="flexitem"
+            bindtap="onEventPassClick"
+            data-index="{{index}}"
+            data-item="{{item}}">
+            {{item}}
+        </view>
+    </block>
+</view>
+
+<!-- 事件传递，capture-XX是指从父到子，XX:tap是从子到父 -->
+<!--如果最外层view想拦截掉事件，那就用capture-catch:tap替换capture-bind:tap（即用catch替换bind），此时只会调用handleEventPassCapture1，handleEventPassTap1也不会调用，子view的事件都不会调用。同理bind:tap也可以替换成catch:tap，此时只有handleEventPassTap3不会调用 -->
+<view class="eventpass1" capture-bind:tap="handleEventPassCapture1" bind:tap="handleEventPassTap1">
+    <view class="eventpass2" capture-bind:tap="handleEventPassCapture2" catch:tap="handleEventPassTap2">
+        <view class="eventpass3" capture-bind:tap="handleEventPassCapture3" bind:tap="handleEventPassTap3">
+        </view>
+    </view>
+</view>
+
+<!--自定义组件-->
+<my-cpn id="my-cpn"
+    title="调用者给的title" 
+    classsetbycaller="settocpn" 
+    bind:cpnBtnClick="handleClickInCpn"/>
+<button bindtap="handleChangeDataInCpn" style="font-size:12px; margin-bottom:10px">点击改变上面组件里面计数</button>
+<!--tab练习-->
+<mytab titles="{{['衣服', '裤子']}}" bind:tabItemClick="handleTabItemClick"/>
+<!--slot-->
+<myslot>
+    <button size="mini" slot="slot2">I am button1 in slot</button>
+    <button size="mini" slot="slot1">I am button2 in slot</button>
+</myslot>
+
+<!--分享-->
+<button open-type="share" size="mi'ni">点我分享</button>
+
+<!-- 获取用户信息 -->
+<button size="mini" 
+        open-type="getUserInfo" 
+        bindgetuserinfo="onGetUserInfo">
+    userinfo
+</button>
+
+<!-- image是行内元素，默认320*240 -->
+<image show-menu-by-longpress src="/assets/tabbar/tabbar_icon_home.png" class=".image"/>
+<image src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" 
+    lazy-load
+    bindload="onImageLoad"
+    class=".image"/>
+<!-- 选择相册图片 -->
+<button size="mini" bindtap="onSelectImage">相册</button>
+<image src="{{imagePath}}" class=".image"/>
+
+<input 
+    value="默认" 
+    type="number" 
+    password 
+    class=".input"
+    bindinput="onInput"
+    bindfocus="onFocus">
+</input><!--这里如果写成<input/>的形式的话下面的scrollview就不会自动提示了-->
+
+<scroll-view scroll-x class="xscrollview" bindscroll="onScroll">
+    <view class="xscrollitem" wx:for="{{50}}">{{item}}</view>
+</scroll-view>
+<scroll-view scroll-y class="yscrollview">
+    <view class="yscrollitem" wx:for="{{50}}">{{item}}</view>
+</scroll-view>

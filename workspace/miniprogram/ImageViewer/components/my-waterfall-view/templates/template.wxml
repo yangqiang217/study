@@ -1,0 +1,12 @@
+<template name="cover-item">
+    <view class="cover-container" style="width:{{item.itemWidth}}px;height:{{item.itemHeight}}px" 
+        bind:tap="onItemClick" data-clickeditem="{{item}}">
+        
+        <image class="cover-img" mode="aspectFill" src="{{item.imgUrl}}" lazy-load></image>
+        <view class="text-container">
+            <text class="cover-title">{{item.model_name}} {{item.title}}</text>
+            <text class="cover-date">{{item.pub_date}}</text>
+            <text class="cover-count">{{item.img_count}}p</text>
+        </view>
+    </view>
+</template>

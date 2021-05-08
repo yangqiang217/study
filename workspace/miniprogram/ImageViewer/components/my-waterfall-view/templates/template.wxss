@@ -1,0 +1,36 @@
+.cover-container {
+    position: relative;
+    margin-top: 1rpx;
+}
+.cover-img {
+    width: 100%;
+    height: 100%;
+}
+.text-container {
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    position: absolute;
+    bottom: 0;
+}
+.cover-title {
+    width: 100%;
+    display: block;
+    font-size: 16rpx;
+    color: white;
+    margin-left: 10rpx;
+}
+.cover-date {
+    font-size: 12rpx;
+    color: white;
+    margin-left: 10rpx;
+}
+.cover-count {
+    font-size: 14rpx;
+    color: white;
+    margin-right: 10rpx;
+}

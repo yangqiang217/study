@@ -1,0 +1,19 @@
+<!--pages/home/home.wxml-->
+<w-swiper list="{{banners}}"/>
+
+<w-recommend recommends="{{recommends}}" bind:imageLoad="handleImageLoad"/>
+
+<w-popular/>
+
+<w-tab-control 
+    id="tab-control"
+    class="{{isTabFixed ? 'fixed' : ''}}" 
+    titles="{{titles}}" 
+    bind:tabItemClick="handleTabClick"/>
+<!--占位，防止上面那个被移走了会跳-->
+<w-tab-control wx:if="{{isTabFixed}}"/>
+
+<w-goods goods="{{goods[currentType].list}}"/>>
+
+<!--不用hidden是因为hidden对自定义组件是无效的-->
+<w-back-top wx:if="{{showBackTop}}"/>

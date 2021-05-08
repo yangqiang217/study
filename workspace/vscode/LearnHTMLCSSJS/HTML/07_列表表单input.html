@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表</title>
+
+    <style>
+        /*
+        列表常用4个css：
+        list-style-type：设置li前面标记的样式
+        list-style-image：设置图片，覆盖list-style-type
+        list-style-position：设置li元素前面标记的位置，是否算在内容之内
+        list-style：前面几个的缩写属性
+        都可以继承，所以给ol、ul设置属性也会印象到li
+        */
+
+        /*list-style-type*/
+        /*ul {*/
+        /*    !*真是开发none最多，然后配合下面*!*/
+        /*    list-style-type: none;*/
+        /*    padding: 0;*/
+        /*    margin: 0;*/
+        /*}*/
+        /*ul li {*/
+        /*    margin-top: 5px;*/
+        /*}*/
+        /*ul li span {*/
+        /*    background-color: red;*/
+        /*}*/
+
+        /*list-style-image，很少有人这么做，一般像<span>1</span>一样加<i></i>*/
+        /*ul {*/
+        /*    list-style-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586416219456&di=f2fb5e757bc10f6bd7c9f75081d8147f&imgtype=0&src=http%3A%2F%2Fwww.wusheart.net%2Fpub%2Fweb%2Fimg%2Ficon-email.jpg");*/
+        /*}*/
+
+        /*list-style-position，一般直接none*/
+        /*ul {*/
+        /*    list-style-position: inside;*/
+        /*}*/
+
+        /*list-style，一般直接none*/
+        ul {
+            list-style: none;
+        }
+
+    </style>
+</head>
+<body>
+<!--1.有序列表-->
+<!--ol:ordered list，直接子元素只能是li（list item）-->
+<ol>
+    <li>海王</li>
+    <li>救赎</li>
+    <li>诛仙</li>
+    <li>妖王</li>
+    <li>上海堡垒</li>
+</ol>
+<!--经常这么写：-->
+<!--2.无序列表-->
+<!--ul:urdered list，直接子元素只能是li（list item）-->
+<ul>
+    <li>海王</li>
+    <li>救赎</li>
+    <li>诛仙</li>
+    <li>妖王</li>
+    <li>上海堡垒</li>
+</ul>
+<br>
+<div>经常这么写：</div>
+<ul>
+    <li><span>1</span>海王</li>
+    <li><span>2</span>救赎</li>
+    <li><span>3</span>诛仙</li>
+    <li><span>4</span>妖王</li>
+    <li><span>5</span>上海堡垒</li>
+</ul>
+
+<!--3.定义列表-->
+<!--dl(definition list) 直接子元素只能是dt、dd，dt和dd是兄弟-->
+<!--dt(definition term)列表中每一项的项目名-->
+<!--dd(definition description)列表每一项的具体描述，是对dt的描述解释补充，一个dt后面一般紧跟若干个dd-->
+<dl>
+    <dt>西瓜汁</dt>
+    <dd>红色饮料</dd>
+
+    <dt>咖啡</dt>
+    <dd>黑色饮料</dd>
+
+    <dt>牛奶</dt>
+    <dd>白色饮料</dd>
+</dl>
+</body>
+</html>

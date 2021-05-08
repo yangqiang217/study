@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style>
+        .box {
+            /*此种动画必须加这个*/
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+
+<script>
+    const box = document.querySelector(".box");
+
+    function animate(obj, target, callback) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(() => {
+            if (obj.offsetLeft >= target) {
+                clearInterval(obj.timer);
+                if (callback) {
+                    callback();
+                }
+            }
+            obj.style.left = obj.offsetLeft + 1 + "px";
+        }, 10);
+    }
+
+    animate(box, 100, () => {
+        console.log("end");
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+/**index.wxss**/
+.swiper-container {
+  width: 750rpx;
+  height: 375rpx;
+}
+.swiper-container swiper {
+  width: 750rpx;
+  height: 375rpx;
+}
+.swiper-container swiper image {
+  width: 750rpx;
+  height: 375rpx;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.search-container {
+  position: absolute;
+  top: 32rpx;
+  left: 25rpx;
+  width: 700rpx;
+  height: 66rpx;
+  display: block;
+  box-sizing: border-box;
+}
+.search-container input {
+  width: 700rpx;
+  height: 66rpx;
+  background-color: white;
+  border: 1rpx solid #e3e3e3;
+  border-radius: 30rpx;
+  padding-left: 32rpx;
+  display: block;
+  box-sizing: border-box;
+}
+.search-container image {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top: 16rpx;
+  right: 32rpx;
+}
+
+.notice-container {
+  width: 100vw;
+  height: 88rpx;
+  line-height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 32rpx;
+  border-bottom: 1rpx solid #efeff4;
+  box-sizing: border-box;
+}
+.notice {
+  width: 600rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.notice-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
+}
+.notice-swiper {
+  width: 600rpx;
+  height: 88rpx;
+}
+.notice-item {
+  font-size: 24rpx;
+  padding-left: 16rpx;
+  overflow: hidden;
+  color: #e64340;
+}
+.notice-more {
+  color: #666;
+  font-size: 24rpx;
+}
+
+.category-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+}
+.category-list {
+  width: 150rpx;
+  margin-top: 20rpx;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+}
+.category-column {
+  width: 100%;
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+.category-imgbox {
+  width: 80rpx;
+  height: 80rpx;
+}
+.category-title {
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 10rpx;
+}
+
+.coupons-float {
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  right: 15rpx;
+  bottom: 80rpx;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  border: 1rpx solid #ddd;
+}
+.coupons-float image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-top: 10rpx;
+}
+
+.weui-loadmore {
+  margin-bottom: 0;
+}
+.container {
+  background-color: white;
+  min-height: 100%;
+  display: block;
+}
+.goods-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-sizing: content-box;
+  padding: 24rpx;
+  background-color: #f2f2f2;
+}
+.goods-box {
+  width: 339rpx;
+  height: 472rpx;
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+  border-radius: 5px;
+}
+.goods-box .img-box {
+  width: 339rpx;
+  height: 339rpx;
+  overflow: hidden;
+}
+.goods-box .img-box image {
+  width: 339rpx;
+  height: 339rpx;
+}
+.goods-box .goods-title {
+  width: 280rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 24rpx;
+  padding-top: 24rpx;
+  color: #000;
+  margin-left: 24rpx;
+}
+.goods-box .price-box {
+  display: flex;
+}
+.goods-box .goods-price {
+  width: 280rpx;
+  overflow: hidden;
+  font-size: 24rpx;
+  padding: 24rpx 0;
+  color: #e64340;
+  margin-left: 24rpx;
+}
+.goods-box .goods-ori-price {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.tuan {
+  width: 750rpx;
+  background-color: #f2f2f2;
+  padding-top: 10rpx;
+}
+.tuan-item {
+  width: 720rpx;
+  margin: auto;
+  margin-top: 20rpx;
+  background-color: #fff;
+  position: relative;
+}
+.tuan-goods-pic {
+  width: 720rpx;
+  height: 250rpx;
+  overflow: hidden;
+}
+.tuan-goods-pic image {
+  width: 720rpx;
+}
+.tuan-title {
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  font-weight: normal;
+}
+.tuan-profile {
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+.tuan-price {
+  margin-left: 20rpx;
+}
+.tuan-price .now {
+  font-size: 36rpx;
+  color: #e64340;
+}
+.tuan-price .original {
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+.tuan-btn {
+  position: absolute;
+  right: 30rpx;
+  bottom: ;
+}

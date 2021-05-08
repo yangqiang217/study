@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单位</title>
+
+    <style>
+
+
+        /*不同屏幕不同字体
+        1.媒体查询*/
+        @media screen and (min-width: 320px) {
+            html {
+                font-size: 9px;
+            }
+        }
+        @media screen and (min-width: 375px) {
+            html {
+                font-size: 10px;
+            }
+        }
+        /*2.js动态计算（用的最多）*/
+
+        .container {
+            width: 600px;
+            height: 800px;
+            font-size: 20px;
+            background-color: orange;
+        }
+        .box {
+            /*
+            设置宽度
+            1.px
+            2.em，如果自己有设置font-size，就相对自己的font-size，否则相对父的font-size
+            3.%，相对父的宽高（注意martintop的%相对于父的宽度）
+            4.rem：相对html字体大小
+
+            动态计算rem高度
+            1.vscode插件：px to rem
+            2.postcss-pxtorem，该写多少px写多少px，打包部署的时候会自动转换（最佳方案）
+            3.less、sass、stylus的计算能力
+            */
+            width: 200px;
+            height: 200px;
+            background-color: red;
+
+            /*
+            设置文字大小的单位
+            1.px
+            2.em：相对于父元素字体的大小
+            3.%：用在字体：相对父元素的字体
+            4.rem：相对于root，即html的font-size
+            */
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box">box content</div>
+</div>
+</body>
+</html>

@@ -45,6 +45,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+//    sourceSets {CMake里加了这里貌似不加也行
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
 }
 
 dependencies {

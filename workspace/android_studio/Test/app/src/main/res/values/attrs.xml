@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScrollNumberGroup">
+        <attr name="text_size" format="dimension"/>
+        <attr name="text_color" format="color"/>
+        <attr name="duration" format="integer"/>
+        <attr name="top_bottom_margin" format="dimension"/>
+    </declare-styleable>
+</resources>

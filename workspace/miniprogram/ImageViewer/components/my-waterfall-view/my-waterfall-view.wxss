@@ -1,0 +1,28 @@
+/* components/my-waterfall-view/my-waterfall-view.wxss */
+@import "./templates/template.wxss";
+
+.waterfall-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.waterfall-left {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+.waterfall-middle {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rpx;
+}
+.waterfall-right {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rpx;
+}

@@ -1,0 +1,6 @@
+<!--主要用于组件的复用，单纯的只写个template里面的view是不会被渲染的，现在有自定义组件了所以这个用的少了-->
+<!--声明-->
+<template name="tpl">
+    <button size="mini">{{btnTextTpl}}</button>
+    <view>{{vTpl}}</view>
+</template>

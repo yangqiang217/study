@@ -1,0 +1,5 @@
+window, 浏览器顶级对象
+全局对象，定义在全局作用域中的变量、方法都会变成window对象的属性和方法
+window.name是空
+包含：
+    document, location, navigation, screen, history
