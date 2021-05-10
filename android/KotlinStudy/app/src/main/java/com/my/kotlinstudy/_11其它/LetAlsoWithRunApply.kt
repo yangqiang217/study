@@ -10,10 +10,11 @@ package com.my.kotlinstudy._10协程
  * apply和run类似，但返回值是传入值
  */
 fun main() {
+    _let()
 //    _also()
 //    _with()
 //    _run()
-    _apply()
+//    _apply()
 }
 
 /**
@@ -44,6 +45,12 @@ fun _let() {
     //let
     val v3 = v?.let {
         it.substring(1)
+    }
+
+    val v4 = v?.let {
+        println(it)
+    } ?: run {
+        println("empty")
     }
 }
 
