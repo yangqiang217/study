@@ -118,6 +118,39 @@ fun _run() {
 }
 
 /**
+ * 单独的run
+ */
+fun running() {
+    val list = listOf("1", "2")
+
+    kotlin.run {
+        println("in kotlin.run 1")
+        println("in kotlin.run 2")
+    }
+    kotlin.run shit@ {
+        println("in kotlin.run@ 1")
+        println("in kotlin.run@ 2")
+        return@shit
+    }
+    run {
+        println("in run 1")
+        println("in run 2")
+    }
+    run shit@ {//@shit标签作用是符合if的条件退出是只中断这个{}里的，after run还是会执行。没有标签没法实现满足一定条件就不走后面这种逻辑
+        list.forEachIndexed { index, s ->
+            if (index == 1) {
+                println("index is 1")
+                return//退出整个方法
+            }
+        }
+        println("in run@ 1")
+        println("in run@ 2")
+        return@shit
+    }
+    println("after run")
+}
+
+/**
 对象实例初始化时需要对对象中的属性进行赋值 & 返回该对象
 与run函数类似，但区别在于返回值：
 run函数返回最后一行的值 / 表达式
