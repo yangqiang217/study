@@ -9,7 +9,7 @@ package com.my.kotlinstudy._10协程
  * run是with和let的结合，判空+简写
  * apply和run类似，但返回值是传入值
  */
-fun main() {
+fun main11() {
     _let()
 //    _also()
 //    _with()

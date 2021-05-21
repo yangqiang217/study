@@ -77,7 +77,7 @@ fun whenReturn(e: Int): Int =
 
 /**
  * 没有java中的fori循环
- * ...是左右都包括，until不包括右边1 until 10
+ * ...是左右都包括，until不包括右边：1 until 10
  */
 fun for_() {
     val arr = arrayOf(1, 2, 3)

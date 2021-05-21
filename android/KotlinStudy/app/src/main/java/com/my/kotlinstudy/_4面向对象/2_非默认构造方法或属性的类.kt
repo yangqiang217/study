@@ -1,15 +1,9 @@
 package com.my.kotlinstudy._4面向对象
 
 fun main() {
-    val u = User("name")
-    println(u.nickName)
 
-    val u2 = User2("name")
-    println(u2.nickName)
-
-    val u4 = User4("name4")
-    u4.address = "add"
-    println(u4.address)
+    val btn2: Button2 = Button2("ctx")
+    println(btn2)
 }
 
 open class U(name: String) {
@@ -28,8 +22,14 @@ class U2(_name: String) : U(_name) {
  */
 open class User /*constructor*/(_nickName: String, _age: Int = 0) {
     val nickName = _nickName
+    fun a() {
+        println(nickName)
+    }
 }
 class User2 (val nickName/*直接加val表示nickname就是成员变量了*/: String) {
+    fun a() {
+        println(nickName)
+    }
 }
 
 /**
@@ -58,12 +58,23 @@ open class View {
 class Button2 : View {
     //通过从形式调用父类从构造方法(有一个就行)
     constructor(ctx: String): super(ctx) {
+        useA()
     }
     constructor(ctx: String, attr: Int): super(ctx, attr) {
     }
     //或者用this调用自己的别的构造方法，就不用调super而委托给调的那个调super
     constructor(attr: Int): this("1", attr) {
 
+    }
+
+    fun useA() {
+        lis.onClick("shit")
+    }
+
+    val lis = object : Listener {
+        override fun onClick(str: String) {
+            println("onClick")
+        }
     }
 }
 //通过主形式调用父构造方法
@@ -114,4 +125,8 @@ class User4(val name: String) {
         /*private getter不能是private的，会报错 */get() {
             return 1
         }
+}
+
+interface Listener {
+    fun onClick(str: String)
 }

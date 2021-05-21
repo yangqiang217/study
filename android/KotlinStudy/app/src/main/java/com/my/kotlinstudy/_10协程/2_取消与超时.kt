@@ -40,7 +40,7 @@ fun main22() = runBlocking {
 
 }
 //保证能被取消：
-fun main() = runBlocking {
+fun main23() = runBlocking {
     val startTime = System.currentTimeMillis()
     val job = launch(Dispatchers.Default) {
         var nextPrintTime = startTime

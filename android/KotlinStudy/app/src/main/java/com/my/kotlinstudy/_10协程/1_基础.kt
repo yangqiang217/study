@@ -6,31 +6,36 @@ fun main1() {
     GlobalScope.launch {// 在后台启动一个新的协程并继续
         //delay是一个特殊的 挂起函数 ，它不会造成线程阻塞，但是会 挂起 协程，并且只能在协程中使用。
         delay(1000L)
-        println("1 in thread ${Thread.currentThread().name}")
+        println("1 in thread ${Thread.currentThread().name}")//DefaultDispatcher-worker-1
     }
-    println("2 in thread ${Thread.currentThread().name}")
-    runBlocking {//这个表达式阻塞了主线程
+    println("2 in thread ${Thread.currentThread().name}")//main
+    runBlocking {//这个表达式阻塞了主线程，直到 runBlocking 内部的协程执行完毕。
         delay(2000L)
-        println("3 in thread ${Thread.currentThread().name}")
+        println("3 in thread ${Thread.currentThread().name}")//main
     }
-    println("4 in thread ${Thread.currentThread().name}")
+    println("4 in thread ${Thread.currentThread().name}")//main
 }
 
-fun main() = runBlocking {
+fun main3() = runBlocking {
     launch(Dispatchers.IO) { // 在 runBlocking 作用域中启动一个新协程
         delay(1000L)
-        println("after delay in thread ${Thread.currentThread().name}")
+        println("after delay in thread ${Thread.currentThread().name}")//DefaultDispatcher-worker-1
     }
-    println("end in thread ${Thread.currentThread().name}")
+    println("end in thread ${Thread.currentThread().name}")//main
 }
 
+/**
+ * runBlocking 与 coroutineScope 可能看起来很类似，因为它们都会等待其协程体以及所有子协程结束。
+ * 主要区别在于，runBlocking 方法会阻塞当前线程来等待， 而 coroutineScope 只是挂起，会释放底层线程用于其他用途。
+ * 由于存在这点差异，runBlocking 是常规函数，而 coroutineScope 是挂起函数
+ */
 fun main4() = runBlocking {
     launch {
         delay(2000L)
         println("after delay1")
     }
 
-    coroutineScope {
+    coroutineScope {//创建一个协程作用域并且在所有已启动子协程执行完毕之前不会结束
         launch {
             delay(3000L)
             println("after delay2")
