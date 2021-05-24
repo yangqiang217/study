@@ -18,8 +18,12 @@ fun main() {
         override fun fun1(para1: Int) {
             println("1111: $para1")
         }
-
     })
+    //or:
+    a.setListener11 { para1 ->
+        println("1111: $para1")
+        println("1111: $para1")
+    }
 
     a.setListener21(object : Listener2 {
         override fun fun1(para1: Int, para2: String) {

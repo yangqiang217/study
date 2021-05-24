@@ -4,8 +4,13 @@ fun main() {
 
 }
 
-//接口
+/**
+ * 接口
+ * 可以有方法实现
+ * 和abstract的区别是接口中变量不能初始化
+ */
 interface Clickable {
+//    val a: Int
     //接口中的成员始终是open的，不能标记为final
     fun click()
     fun showOff() = println("show off")
@@ -60,6 +65,7 @@ class NotOpenSon : NotOpen() {
  */
 class TextView{
     val text = "1"
+    val state2 = State2()
 
     /**
      * 嵌套类，不加任何东西就和java的加static一样
@@ -78,21 +84,12 @@ class TextView{
             val a: String = text
         }
         fun getOuter(): TextView = this@TextView
-    }
-}
+        private fun priFun() {
 
-/**
- * 密封类，对可能创建的子类做出限制，所有直接子类必须嵌套在父类中
- * 默认open
- * 作用：when的时候就不需要else分支了
- */
-sealed class Expr {
-    class Num(val value: Int) : Expr()
-    class Sum(val left: Expr, val right: Expr) : Expr()
-}
-fun eval(e: Expr) : Int =
-    //when涵盖了所有可能情况(必须涵盖，否则有返回值的when会报错)，不需要默认else分支
-    when (e) {
-        is Expr.Num -> e.value
-        is Expr.Sum -> eval(e.right) + eval(e.left)
+        }
     }
+
+    fun fu() {
+//        state2.priFun();//不能访问inner的私有的
+    }
+}

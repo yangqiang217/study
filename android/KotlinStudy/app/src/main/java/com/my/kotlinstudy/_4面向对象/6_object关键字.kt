@@ -5,7 +5,7 @@ object用处：定义一个类并同时创建一个对象实例
 场景：
     单例
     伴生对象
-    对象表达式用来替代java匿名内部类
+    匿名内部类（比如回调监听）
  */
 
 fun main() {
@@ -115,8 +115,9 @@ fun Person3.Companion.toJson(person: Person3): String {
     return person.toString()
 }
 
+
 /**
- * 对象表达式：改变写法的匿名内部类
+ * 匿名内部类
  */
 interface OnClickListener {
     fun onClick()

@@ -229,11 +229,105 @@ fun main511() = runBlocking {
  * 2 -> two
  * 3 -> three
  */
-fun main() = runBlocking {
+fun main512() = runBlocking {
     val nums = (1..10).asFlow()
     val strs = flowOf("one", "two", "three")
     nums.zip(strs) { a, b ->
 //        println("in zip a: $a, b: $b")
         "$a -> $b"
     }.collect { println(it) }
+}
+
+/**
+ * combine
+ * 和zip不同，zip会以时间长的一个为准，等它完了才一一配对结合，combine时间长的会和时间短的一个最近一次释放的结合
+ * 有点conflate的意思
+ */
+fun main513() = runBlocking {
+    val nums = (1..3).asFlow().onEach { delay(100) }
+    val strs = flowOf("one", "two", "three").onEach { delay(1000) }
+    val startTime = System.currentTimeMillis()
+//    nums.zip(strs) { a, b ->
+    nums.combine(strs) { a, b ->
+        "$a -> $b"
+    }.collect {
+        println("$it at ${System.currentTimeMillis() - startTime} ms from start")
+    }
+}
+
+/**
+ * 展平
+ */
+@ExperimentalCoroutinesApi
+fun main514() = runBlocking {
+    val startTime = System.currentTimeMillis()
+    (1..3).asFlow().onEach { delay(500) }
+//        .flatMapConcat {//按顺序
+//        .flatMapMerge {//前面快的话会先走完
+        .flatMapLatest {//类似collectLatest，下一个开始的时候上一个取消
+            println("----in flatMapConcat: $it")
+            requestFlow(it)
+        }
+        .collect { println("$it at ${System.currentTimeMillis() - startTime} ms from start") }
+}
+fun requestFlow(i: Int): Flow<String> = flow {
+    emit("$i: First")
+    delay(1000)
+    emit("$i: Second")
+}
+
+
+/**
+ * 收集器 try 与 catch
+ */
+fun simple5(): Flow<Int> = flow {
+    for (i in 1..3) {
+        println("emit $i")
+        emit(i)
+    }
+}
+fun main515() = runBlocking {
+    try {
+        simple5().collect {
+            println(it)
+            check(it <= 1)//在末端操作符 collect 中捕获了异常，并且， 如我们所见，在这之后不再发出任何值
+        }
+    } catch (e: Exception) {
+        println("catch $e")
+    }
+}
+
+
+//声明式处理
+/**
+ * onCompletion 流完全收集时调用，有try后异常也会调用，会传入一个Throwable
+ * onCompletion 操作符与 catch 不同，它不处理异常。我们可以看到前面的示例代码，异常仍然流向下游。它将被提供给后面的 onCompletion 操作符，并可以由 catch 操作符处理。
+ */
+fun main516() = runBlocking {
+    simple5()
+        .onCompletion {
+            if (it != null) {
+                println("has exception: $it")
+            }
+            println("done")
+        }
+        .catch { println("catch exception") }
+        .collect {
+            println(it)
+            check(it <= 1)//在末端操作符 collect 中捕获了异常，并且， 如我们所见，在这之后不再发出任何值
+        }
+}
+
+/**
+ * launchIn
+ * 可以在单独的协程中启动流的收集，这样就可以立即继续进一步执行代码：
+ * 可以用onEach-launchIn代替addEventListener
+ */
+fun events(): Flow<Int> = (1..3).asFlow().onEach { delay(100) }
+fun main() = runBlocking {
+    events()
+        .onEach { println("event: $it") }
+//        .collect()//done 会在最后打出
+        .launchIn(this)//done会在最前面打出
+    println("done")
 }

@@ -10,16 +10,17 @@ import java.util.*
  * kot中没有原始类型，只有包装类型，编译器在编译代码的时候会自动优化性能，把对应的包装类型拆箱为原始类型
  */
 fun main(args: Array<String>) {
-//    for (i in 100 downTo 1 step 2) {
-//        println(i)
-//    }
-    exception()
+    //    for (i in 100 downTo 1 step 2) {
+    //        println(i)
+    //    }
+//    exception()
+    labelReturn()
 }
 
 fun value() {
-    val a:Int = 1
-    val a1 = 1//自动推断
-//    a++ error
+    val a: Int = 1
+    val a1 = 1 //自动推断
+    //    a++ error
 }
 
 /**
@@ -34,7 +35,7 @@ fun ifelse(a: Int, b: Int) {
     //if分支可以是代码块，最后的表达式作为块的值
     val max2 = if (a > b) {
         print("max is a")
-        a//返回值
+        a //返回值
     } else {
         print("max is b")
         b
@@ -47,7 +48,7 @@ fun ifelse(a: Int, b: Int) {
 fun when_(obj: Any?) {
     val arr = arrayOf(1, 2, 3)
     when (obj) {
-        0,1,2,3 -> print("$obj obj在0-3")
+        0, 1, 2, 3 -> print("$obj obj在0-3")
         in 1..10 -> print("$obj in 1-10")
         in arr -> print("$obj in arr")
         !in 1..3 -> print("$obj not in 1-3")
@@ -58,7 +59,12 @@ fun when_(obj: Any?) {
         else -> print("$obj else类似java中的default")
     }
 }
-//带返回值
+
+/**
+ * 带返回值的表达式
+ * 此时必须有 else 分支，除非编译器能够检测出所有的可能情况都已经覆盖了[例如，对于 枚举(enum)类条目与密封(sealed)类子类型]
+ */
+
 fun whenReturn(e: Int): Int =
     when (e) {
         1 -> {
@@ -67,7 +73,7 @@ fun whenReturn(e: Int): Int =
         }
         is Number -> {
             println("1")
-            2//返回2
+            2 //返回2
         }
         else -> {
             println("else")
@@ -84,7 +90,7 @@ fun for_() {
     //for each
     for (item in arr) {
 
-    }//或：
+    } //或：
     arr.forEach {
         println(it)
     }
@@ -94,13 +100,12 @@ fun for_() {
     }
     //带i和value
     for ((index, value) in arr.withIndex()) {
-//        print("ele at $index is $value")
+        //        print("ele at $index is $value")
     }
-
 
     //包括1和10
     for (i in 1..10) {
-//        println(i)
+        //        println(i)
     }
     //倒数
     for (i in 100 downTo 1 step 2) {
@@ -109,7 +114,7 @@ fun for_() {
 
     //map循环
     val map = TreeMap<Char, String>()
-    map['a'] = "aa"//类似于java的put
+    map['a'] = "aa" //类似于java的put
     for ((c, s) in map) {
         println("key: $c, value: $s")
     }
@@ -119,14 +124,49 @@ fun for_() {
 fun while_() {}
 
 /**
+ * 在 Kotlin 中任何表达式都可以用标签(label)来标记
+ */
+fun labelBreak() {
+    loopshit@ for (i in 1..5) {
+        for (j in 0..i) {
+            if (j == 2) {
+//                continue@loopshit//可以直接continue外面的了
+                break@loopshit//可以直接break外面的了
+            }
+            println("in loop: $j")
+        }
+        println("end one loop")
+    }
+    println("end")
+}
+fun labelReturn() {
+//    listOf(1, 2, 3, 4, 5).forEach {
+//        if (it == 3) return//这里直接labelReturn给返回了
+//        println(it)
+//    }
+    listOf(1, 2, 3, 4, 5).forEach shit@ {
+        if (it == 3) return@shit
+        println(it)
+    }
+    //同：
+    listOf(1, 2, 3, 4, 5).forEach {
+        if (it == 3) return@forEach
+        println(it)
+    }
+    println("fun end")
+}
+
+/**
  * 除了表达式的值，有返回值的函数都要求显示使用return
  */
 fun return_() {
 
 }
+
 //函数字面量
 fun sum(a: Int, b: Int) = a + b
 fun max(a: Int, b: Int) = if (a > b) a else b
+
 //nothing标记无返回的函数(可以省略)：
 fun fail(msg: String): Nothing {
     throw IllegalArgumentException(msg)
@@ -146,7 +186,7 @@ fun exception() {
 
     }
 
-//    throw NullPointerException("null")
+    //    throw NullPointerException("null")
 
     //作为表达式，num的值就是最后一个表达式的值
     val num = try {

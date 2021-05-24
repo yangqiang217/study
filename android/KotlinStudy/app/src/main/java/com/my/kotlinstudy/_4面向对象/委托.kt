@@ -18,27 +18,6 @@ fun main() {
     println(e.p)
 }
 
-class Client(val name: String, val postalCode: Int) {
-    override fun toString(): String {
-        return "Client(name=$name, postalCode=$postalCode)"
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (other == null || other !is Client)
-            return false
-        return name == other.name && postalCode == other.postalCode
-    }
-
-    //复制val变量的类
-    fun copy(name: String = this.name, postalCode: Int = this.postalCode) = Client(name, postalCode)
-}
-
-/**
- * data类会自动重写满足Client中要求的toString、equals、hashCode
- */
-data class Client2(val name: String, val postalCode: Int)
-
-
 /**
  * 委托 by
  * 常规委托实现：挨个把动作给内部变量

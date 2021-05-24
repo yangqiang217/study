@@ -2,18 +2,44 @@ package com.my.kotlinstudy._4面向对象
 
 fun main() {
 
-    val btn2: Button2 = Button2("ctx")
-    println(btn2)
+    val U0 = U0()
+
+}
+
+class U0 {
+    init {
+        println("u0 in init")//没有显式主构造，init还是会调用，因为会生成一个隐式无参构造
+    }
 }
 
 open class U(name: String) {
 
+    lateinit var lateP: User
+//    lateinit var lateInt: Int//lateinit不能是原始类型
+
+    open val u1: Int = 0
+    open var u2: Int = 0
+    /**
+     * 主构造函数不能包含任何的代码。初始化的代码可以放到以 init 关键字作为前缀的初始化块(initializerblocks)中
+     */
+    init {
+    }
+
+    fun a() {
+        if (::lateP.isInitialized) {//判断lateinit的变量是否已经初始化
+
+        }
+    }
 }
 
 /**
  * 需要U()或constructor()
  */
 class U2(_name: String) : U(_name) {
+    //可以用var覆写val
+    override var u1 = 1
+    //不能用val覆写var，因为一个 val 属性本质上声明 了一个 get 方法，而将其覆盖为 var 只是在子类中额外声明一个 set 方法。
+//    override val u2 = 1
 }
 
 /**
@@ -52,7 +78,7 @@ class Secretive private constructor() {
 open class View {
     constructor(ctx: String) {
     }
-    constructor(ctx: String, attr: Int) {
+    constructor(ctx: String, attr: Int): this(ctx)/*委托给单构造函数*/ {
     }
 }
 class Button2 : View {
@@ -125,8 +151,54 @@ class User4(val name: String) {
         /*private getter不能是private的，会报错 */get() {
             return 1
         }
+    val height: Int = 1// 不能有初始化*/
+//        set(value) {//val 不能有set
+//            println("")
+//        }
+        get() {
+            println()
+            return field
+        }
 }
 
 interface Listener {
     fun onClick(str: String)
+}
+
+
+
+/**
+ * init和constructor执行顺序
+ * 对象里面init统一早于constructor，内部顺序按代码顺序
+ * companion里面的init早于所有对象的，但如果companion的init之前new了这个对象，那么就会先走对象的
+ */
+class TestObj {
+
+    init {
+        println("TestObj init1")
+    }
+
+    constructor() {
+        println("TestObj constructor1")
+    }
+
+    constructor(a: Int) {
+        println("TestObj constructor1")
+    }
+
+
+    init {
+        println("TestObj init2")
+    }
+
+    fun print() {
+    }
+
+    companion object {
+        val a = TestObj()
+
+        init {
+            println("TestObj init in companion")
+        }
+    }
 }
