@@ -1,9 +1,18 @@
-package com.my.kotlinstudy._10协程
+package com.my.kotlinstudy._11协程
 
 import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
 
-fun main1() {
-    GlobalScope.launch {// 在后台启动一个新的协程并继续
+/**
+ * 其实就是封装的线程池，真正耗时的操作还是得放在子线程，轻量的意思只是写法上轻量，性能上等价于线程池
+ */
+fun main() {
+    GlobalScope.launch {// 在后台启动一个新的协程并继续，会在新的线程
+        withContext(Dispatchers.IO){
+        /* withContext后续代码会等这个结束，GlobalScope.launch后面的会正常走，
+        所以就能实现这里请求数据，withContext后面接着更新UI */
+//            TimeUnit.SECONDS.sleep(10)
+        }
         //delay是一个特殊的 挂起函数 ，它不会造成线程阻塞，但是会 挂起 协程，并且只能在协程中使用。
         delay(1000L)
         println("1 in thread ${Thread.currentThread().name}")//DefaultDispatcher-worker-1

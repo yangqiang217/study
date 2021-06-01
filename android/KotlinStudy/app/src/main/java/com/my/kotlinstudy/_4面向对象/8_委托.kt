@@ -13,9 +13,12 @@ fun main() {
 //    val byLazy = ByLazy()
 //    byLazy.print()
 
-    val e = Example()
-    e.p = "ppp"
-    println(e.p)
+//    val e = Example()
+//    e.p = "ppp"
+//    println(e.p)
+
+    val user = UserBy(mapOf("name" to "John", "age" to 23))
+    println(user.age)
 }
 
 /**
@@ -79,6 +82,7 @@ class Derived(b: Base): Base by b {
  * by lazy
  * by lazy 与 lateinit 不同的是 在使用lateinit 定义的变量前 一定会给他一个实例 保证他不会是空对象，
  * 而 by lazy 则是在第一次使用时 初始化对象 那我们来验证下 什么叫 第一次使用时 初始化对象
+ * 多线程也走一次，所以线程安全
  *
  * 和直接初始化的区别是，不用它就不会被初始化
  */
@@ -88,8 +92,8 @@ class ByLazy {
         "name"
     }
     fun print() {
-//        println(name)
-//        println(name)
+        println(name)
+        println(name)
     }
 }
 
@@ -108,4 +112,12 @@ class Delegate {
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
         _p = value
     }
+}
+
+/**
+ * map中存储变量
+ */
+class UserBy(val map: Map<String, Any?>) {
+    val name: String by map
+    val age: Int by map
 }

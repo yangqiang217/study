@@ -1,10 +1,8 @@
-package com.my.kotlinstudy._8高阶函数
+package com.my.kotlinstudy._5Lambda和高阶函数
 
 fun main() {
     lookForAlice2(people)
 }
-
-data class Person(val name: String, val age: Int)
 
 val people = listOf(Person("Alice", 29), Person("Bob", 31))
 

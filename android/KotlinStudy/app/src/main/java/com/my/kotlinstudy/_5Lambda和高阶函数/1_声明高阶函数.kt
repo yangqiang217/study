@@ -1,4 +1,4 @@
-package com.my.kotlinstudy._8高阶函数
+package com.my.kotlinstudy._5Lambda和高阶函数
 
 import java.lang.StringBuilder
 
@@ -8,10 +8,12 @@ import java.lang.StringBuilder
  * list.filter { x > 0 }
  */
 fun main() {
-    twoAndThree({x, y -> x + y})//or
+    twoAndThree({x, y -> x + y}) //or
     twoAndThree { x, y -> x + y }
 
     filter { c -> c == 'c' }
+    filter(Char::isDefined)
+    filter(null)
 
     joinToString<String>()
     joinToString2<String>{ it.toLowerCase() }
@@ -39,12 +41,14 @@ fun funType() {
  * 调用高阶函数
  */
 fun twoAndThree(operation: (Int, Int) -> Int) {
-    val res = operation(2, 3)
-    println(res)
+    val res = operation(2, 3)//or
+    val res2 = operation.invoke(3, 4)
+    println("twoAndThree: $res")
+    println("twoAndThree2: $res2")
 }
-fun filter(predicate: (Char) -> Boolean): String {
+fun filter(predicate: ((Char) -> Boolean)?): String {
     val c = 'c'
-    if (predicate(c)) {
+    if (predicate != null && predicate(c)) {
         println("in")
     }
     return "cc"

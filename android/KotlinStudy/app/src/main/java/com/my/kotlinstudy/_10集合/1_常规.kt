@@ -1,5 +1,6 @@
-package com.my.kotlinstudy._3函数
+package com.my.kotlinstudy._10集合
 
+import com.my.kotlinstudy._3函数.joinToString
 import com.my.kotlinstudy._4面向对象.Person
 
 /**
@@ -21,6 +22,10 @@ fun main1() {
     println(list2.javaClass)//java.util.Arrays$ArrayList
     println(list.last())
 
+    val list3 = List(3, {it * 2})
+    val list4 = List(3) { it * 2 }
+//    println("list3: $list3")//0 2 4
+
     /*to
     https://www.kotlincn.net/docs/reference/functions.html
     不是一个特殊结构，而是一个普通函数，调用方式是"中缀调用"
@@ -31,6 +36,13 @@ fun main1() {
      */
     val map = hashMapOf(1 to "1", 2 to "2")
     println(map.javaClass)//java.util.HashMap
+    //+-操作
+    val map2 = map + Pair(3, "3")
+    val map3 = map2 - Pair(4, "3")//不存在不会报错
+    val map4 = map2 - listOf(1, 2)//移除所以以此为key的
+    println("after + Pair: $map2")
+    println("after - Pair: $map3")
+    println("after - listOf: $map4")
 
 
     val listMayNull: List<String>? = null
@@ -39,15 +51,21 @@ fun main1() {
 
     //empty返回不可变的list
     val empty = emptyList<String>()
+
+    //copy 拷贝的如果往原集合里加减东西，新集合不变
     val mutableEmpty = empty.toMutableList()
+    val readOnlyEmpty = empty.toList()
+
+    //fill，用1替换里面所有数据
+    list.fill(1)//1 1 1
 }
 
 /**
- * 型变
+ * 协变
+ * 只读集合是协变的，可以在List<Father>的任何地方传进去List<Son>，即集合类型和元素类型有相同的子类型关系。map在value上是型变的，key上不是
+ * 可变集合和java一样不是型变的
  */
 fun main2() {
-    //只读集合是型变的，可以在List<Father>的任何地方传进去List<Son>，即集合类型和元素类型有相同的子类型关系。map在value上是型变的，key上不是
-    //可变集合和java一样不是型变的
     val l1: List<Son> = ArrayList()
     val l2: MutableList<Son> = ArrayList()
     f1(l1)
@@ -100,7 +118,7 @@ fun main3() {
     println(set1 === set2)
 }
 
-fun main4() {
+fun main() {
     val numbers = listOf("one", "two", "three", "four")
     //过滤
     println("filter: " + numbers.filter { it.length > 3 })//[three, four]，不会改变原始问题
@@ -127,8 +145,14 @@ fun main4() {
 
     println(numbers.map { it.substring(0, 2) })//[on, tw, th, fo]
     println(numbers.mapIndexed { index, s -> index.toString() + s })//[0one, 1two, 2three, 3four]
+    //map的其它应用：只取列表里元素的某些字段或者扩展简单元素为更复杂对象，不要把map单纯理解为变换，还可能是简化等其它意思
+    val versions = listOf(Version(1, 2), Version(2, 4))
+    val majors = versions.map { it.major }
+    println("majors: $majors")//[1,2]
 
-    println(numbers.associateWith { it.length })
+    //associateWith返回map，key是it，value是传进来的函数的结果
+    println("associateWith: ${numbers.associateWith { it.length }}")
+
     println(numbers.joinToString(sep = "|", pre = "<", suf = ">"))//<one|two|three|four>
     println(numbers.joinToString(separator = "|", prefix = "<", postfix = ">", limit = 2,
         transform = {
@@ -326,7 +350,7 @@ fun main10() {
     persons.binarySearch(Person("11"), compareBy<Person> { it.name.length }.thenBy { it.name.first() })
 }
 
-fun main() {
+fun main11() {
     val numbersMap = mutableMapOf("one" to 1, "two" to 2)
     numbersMap["three"] = 3
     println(numbersMap)

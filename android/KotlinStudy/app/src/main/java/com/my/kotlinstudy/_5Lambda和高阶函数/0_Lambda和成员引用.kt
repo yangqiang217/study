@@ -1,4 +1,4 @@
-package com.my.kotlinstudy._5Lambda
+package com.my.kotlinstudy._5Lambda和高阶函数
 
 fun main() {
     val list: List<String> = listOf("a", "b")
@@ -47,8 +47,10 @@ fun findOldest2(list: List<Person>) {
  * 语法
  */
 fun grammar() {
+    //完整写法
+    val sum: (Int, Int) -> Int = {x: Int, y: Int -> x + y}
     //箭头把实参列表和函数体分隔开
-    val sum = {x: Int, y: Int -> x + y}
+    val sum1 = {x: Int, y: Int -> x + y}
     println(sum(1, 2))
 
     val people = listOf(Person("yq", 1), Person("hhx", 2))

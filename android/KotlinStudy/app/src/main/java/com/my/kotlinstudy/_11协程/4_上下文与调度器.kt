@@ -1,4 +1,4 @@
-package com.my.kotlinstudy._10协程
+package com.my.kotlinstudy._11协程
 
 import kotlinx.coroutines.*
 
@@ -16,13 +16,14 @@ fun main41() = runBlocking {
     launch { // 运行在父协程的上下文中，即 runBlocking 主协程
         println("main runBlocking       : I'm working in thread ${Thread.currentThread().name}")
     }
-    launch(Dispatchers.Unconfined) { // 不受限的——将工作在主线程中
+    launch(Dispatchers.Unconfined) { // 在调用的线程直接执行。
         println("Unconfined             : I'm working in thread ${Thread.currentThread().name}")
     }
     /*
     当协程在 GlobalScope 中启动时，使用的是由 Dispatchers.Default 代表的默认调度器。
     默认调度器使用共享的后台线程池。
     所以 launch(Dispatchers.Default) { …… } 与 GlobalScope.launch { …… } 使用相同的调度器。
+    这个调度器经过优化，可以在主线程之外执行 cpu 密集型的工作。例如对列表进行排序和解析 JSON。在线程池中执行。
      */
     launch(Dispatchers.Default) { // 将会获取默认调度器
         println("Default                : I'm working in thread ${Thread.currentThread().name}")
