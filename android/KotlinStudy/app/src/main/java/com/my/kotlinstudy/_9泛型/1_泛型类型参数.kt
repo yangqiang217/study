@@ -1,5 +1,8 @@
 package com.my.kotlinstudy._9泛型
 
+/**
+ * kt泛型没有通配符
+ */
 fun main() {
     process(null)
 //    process1(null)//error
