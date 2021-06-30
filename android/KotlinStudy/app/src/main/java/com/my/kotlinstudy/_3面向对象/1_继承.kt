@@ -56,8 +56,12 @@ abstract class Animated {
  * 如果不是open就不能被继承
  */
 open class NotOpen {
+    protected val a = 1
 }
 class NotOpenSon : NotOpen() {
+    fun a() {
+        println(a)
+    }
 }
 
 /**

@@ -5,7 +5,7 @@ import kotlinx.coroutines.*
 /**
  * 其实就是封装的线程池，真正耗时的操作还是得放在子线程，轻量的意思只是写法上轻量，性能上等价于线程池
  */
-fun main() {
+fun main1() {
     GlobalScope.launch {// 在后台启动一个新的协程并继续，会在新的线程
         withContext(Dispatchers.IO){
         /* withContext后续代码会等这个结束，GlobalScope.launch后面的会正常走，

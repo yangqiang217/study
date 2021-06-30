@@ -324,7 +324,7 @@ fun main516() = runBlocking {
  * 可以用onEach-launchIn代替addEventListener
  */
 fun events(): Flow<Int> = (1..3).asFlow().onEach { delay(100) }
-fun main() = runBlocking {
+fun main517() = runBlocking {
     events()
         .onEach { println("event: $it") }
 //        .collect()//done 会在最后打出

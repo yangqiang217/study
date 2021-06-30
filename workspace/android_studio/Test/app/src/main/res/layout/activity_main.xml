@@ -18,4 +18,9 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:text="stop"/>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </com.example.yangqiang.test.view.MyLinearLayout>

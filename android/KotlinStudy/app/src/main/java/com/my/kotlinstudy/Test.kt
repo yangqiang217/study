@@ -1,21 +1,23 @@
 package com.my.kotlinstudy
 
 fun main() {
-//    val map = HashMap<String, Int>()
-//
-//    map["1"] = 1
-//    val a: Int? = map["1"]
-//    if (a != null) {
-//
-//        println(a)
-//    }
 
-    val list: List<String>? = null
-    val a: String = list?.firstOrNull() ?: "kong"
-    println(a)
+//    Parent("xujiafeng")
+    val a = Child("xujiafeng")
+    a.name
 }
 
-class Person(_age: Int) {
-    val age = _age
+open class Parent(open var name: String) {
+    var nameLength: Int
 
+    init {
+        nameLength = name.length
+    }
+}
+
+class Child(override var name: String) : Parent(name) {
+
+    init {
+        nameLength = name.length
+    }
 }

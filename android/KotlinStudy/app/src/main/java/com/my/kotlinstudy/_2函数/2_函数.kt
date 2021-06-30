@@ -5,6 +5,8 @@ package com.my.kotlinstudy._2函数
 import java.lang.StringBuilder
 
 fun main() {
+    aaa()
+
     val list = arrayListOf(1, 2, 3)
     //命名参数
     list.joinToString(pre = "", suf = "")
@@ -21,6 +23,10 @@ fun main() {
     max(1, 2, 3, 4, 5)
     val list1 = listOf(1, 2)
 //    max(*list1)
+}
+
+fun aaa(a: Int? = 1) {
+    println("a: $a")
 }
 
 /**

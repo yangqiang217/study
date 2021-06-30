@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,9 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +40,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.yangqiang.test.MyApplication;
 import com.example.yangqiang.test.R;
@@ -79,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.show("btn1 click");
+                span();
             }
         });
 
@@ -90,6 +95,16 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.btn).performClick();
             }
         });
+    }
+
+    private void span() {
+        TextView tv = findViewById(R.id.tv);
+        String content = "一二三四五六七";
+        SpannableString sp = new SpannableString(content);
+        sp.setSpan(new ForegroundColorSpan(Color.RED), 0, 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(Color.RED), 4, 6, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
+        tv.setText(sp);
     }
 
     @Override

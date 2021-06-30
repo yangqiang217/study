@@ -7,6 +7,9 @@ import android.util.Log
 import android.view.animation.LinearInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.my.kotlinstudy._8协程.excep_async
+import com.my.kotlinstudy._8协程.excep_launch
+import com.my.kotlinstudy._8协程.excep_launch_handle
 import com.my.kotlinstudy.viewmodel.MainViewModel
 import com.my.kotlinstudy.viewmodel.factory.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,7 +38,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn2.setOnClickListener {
-            viewModel.request2()
+//            viewModel.request2()
+//            excep_launch()
+            excep_launch_handle()
+//            excep_async()
         }
     }
 }

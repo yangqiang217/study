@@ -18,7 +18,8 @@ fun main() {
 //    init2.use()
 
     val a: Int? = null
-    println("tostring: " + a.toString())
+    val b = a?.toString() ?: 1
+    println("tostring: " + b)
 }
 
 /**
